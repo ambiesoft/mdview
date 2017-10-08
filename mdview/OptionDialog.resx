@@ -117,10 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="INI_SAVE_FAILED" xml:space="preserve">
-    <value>Failed to save ini.</value>
-  </data>
-  <data name="NO_RECENT_ITEM" xml:space="preserve">
-    <value>&lt;No recent items&gt;</value>
-  </data>
 </root>

@@ -68,5 +68,14 @@ namespace mdview.Properties {
                 return ResourceManager.GetString("INI_SAVE_FAILED", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;No recent items&gt;.
+        /// </summary>
+        internal static string NO_RECENT_ITEM {
+            get {
+                return ResourceManager.GetString("NO_RECENT_ITEM", resourceCulture);
+            }
+        }
     }
 }

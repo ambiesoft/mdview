@@ -14,13 +14,38 @@
 #include "cstring.h"
 #include "amalloc.h"
 
+static int
+isbaseless(const char *string, const int size)
+{
+	int i;
+	int alphacount=0;
+	for(i=0 ; i < size; ++i)
+	{
+		if(isalpha(string[i]))
+		{
+			alphacount++;
+		}
+		else if(string[i]==':')
+		{
+			// if started with colon, make it baseless.
+			return alphacount == 0;
+		}
+		else
+		{
+			// not alpha, not colon
+			return 1;	
+		}
+	}
+	return 1;
+}
+
 static char *
 e_basename(const char *string, const int size, void *context)
 {
     char *ret;
     char *base = (char*)context;
     
-    if ( base && string && (*string == '/') && (ret=malloc(strlen(base)+size+2)) ) {
+    if ( base && string && isbaseless(string,size) && (ret=malloc(strlen(base)+size+2)) ) {
 	strcpy(ret, base);
 	strncat(ret, string, size);
 	return ret;

@@ -21,7 +21,20 @@ namespace mdview
         static readonly string KEY_WIDTH = "Width";
         static readonly string KEY_HEIGHT = "Height";
 
+        static readonly string KEY_MAXRECENTS = "MaxRecents";
+        static readonly string KEY_RECENTS = "Recents";
+        
         readonly string _filetoopen;
+
+        List<string> recents_ = new List<string>();
+        int maxrecents_ = 16;
+
+        // addtional commandline arguments for markdown
+        string _additionalArguments = string.Empty;
+
+        // MD currently opening
+        string currentMD_;
+
         public FormMain(string file)
         {
             _filetoopen = file;
@@ -46,6 +59,8 @@ namespace mdview
                     this.Size = new Size(width, height);
                 }
             }
+
+       
         }
         bool isSchemeJump(string scheme)
         {
@@ -102,7 +117,10 @@ namespace mdview
         }
         string getMarkdownExe()
         {
-            return Path.Combine(AppDir, "markdown.exe");
+            string ret = Path.Combine(AppDir, "markdown.exe");
+            if (File.Exists(ret))
+                return ret;
+            return "markdown.exe";
         }
         void prepareBrowser()
         {
@@ -116,13 +134,51 @@ namespace mdview
         {
             this.Text = title;
         }
+       
+        void AddRecent(string file)
+        {
+            RefreshRecent();
+
+            recents_.Remove(file);
+            recents_.Insert(0, file);
+
+            if (recents_.Count > maxrecents_)
+                recents_ = recents_.GetRange(0, maxrecents_);
+
+            if(!Profile.WriteStringArray(SECTION_OPTION, KEY_RECENTS, recents_.ToArray(), IniPath))
+            {
+                AmbLib.Alert(Properties.Resources.INI_SAVE_FAILED);
+            }
+        }
+        string decorateHtml(string html)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("<html><head>");
+            sb.AppendLine("<style type=\"text/css\">");
+            sb.AppendLine("code");
+            sb.AppendLine("{ ");
+            sb.AppendLine("  display: block;");
+            sb.AppendLine("  white-space: pre-wrap;");
+            sb.AppendLine("}");
+            sb.AppendLine("</style>");
+            sb.AppendLine("</head>");
+            sb.AppendLine("<body>");
+
+            sb.AppendLine(html);
+            sb.AppendLine("</body></html>");
+
+            return sb.ToString();
+        }
         void OpenMD(string mdfile)
         {
             int retval;
             string output, err;
-            string arg = string.Format("-f html -b {0} {1}",
-                AmbLib.doubleQuoteIfSpace(AmbLib.pathToFileProtocol(Path.GetDirectoryName(mdfile))),
-                AmbLib.doubleQuoteIfSpace(mdfile));
+            string arg = string.Format("-b {0} {1} {2}",
+                AmbLib.doubleQuoteIfSpace(AmbLib.pathToFileProtocol(Misc.PathAddBackslash(Path.GetDirectoryName(mdfile)))),
+                                // AmbLib.doubleQuoteIfSpace((PathAddBackslash(Path.GetDirectoryName(mdfile)))),
+                                _additionalArguments,
+                AmbLib.doubleQuoteIfSpace(mdfile)
+                );
             AmbLib.OpenCommandGetResult(
                 getMarkdownExe(),
                 arg,
@@ -138,10 +194,12 @@ namespace mdview
             }
 
             prepareBrowser();
-            wb.Document.Write(output);
-
+            string html = decorateHtml(output);
+            wb.Document.Write(html);
             setTitle(mdfile);
 
+            currentMD_ = mdfile;
+            AddRecent(mdfile);
         }
         void OnOpenMd()
         {
@@ -223,9 +281,77 @@ namespace mdview
             Profile.WriteInt(SECTION_OPTION, KEY_WIDTH, this.Size.Width, ini);
             Profile.WriteInt(SECTION_OPTION, KEY_HEIGHT, this.Size.Height, ini);
 
+
+
             if (!Profile.WriteAll(ini, inipath))
             {
                 AmbLib.Alert(Properties.Resources.INI_SAVE_FAILED);
+            }
+
+            
+        }
+
+
+
+        private void Item_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            OpenMD(item.Tag.ToString());
+        }
+
+        void RefreshRecent()
+        {
+            HashIni ini = Profile.ReadAll(IniPath);
+
+            string[] recents = null;
+            Profile.GetStringArray(SECTION_OPTION, KEY_RECENTS, out recents, ini);
+            Profile.GetInt(SECTION_OPTION, KEY_MAXRECENTS, 16, out maxrecents_, ini);
+            maxrecents_ = Math.Abs(maxrecents_);
+            foreach (string s in recents)
+            {
+                recents_.Remove(s);
+                recents_.Add(s);
+            }
+
+            if (recents_.Count > maxrecents_)
+                recents_ = recents_.GetRange(0, maxrecents_);
+        }
+        private void toolStripDropDownButtonRecent_DropDownOpening(object sender, EventArgs e)
+        {
+            RefreshRecent();
+
+            toolStripDropDownButtonRecent.DropDownItems.Clear();
+            if (recents_.Count == 0)
+            {
+                toolStripDropDownButtonRecent.DropDownItems.Add(Properties.Resources.NO_RECENT_ITEM);
+                return;
+            }
+
+            List<ToolStripItem> toadd = new List<ToolStripItem>();
+            foreach (string s in recents_)
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem();
+                item.Text = s;
+                item.Tag = s;
+                item.Click += Item_Click;
+                item.Checked = currentMD_ == s;
+                toadd.Add(item);
+            }
+            toolStripDropDownButtonRecent.DropDownItems.AddRange(toadd.ToArray());
+        }
+
+        
+        private void toolStripButtonOption_Click(object sender, EventArgs e)
+        {
+            using (OptionDialog dlg = new OptionDialog())
+            {
+
+                dlg.txtAdditionalArgument.Text = _additionalArguments;
+
+                if (DialogResult.OK != dlg.ShowDialog())
+                    return;
+
+                _additionalArguments = dlg.txtAdditionalArgument.Text;
             }
         }
     }
