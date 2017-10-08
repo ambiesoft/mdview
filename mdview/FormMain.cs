@@ -93,9 +93,16 @@ namespace mdview
             slMain.Text = wb.StatusText;
         }
 
+        string AppDir
+        {
+            get
+            {
+                return Path.GetDirectoryName(Application.ExecutablePath);
+            }
+        }
         string getMarkdownExe()
         {
-            return @"Z:\T\mdview\discount-2.2.2\markdown.exe";
+            return Path.Combine(AppDir, "markdown.exe");
         }
         void prepareBrowser()
         {
