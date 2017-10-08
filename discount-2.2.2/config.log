@@ -1,0 +1,146 @@
+[echo -n] works
+Configuring for [markdown]
+checking out the C compiler
+-rw-r--r-- 1 zelda なし     61 Oct  8 13:37 ngc8816.c
+-rwxr-xr-x 1 zelda なし 367897 Oct  8 13:37 ngc8816.exe
+Looking for cpp
+CPP=[/mingw32/bin/cpp], CPPFLAGS=[]
+target=CPP, rest=/mingw32/bin/cpp
+target=CPPFLAGS, rest=
+looking for install
+ (/usr/bin/install)
+target=INSTALL, rest=/usr/bin/install
+target=INSTALL_PROGRAM, rest=/usr/bin/install -s -m 755
+target=INSTALL_DATA, rest=/usr/bin/install -m 444
+target=INSTALL_DIR, rest=./config.md
+target=PACKAGE_NAME, rest=libmarkdown
+target=PACKAGE_VERSION, rest=2.2.2
+ngc8816.c:1:1: warning: '__noreturn__' attribute ignored [-Wattributes]
+ extern int noreturn  __attribute__((__noreturn__));
+ ^~~~~~
+target=AR, rest=/mingw32/bin/ar
+target=RANLIB, rest=/mingw32/bin/ranlib
+target=PKGCONFIG, rest=/usr/bin/pkg-config
+target=MK_PKGCONFIG, rest=
+checking for "volatile" keyword
+checking for "const" keyword
+Checking for "inline" keyword
+defining WORD & DWORD scalar types
+ngc8816.c: In function 'main':
+ngc8816.c:28:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+  exit(1);
+  ^~~~
+ngc8816.c:28:2: warning: incompatible implicit declaration of built-in function 'exit'
+ngc8816.c:28:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+ngc8816.c:35:2: warning: incompatible implicit declaration of built-in function 'exit'
+  exit(2);
+  ^~~~
+ngc8816.c:35:2: note: include '<stdlib.h>' or provide a declaration of 'exit'
+ngc8816.c:37:5: warning: incompatible implicit declaration of built-in function 'exit'
+     exit(0);
+     ^~~~
+ngc8816.c:37:5: note: include '<stdlib.h>' or provide a declaration of 'exit'
+./configure.inc: line 1234:  4928 Segmentation fault      ./ngc$$
+looking for header stdlib.h
+looking for the alloca function
+ngc8816.c:2:11: fatal error: alloca.h: No such file or directory
+ # include <alloca.h>
+           ^~~~~~~~~~
+compilation terminated.
+looking for header pwd.h
+test failed:  command was cc -Wno-return-type -Wno-implicit-int -c -o ngc8816.o ngc8816.c
+output:
+ngc8816.c:3:10: fatal error: pwd.h: No such file or directory
+ #include <pwd.h>
+          ^~~~~~~
+compilation terminated.
+offending sources:
+ngc8816.c:
+/* AC_CHECK_HEADERS */
+#include <sys/types.h>
+#include <pwd.h>
+int main() { }
+looking for the srandom function
+Y:\local64\msys64\tmp\ccKajQub.o:ngc8816.c:(.text+0xc): undefined reference to `srandom'
+collect2.exe: error: ld returned 1 exit status
+offending command was:
+void srandom();
+int main()
+{
+
+    srandom();
+}
+cc -Wno-return-type -Wno-implicit-int -o ngc8816 ngc8816.c 
+looking for the srand function
+looking for the bzero function
+ngc8816.c: In function 'main':
+ngc8816.c:4:5: warning: implicit declaration of function 'bzero' [-Wimplicit-function-declaration]
+     bzero((char*)0,0);
+     ^~~~~
+ngc8816.c:4:5: warning: incompatible implicit declaration of built-in function 'bzero'
+looking for the random function
+Y:\local64\msys64\tmp\cc48ZGzE.o:ngc8816.c:(.text+0xc): undefined reference to `random'
+collect2.exe: error: ld returned 1 exit status
+offending command was:
+void random();
+int main()
+{
+
+    random();
+}
+cc -Wno-return-type -Wno-implicit-int -o ngc8816 ngc8816.c 
+looking for the rand function
+looking for the strcasecmp function
+ngc8816.c:1:6: warning: conflicting types for built-in function 'strcasecmp' [-Wbuiltin-declaration-mismatch]
+ void strcasecmp();
+      ^~~~~~~~~~
+looking for the strncasecmp function
+ngc8816.c:1:6: warning: conflicting types for built-in function 'strncasecmp' [-Wbuiltin-declaration-mismatch]
+ void strncasecmp();
+      ^~~~~~~~~~~
+looking for the fchdir function
+Y:\local64\msys64\tmp\cc8qXve6.o:ngc8816.c:(.text+0xc): undefined reference to `fchdir'
+collect2.exe: error: ld returned 1 exit status
+offending command was:
+void fchdir();
+int main()
+{
+
+    fchdir();
+}
+cc -Wno-return-type -Wno-implicit-int -o ngc8816 ngc8816.c 
+looking for the getcwd function
+target=THEME, rest=
+target=TABSTOP, rest=4
+target=AMALLOC, rest=
+looking for header malloc.h
+target=LIBS, rest=
+target=CONFIGURE_FILES, rest=config.cmd config.sub config.h config.mak config.log config.md
+target=GENERATED_FILES, rest=Makefile version.c mkdio.h libmarkdown.pc
+target=CC, rest=cc -Wno-return-type -Wno-implicit-int
+target=CFLAGS, rest=-g
+target=LDFLAGS, rest=-g
+target=srcdir, rest=/home/zelda/otherdev/discount-2.2.2
+target=prefix, rest=/usr/local
+target=exedir, rest=/usr/local/bin
+target=sbindir, rest=/usr/local/sbin
+target=libdir, rest=/usr/local/lib
+target=libexec, rest=/usr/local/lib
+target=confdir, rest=/etc
+target=mandir, rest=/usr/local/man
+find is /usr/bin/find
+target=FIND, rest=/usr/bin/find
+/usr/bin/ln: failed to create symbolic link '/tmp/b8816': No such file or directory
+/usr/bin/find: ‘/tmp/b8816’: No such file or directory
+target=LN_S, rest=
+/usr/bin/ln exists, but ln -s doesn't seem to work
+target=LN, rest=/usr/bin/ln
+target=AR, rest=/mingw32/bin/ar
+target=RANLIB, rest=/mingw32/bin/ranlib
+target=LD_LIBRARY_PATH, rest=HERE
+sed is /usr/bin/sed
+target=SED, rest=/usr/bin/sed
+generating Makefile
+generating version.c
+generating mkdio.h
+generating libmarkdown.pc

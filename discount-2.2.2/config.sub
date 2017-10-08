@@ -1,0 +1,39 @@
+s;@CPP@;Y:/local64/msys64/mingw32/bin/cpp;g
+s;@CPPFLAGS@;;g
+s;@INSTALL@;Y:/local64/msys64/usr/bin/install;g
+s;@INSTALL_PROGRAM@;Y:/local64/msys64/usr/bin/install -s -m 755;g
+s;@INSTALL_DATA@;Y:/local64/msys64/usr/bin/install -m 444;g
+s;@INSTALL_DIR@;./config.md;g
+s;@PACKAGE_NAME@;libmarkdown;g
+s;@PACKAGE_VERSION@;2.2.2;g
+s;@AR@;Y:/local64/msys64/mingw32/bin/ar;g
+s;@RANLIB@;Y:/local64/msys64/mingw32/bin/ranlib;g
+s;@PKGCONFIG@;Y:/local64/msys64/usr/bin/pkg-config;g
+s;@MK_PKGCONFIG@;;g
+s:@DWORD@:unsigned long:g
+s:@WORD@:unsigned short:g
+s:@BYTE@:unsigned char:g
+s;@THEME@;;g
+s;@TABSTOP@;4;g
+s;@AMALLOC@;;g
+s;@LIBS@;;g
+s;@CONFIGURE_FILES@;config.cmd config.sub config.h config.mak config.log config.md;g
+s;@GENERATED_FILES@;Makefile version.c mkdio.h libmarkdown.pc;g
+s;@CC@;cc -Wno-return-type -Wno-implicit-int;g
+s;@CFLAGS@;-g;g
+s;@LDFLAGS@;-g;g
+s;@srcdir@;Y:/local64/msys64/home/zelda/otherdev/discount-2.2.2;g
+s;@prefix@;Y:/local64/msys64/usr/local;g
+s;@exedir@;Y:/local64/msys64/usr/local/bin;g
+s;@sbindir@;Y:/local64/msys64/usr/local/sbin;g
+s;@libdir@;Y:/local64/msys64/usr/local/lib;g
+s;@libexec@;Y:/local64/msys64/usr/local/lib;g
+s;@confdir@;Y:/local64/msys64/etc;g
+s;@mandir@;Y:/local64/msys64/usr/local/man;g
+s;@FIND@;Y:/local64/msys64/usr/bin/find;g
+s;@LN_S@;;g
+s;@LN@;Y:/local64/msys64/usr/bin/ln;g
+s;@AR@;Y:/local64/msys64/mingw32/bin/ar;g
+s;@RANLIB@;Y:/local64/msys64/mingw32/bin/ranlib;g
+s;@LD_LIBRARY_PATH@;HERE;g
+s;@SED@;Y:/local64/msys64/usr/bin/sed;g
