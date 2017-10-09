@@ -42,6 +42,9 @@
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ss = new System.Windows.Forms.StatusStrip();
             this.slMain = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsdMarkdown = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tsmDiscount = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCmark = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMain.SuspendLayout();
             this.ss.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +69,7 @@
             this.toolStripSeparator,
             this.copyToolStripButton,
             this.toolStripSeparator1,
+            this.tsdMarkdown,
             this.toolStripButtonOption,
             this.helpToolStripButton});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
@@ -165,6 +169,33 @@
             this.slMain.Spring = true;
             this.slMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // tsdMarkdown
+            // 
+            this.tsdMarkdown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsdMarkdown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmDiscount,
+            this.tsmCmark});
+            this.tsdMarkdown.Image = ((System.Drawing.Image)(resources.GetObject("tsdMarkdown.Image")));
+            this.tsdMarkdown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsdMarkdown.Name = "tsdMarkdown";
+            this.tsdMarkdown.Size = new System.Drawing.Size(29, 22);
+            this.tsdMarkdown.Text = "Markdown";
+            this.tsdMarkdown.DropDownOpening += new System.EventHandler(this.tsdMarkdown_DropDownOpening);
+            // 
+            // tsmDiscount
+            // 
+            this.tsmDiscount.Name = "tsmDiscount";
+            this.tsmDiscount.Size = new System.Drawing.Size(152, 22);
+            this.tsmDiscount.Text = "discount";
+            this.tsmDiscount.Click += new System.EventHandler(this.tsmDiscount_Click);
+            // 
+            // tsmCmark
+            // 
+            this.tsmCmark.Name = "tsmCmark";
+            this.tsmCmark.Size = new System.Drawing.Size(152, 22);
+            this.tsmCmark.Text = "cmark";
+            this.tsmCmark.Click += new System.EventHandler(this.tsmCmark_Click);
+            // 
             // FormMain
             // 
             this.AllowDrop = true;
@@ -207,6 +238,9 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonOption;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButtonRecent;
         private System.Windows.Forms.ToolStripMenuItem dummyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton tsdMarkdown;
+        private System.Windows.Forms.ToolStripMenuItem tsmDiscount;
+        private System.Windows.Forms.ToolStripMenuItem tsmCmark;
     }
 }
 

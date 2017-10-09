@@ -31,6 +31,17 @@ namespace mdview
         List<string> recents_ = new List<string>();
         int maxrecents_ = 16;
 
+        enum Markdown {
+            Discount,
+            Cmark,
+        };
+
+        Markdown _currentMarkDown;
+        Markdown CurrentMarkDown
+        {
+            get { return _currentMarkDown; }
+            set { _currentMarkDown = value; }
+        }
         // addtional commandline arguments for markdown
         string _additionalArguments;
         string AdditionalArguments
@@ -56,7 +67,7 @@ namespace mdview
         }
 
         // MD currently opening
-        string currentMD_;
+        string _openingMD;
 
         public FormMain(string file)
         {
@@ -242,7 +253,7 @@ namespace mdview
             wb.Document.Write(html);
             setTitle(mdfile);
 
-            currentMD_ = mdfile;
+            _openingMD = mdfile;
             AddRecent(mdfile);
         }
         void OnOpenMd()
@@ -379,7 +390,7 @@ namespace mdview
                 item.Text = s;
                 item.Tag = s;
                 item.Click += Item_Click;
-                item.Checked = currentMD_ == s;
+                item.Checked = _openingMD == s;
                 toadd.Add(item);
             }
             toolStripDropDownButtonRecent.DropDownItems.AddRange(toadd.ToArray());
@@ -441,6 +452,35 @@ namespace mdview
                 Application.ProductName,
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+        }
+
+        private void tsdMarkdown_DropDownOpening(object sender, EventArgs e)
+        {
+            foreach (ToolStripMenuItem item in tsdMarkdown.DropDownItems)
+                item.Checked = false;
+
+            switch (CurrentMarkDown)
+            {
+                case Markdown.Discount:
+                    tsmDiscount.Checked = true;
+                    break;
+                case Markdown.Cmark:
+                    tsmCmark.Checked = true;
+                    break;
+                //default:
+                //    Debug.Assert(false);
+            }
+            
+        }
+
+        private void tsmDiscount_Click(object sender, EventArgs e)
+        {
+            CurrentMarkDown = Markdown.Discount;
+        }
+
+        private void tsmCmark_Click(object sender, EventArgs e)
+        {
+            CurrentMarkDown = Markdown.Cmark;
         }
     }
 }

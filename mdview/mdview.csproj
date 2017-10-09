@@ -108,6 +108,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(SolutionDir)discount-2.2.2\markdown.exe" "$(TargetDir)"
+copy "$(SolutionDir)cmark-0.28.0\cmark.exe" "$(TargetDir)"
+
 copy "$(SolutionDir)Readme.md" "$(TargetDir)"
 copy "$(ProjectDir)History.txt" "$(TargetDir)"
 copy "$(ProjectDir)License.txt" "$(TargetDir)"</PostBuildEvent>
