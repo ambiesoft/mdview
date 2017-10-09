@@ -6,6 +6,8 @@ librarian.sh
 mkdio.h
 version.c
 ngc1188.c
+ngc4112.c
+
 
 blocktags
 

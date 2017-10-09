@@ -390,7 +390,6 @@ namespace mdview
         {
             using (OptionDialog dlg = new OptionDialog())
             {
-
                 dlg.txtAdditionalArgument.Text = AdditionalArguments;
 
                 if (DialogResult.OK != dlg.ShowDialog())
@@ -407,6 +406,34 @@ namespace mdview
             sb.Append(" ");
             sb.Append("version ");
             sb.Append(ProductVersion);
+
+            sb.AppendLine();
+
+            int retval;
+            string output, err;
+            try
+            {
+                AmbLib.OpenCommandGetResult(
+                  getMarkdownExe(),
+                  "-V",
+                  Encoding.Default,
+                  out retval,
+                  out output,
+                  out err);
+
+                if(retval!=0||!string.IsNullOrEmpty(err))
+                {
+                    sb.AppendLine("Error");
+                }
+                else
+                {
+                    sb.AppendLine(output);
+                }
+            }
+            catch(Exception ex)
+            {
+                sb.AppendLine(ex.Message);
+            }
 
             CenteredMessageBox.Show(this,
                 sb.ToString(),
