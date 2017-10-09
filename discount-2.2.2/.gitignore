@@ -1,0 +1,9 @@
+config.cmd
+config.mak
+config.sed
+libmarkdown.pc
+librarian.sh
+mkdio.h
+version.c
+
+
