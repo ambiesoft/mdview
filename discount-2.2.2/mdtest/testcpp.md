@@ -1,5 +1,5 @@
 ```c++
-aaa=1;
-bbb=fff();
-// comment
+    aaa=1;
+    bbb=fff();
+    // comment
 ```

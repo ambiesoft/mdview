@@ -181,7 +181,7 @@ namespace mdview
                 AmbLib.Alert(Properties.Resources.INI_SAVE_FAILED);
             }
         }
-        string decorateHtml(string html, string baseurl)
+        string decorateHtml(string html, string baseurl, bool bHighLight)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("<html><head>");
@@ -190,6 +190,14 @@ namespace mdview
                 sb.AppendFormat("<base href=\"{0}\">", baseurl);
                 sb.AppendLine();
             }
+
+            if (bHighLight)
+            {
+                sb.AppendLine("<link rel=\"stylesheet\" href=\"http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css\">");
+                sb.AppendLine("<script src=\"http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js\"></script>");
+                sb.AppendLine("<script>hljs.initHighlightingOnLoad();</script>");
+            }
+
             sb.AppendLine("<style type=\"text/css\">");
             sb.AppendLine("code");
             sb.AppendLine("{ ");
@@ -230,7 +238,7 @@ namespace mdview
             }
 
             prepareBrowser();
-            string html = decorateHtml(output, baseurl);
+            string html = decorateHtml(output, baseurl, false);
             wb.Document.Write(html);
             setTitle(mdfile);
 
