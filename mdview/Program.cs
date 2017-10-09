@@ -26,6 +26,7 @@ namespace mdview
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            AmbLib.setRegMaxIE(11000);
             bool isHelp = false;
             var p = new OptionSet() {
                     {

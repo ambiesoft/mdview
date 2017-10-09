@@ -23,6 +23,8 @@ namespace mdview
 
         static readonly string KEY_MAXRECENTS = "MaxRecents";
         static readonly string KEY_RECENTS = "Recents";
+
+        static readonly string KEY_ADDITIONALARGUMENTS = "AdditionalArguments";
         
         readonly string _filetoopen;
 
@@ -30,7 +32,28 @@ namespace mdview
         int maxrecents_ = 16;
 
         // addtional commandline arguments for markdown
-        string _additionalArguments = string.Empty;
+        string _additionalArguments;
+        string AdditionalArguments
+        {
+            get
+            {
+                if(_additionalArguments == null)
+                {
+                    Profile.GetString(SECTION_OPTION, 
+                        KEY_ADDITIONALARGUMENTS, string.Empty, out _additionalArguments, IniPath);
+                }
+                return _additionalArguments;
+            }
+            set
+            {
+                _additionalArguments = value;
+                if(!Profile.WriteString(SECTION_OPTION,
+                    KEY_ADDITIONALARGUMENTS, _additionalArguments, IniPath))
+                {
+                    AmbLib.Alert(Properties.Resources.INI_SAVE_FAILED);
+                }
+            }
+        }
 
         // MD currently opening
         string currentMD_;
@@ -132,7 +155,15 @@ namespace mdview
         }
         void setTitle(string title)
         {
-            this.Text = title;
+            StringBuilder sb = new StringBuilder();
+            if(!string.IsNullOrEmpty(title))
+            {
+                sb.Append(title);
+                sb.Append(" | ");
+            }
+            sb.Append(ProductName);
+
+            this.Text = sb.ToString();
         }
        
         void AddRecent(string file)
@@ -150,10 +181,15 @@ namespace mdview
                 AmbLib.Alert(Properties.Resources.INI_SAVE_FAILED);
             }
         }
-        string decorateHtml(string html)
+        string decorateHtml(string html, string baseurl)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("<html><head>");
+            if (!string.IsNullOrEmpty(baseurl))
+            {
+                sb.AppendFormat("<base href=\"{0}\">", baseurl);
+                sb.AppendLine();
+            }
             sb.AppendLine("<style type=\"text/css\">");
             sb.AppendLine("code");
             sb.AppendLine("{ ");
@@ -173,10 +209,10 @@ namespace mdview
         {
             int retval;
             string output, err;
-            string arg = string.Format("-b {0} {1} {2}",
-                AmbLib.doubleQuoteIfSpace(AmbLib.pathToFileProtocol(Misc.PathAddBackslash(Path.GetDirectoryName(mdfile)))),
-                // AmbLib.doubleQuoteIfSpace((PathAddBackslash(Path.GetDirectoryName(mdfile)))),
-                _additionalArguments,
+            string baseurl = AmbLib.doubleQuoteIfSpace(AmbLib.pathToFileProtocol(Misc.PathAddBackslash(Path.GetDirectoryName(mdfile))));
+            string arg = string.Format("{0} {1}",
+                // baseurl,
+                AdditionalArguments,
                 AmbLib.doubleQuoteIfSpace(mdfile)
                 );
             AmbLib.OpenCommandGetResult(
@@ -194,7 +230,7 @@ namespace mdview
             }
 
             prepareBrowser();
-            string html = decorateHtml(output);
+            string html = decorateHtml(output, baseurl);
             wb.Document.Write(html);
             setTitle(mdfile);
 
@@ -226,6 +262,7 @@ namespace mdview
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            setTitle(string.Empty);
             if (!string.IsNullOrEmpty(_filetoopen))
             {
                 OpenMD(_filetoopen);
@@ -346,13 +383,28 @@ namespace mdview
             using (OptionDialog dlg = new OptionDialog())
             {
 
-                dlg.txtAdditionalArgument.Text = _additionalArguments;
+                dlg.txtAdditionalArgument.Text = AdditionalArguments;
 
                 if (DialogResult.OK != dlg.ShowDialog())
                     return;
 
-                _additionalArguments = dlg.txtAdditionalArgument.Text;
+                AdditionalArguments = dlg.txtAdditionalArgument.Text;
             }
+        }
+
+        private void helpToolStripButton_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(ProductName);
+            sb.Append(" ");
+            sb.Append("version ");
+            sb.Append(ProductVersion);
+
+            CenteredMessageBox.Show(this,
+                sb.ToString(),
+                Application.ProductName,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
     }
 }

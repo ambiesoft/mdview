@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ambiesoft.AmbLib">
       <HintPath>C:\Linkout\DNAssembly\Ambiesoft.AmbLib.dll</HintPath>
@@ -39,6 +42,9 @@
     <Reference Include="Ambiesoft.Profile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Linkout\DNAssembly\Ambiesoft.Profile.dll</HintPath>
+    </Reference>
+    <Reference Include="CenterWinDialog">
+      <HintPath>C:\Linkout\DNAssembly\CenterWinDialog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -95,10 +101,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="History.txt" />
+    <Content Include="icon.ico" />
     <Content Include="License.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(SolutionDir)discount-2.2.2\markdown.exe" "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent>copy "$(SolutionDir)discount-2.2.2\markdown.exe" "$(TargetDir)"
+copy "$(SolutionDir)Readme.md" "$(TargetDir)"
+copy "$(ProjectDir)History.txt" "$(TargetDir)"
+copy "$(ProjectDir)License.txt" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
 </Project>

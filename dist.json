@@ -1,0 +1,30 @@
+{
+	"name": "mdview",
+	"solution": "mdview.sln",
+	"targetproject": "mdview",
+	"configuration": "Release",
+    "targets": [
+            {
+            	"setoutdirforbuild": true,
+                "outdir" : "C:/Linkout/mdview/",
+                "platform":"Any CPU"
+            }
+    ],
+    "archivedir": "C:/Linkout/",
+    "remotedir": "http://ambiesoft.fam.cx/ffdav/uploads/mdview/",
+    "remotesha1" : "http://ambiesoft.fam.cx/ffdav/uploads/getSha1.php?file=mdview/{}",
+    
+    "TotalFileCount": 10,
+    
+    "ShouldNotBeFiles": [
+    	"mdview.ini"
+    ],
+    
+    "ShouldBeFiles": [
+    ],
+    
+    "ShouldBeOneOfThem": [],
+    
+    "obtainverfrom": "History.txt",
+    "obtainverregex": "\\d+\\.\\d+"
+}
