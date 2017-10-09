@@ -175,8 +175,8 @@ namespace mdview
             string output, err;
             string arg = string.Format("-b {0} {1} {2}",
                 AmbLib.doubleQuoteIfSpace(AmbLib.pathToFileProtocol(Misc.PathAddBackslash(Path.GetDirectoryName(mdfile)))),
-                                // AmbLib.doubleQuoteIfSpace((PathAddBackslash(Path.GetDirectoryName(mdfile)))),
-                                _additionalArguments,
+                // AmbLib.doubleQuoteIfSpace((PathAddBackslash(Path.GetDirectoryName(mdfile)))),
+                _additionalArguments,
                 AmbLib.doubleQuoteIfSpace(mdfile)
                 );
             AmbLib.OpenCommandGetResult(
