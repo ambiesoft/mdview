@@ -5,6 +5,7 @@ libmarkdown.pc
 librarian.sh
 mkdio.h
 version.c
+ngc1188.c
 
 blocktags
 
