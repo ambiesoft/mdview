@@ -405,8 +405,9 @@ namespace mdview
             sb.Append(ProductName);
             sb.Append(" ");
             sb.Append("version ");
-            sb.Append(ProductVersion);
+            sb.Append(Application.ProductVersion);
 
+            sb.AppendLine();
             sb.AppendLine();
 
             int retval;
