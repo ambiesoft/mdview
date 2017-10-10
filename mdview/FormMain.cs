@@ -141,6 +141,24 @@ namespace mdview
 
             return false;
         }
+        bool IsMDAndNotInCache(string filename)
+        {
+            if (Path.GetExtension(filename).ToLower() != ".md")
+            {
+                // not md, open normally
+                return false;
+            }
+
+            foreach (CacheFile cache in _cacheFiles)
+            {
+                if (string.Compare(cache.FileName, filename) == 0)
+                {
+                    // cache file, open normally
+                    return false;
+                }
+            }
+            return true;
+        }
         private void Wb_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
             if (!string.IsNullOrEmpty(e.TargetFrameName))
@@ -150,9 +168,12 @@ namespace mdview
             }
             if (e.Url.Scheme == "file")
             {
-                //e.Cancel = true;
-                //OpenMD(e.Url.AbsolutePath);
-                //return;
+                if (IsMDAndNotInCache(e.Url.AbsolutePath))
+                {
+                    e.Cancel = true;
+                    OpenMD(e.Url.AbsolutePath);
+                    return;
+                }
             }
             else if (e.Url.Scheme == "about")
             {
@@ -300,6 +321,8 @@ namespace mdview
 
             return sb.ToString();
         }
+
+        List<CacheFile> _cacheFiles = new List<CacheFile>();
         void OpenMD(string mdfile)
         {
             int retval;
@@ -326,9 +349,10 @@ namespace mdview
 
             //prepareBrowser();
             string html = decorateHtml(output, baseurl, true);
+
             string tempfile = Path.GetTempFileName();
             File.WriteAllBytes(tempfile, Encoding.UTF8.GetBytes(html));
-            FileInfo fiTemp = new FileInfo(tempfile);
+            _cacheFiles.Add(new CacheFile(tempfile));
 
             //wb.Document.Write(html);
             wb.Navigate(tempfile);
@@ -348,7 +372,7 @@ namespace mdview
             }
         }
 
-        private void openToolStripButton_Click(object sender, EventArgs e)
+        private void tsbOpen_Click(object sender, EventArgs e)
         {
             try
             {
@@ -396,7 +420,10 @@ namespace mdview
             if (files.Length == 0)
                 return;
 
-            OpenMD(files[0]);
+            if (IsMDAndNotInCache(files[0]))
+                OpenMD(files[0]);
+            else
+                wb.Navigate(files[0]);
         }
 
         string IniPath
@@ -425,7 +452,10 @@ namespace mdview
                 AmbLib.Alert(Properties.Resources.INI_SAVE_FAILED);
             }
 
-            
+
+            // delete cache
+            foreach (CacheFile cf in _cacheFiles)
+                cf.Delete();
         }
 
 
@@ -453,14 +483,14 @@ namespace mdview
             if (recents_.Count > maxrecents_)
                 recents_ = recents_.GetRange(0, maxrecents_);
         }
-        private void toolStripDropDownButtonRecent_DropDownOpening(object sender, EventArgs e)
+        private void tsdRecent_DropDownOpening(object sender, EventArgs e)
         {
             RefreshRecent();
 
-            toolStripDropDownButtonRecent.DropDownItems.Clear();
+            tsdRecent.DropDownItems.Clear();
             if (recents_.Count == 0)
             {
-                toolStripDropDownButtonRecent.DropDownItems.Add(Properties.Resources.NO_RECENT_ITEM);
+                tsdRecent.DropDownItems.Add(Properties.Resources.NO_RECENT_ITEM);
                 return;
             }
 
@@ -474,11 +504,11 @@ namespace mdview
                 item.Checked = _openingMD == s;
                 toadd.Add(item);
             }
-            toolStripDropDownButtonRecent.DropDownItems.AddRange(toadd.ToArray());
+            tsdRecent.DropDownItems.AddRange(toadd.ToArray());
         }
 
         
-        private void toolStripButtonOption_Click(object sender, EventArgs e)
+        private void tsbOption_Click(object sender, EventArgs e)
         {
             using (OptionDialog dlg = new OptionDialog())
             {
@@ -491,7 +521,7 @@ namespace mdview
             }
         }
 
-        private void helpToolStripButton_Click(object sender, EventArgs e)
+        private void tsbHelp_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(ProductName);
@@ -508,7 +538,7 @@ namespace mdview
             {
                 AmbLib.OpenCommandGetResult(
                   MarkdownExecutable,
-                  "-V",
+                  "--version",
                   Encoding.Default,
                   out retval,
                   out output,
@@ -522,6 +552,9 @@ namespace mdview
                 {
                     sb.AppendLine(output);
                 }
+
+
+
             }
             catch(Exception ex)
             {

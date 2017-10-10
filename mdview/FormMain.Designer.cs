@@ -31,18 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.wb = new System.Windows.Forms.WebBrowser();
             this.tsMain = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButtonRecent = new System.Windows.Forms.ToolStripDropDownButton();
-            this.dummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.printToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.copyToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsdRecent = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tsmDummy = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbOpen = new System.Windows.Forms.ToolStripButton();
+            this.tsbPrint = new System.Windows.Forms.ToolStripButton();
+            this.tss0 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCopy = new System.Windows.Forms.ToolStripButton();
+            this.tss1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsdMarkdown = new System.Windows.Forms.ToolStripDropDownButton();
-            this.tsmDiscount = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCmark = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButtonOption = new System.Windows.Forms.ToolStripButton();
-            this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.tsmDiscount = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbOption = new System.Windows.Forms.ToolStripButton();
+            this.tsbHelp = new System.Windows.Forms.ToolStripButton();
             this.ss = new System.Windows.Forms.StatusStrip();
             this.slMain = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsMain.SuspendLayout();
@@ -63,75 +63,75 @@
             // 
             this.tsMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButtonRecent,
-            this.openToolStripButton,
-            this.printToolStripButton,
-            this.toolStripSeparator,
-            this.copyToolStripButton,
-            this.toolStripSeparator1,
+            this.tsdRecent,
+            this.tsbOpen,
+            this.tsbPrint,
+            this.tss0,
+            this.tsbCopy,
+            this.tss1,
             this.tsdMarkdown,
-            this.toolStripButtonOption,
-            this.helpToolStripButton});
+            this.tsbOption,
+            this.tsbHelp});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
             this.tsMain.Size = new System.Drawing.Size(619, 25);
             this.tsMain.TabIndex = 1;
             // 
-            // toolStripDropDownButtonRecent
+            // tsdRecent
             // 
-            this.toolStripDropDownButtonRecent.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButtonRecent.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dummyToolStripMenuItem});
-            this.toolStripDropDownButtonRecent.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonRecent.Image")));
-            this.toolStripDropDownButtonRecent.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButtonRecent.Name = "toolStripDropDownButtonRecent";
-            this.toolStripDropDownButtonRecent.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButtonRecent.Text = "Recent files";
-            this.toolStripDropDownButtonRecent.DropDownOpening += new System.EventHandler(this.toolStripDropDownButtonRecent_DropDownOpening);
+            this.tsdRecent.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsdRecent.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmDummy});
+            this.tsdRecent.Image = ((System.Drawing.Image)(resources.GetObject("tsdRecent.Image")));
+            this.tsdRecent.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsdRecent.Name = "tsdRecent";
+            this.tsdRecent.Size = new System.Drawing.Size(29, 22);
+            this.tsdRecent.Text = "Recent files";
+            this.tsdRecent.DropDownOpening += new System.EventHandler(this.tsdRecent_DropDownOpening);
             // 
             // dummyToolStripMenuItem
             // 
-            this.dummyToolStripMenuItem.Name = "dummyToolStripMenuItem";
-            this.dummyToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.dummyToolStripMenuItem.Text = "dummy";
+            this.tsmDummy.Name = "dummyToolStripMenuItem";
+            this.tsmDummy.Size = new System.Drawing.Size(152, 22);
+            this.tsmDummy.Text = "dummy";
             // 
-            // openToolStripButton
+            // tsbOpen
             // 
-            this.openToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
-            this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openToolStripButton.Name = "openToolStripButton";
-            this.openToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.openToolStripButton.Text = "&Open";
-            this.openToolStripButton.Click += new System.EventHandler(this.openToolStripButton_Click);
+            this.tsbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbOpen.Image = ((System.Drawing.Image)(resources.GetObject("tsbOpen.Image")));
+            this.tsbOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbOpen.Name = "tsbOpen";
+            this.tsbOpen.Size = new System.Drawing.Size(23, 22);
+            this.tsbOpen.Text = "&Open";
+            this.tsbOpen.Click += new System.EventHandler(this.tsbOpen_Click);
             // 
-            // printToolStripButton
+            // tsbPrint
             // 
-            this.printToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.printToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripButton.Image")));
-            this.printToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printToolStripButton.Name = "printToolStripButton";
-            this.printToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.printToolStripButton.Text = "&Print";
+            this.tsbPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbPrint.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrint.Image")));
+            this.tsbPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrint.Name = "tsbPrint";
+            this.tsbPrint.Size = new System.Drawing.Size(23, 22);
+            this.tsbPrint.Text = "&Print";
             // 
             // toolStripSeparator
             // 
-            this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
+            this.tss0.Name = "toolStripSeparator";
+            this.tss0.Size = new System.Drawing.Size(6, 25);
             // 
-            // copyToolStripButton
+            // tsbCopy
             // 
-            this.copyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.copyToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripButton.Image")));
-            this.copyToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.copyToolStripButton.Name = "copyToolStripButton";
-            this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.copyToolStripButton.Text = "&Copy";
+            this.tsbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbCopy.Image = ((System.Drawing.Image)(resources.GetObject("tsbCopy.Image")));
+            this.tsbCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCopy.Name = "tsbCopy";
+            this.tsbCopy.Size = new System.Drawing.Size(23, 22);
+            this.tsbCopy.Text = "&Copy";
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.tss1.Name = "toolStripSeparator1";
+            this.tss1.Size = new System.Drawing.Size(6, 25);
             // 
             // tsdMarkdown
             // 
@@ -146,13 +146,6 @@
             this.tsdMarkdown.Text = "Markdown";
             this.tsdMarkdown.DropDownOpening += new System.EventHandler(this.tsdMarkdown_DropDownOpening);
             // 
-            // tsmDiscount
-            // 
-            this.tsmDiscount.Name = "tsmDiscount";
-            this.tsmDiscount.Size = new System.Drawing.Size(152, 22);
-            this.tsmDiscount.Text = "discount";
-            this.tsmDiscount.Click += new System.EventHandler(this.tsmDiscount_Click);
-            // 
             // tsmCmark
             // 
             this.tsmCmark.Name = "tsmCmark";
@@ -160,25 +153,32 @@
             this.tsmCmark.Text = "cmark";
             this.tsmCmark.Click += new System.EventHandler(this.tsmCmark_Click);
             // 
-            // toolStripButtonOption
+            // tsmDiscount
             // 
-            this.toolStripButtonOption.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonOption.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonOption.Image")));
-            this.toolStripButtonOption.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonOption.Name = "toolStripButtonOption";
-            this.toolStripButtonOption.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonOption.Text = "Option";
-            this.toolStripButtonOption.Click += new System.EventHandler(this.toolStripButtonOption_Click);
+            this.tsmDiscount.Name = "tsmDiscount";
+            this.tsmDiscount.Size = new System.Drawing.Size(152, 22);
+            this.tsmDiscount.Text = "discount";
+            this.tsmDiscount.Click += new System.EventHandler(this.tsmDiscount_Click);
             // 
-            // helpToolStripButton
+            // tsbOption
             // 
-            this.helpToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.helpToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripButton.Image")));
-            this.helpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.helpToolStripButton.Name = "helpToolStripButton";
-            this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.helpToolStripButton.Text = "He&lp";
-            this.helpToolStripButton.Click += new System.EventHandler(this.helpToolStripButton_Click);
+            this.tsbOption.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbOption.Image = ((System.Drawing.Image)(resources.GetObject("tsbOption.Image")));
+            this.tsbOption.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbOption.Name = "tsbOption";
+            this.tsbOption.Size = new System.Drawing.Size(23, 22);
+            this.tsbOption.Text = "Option";
+            this.tsbOption.Click += new System.EventHandler(this.tsbOption_Click);
+            // 
+            // tsbHelp
+            // 
+            this.tsbHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbHelp.Image = ((System.Drawing.Image)(resources.GetObject("tsbHelp.Image")));
+            this.tsbHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbHelp.Name = "tsbHelp";
+            this.tsbHelp.Size = new System.Drawing.Size(23, 22);
+            this.tsbHelp.Text = "He&lp";
+            this.tsbHelp.Click += new System.EventHandler(this.tsbHelp_Click);
             // 
             // ss
             // 
@@ -227,17 +227,17 @@
 
         private System.Windows.Forms.WebBrowser wb;
         private System.Windows.Forms.ToolStrip tsMain;
-        private System.Windows.Forms.ToolStripButton openToolStripButton;
-        private System.Windows.Forms.ToolStripButton printToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripButton copyToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton helpToolStripButton;
+        private System.Windows.Forms.ToolStripButton tsbOpen;
+        private System.Windows.Forms.ToolStripButton tsbPrint;
+        private System.Windows.Forms.ToolStripSeparator tss0;
+        private System.Windows.Forms.ToolStripButton tsbCopy;
+        private System.Windows.Forms.ToolStripSeparator tss1;
+        private System.Windows.Forms.ToolStripButton tsbHelp;
         private System.Windows.Forms.StatusStrip ss;
         private System.Windows.Forms.ToolStripStatusLabel slMain;
-        private System.Windows.Forms.ToolStripButton toolStripButtonOption;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButtonRecent;
-        private System.Windows.Forms.ToolStripMenuItem dummyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton tsbOption;
+        private System.Windows.Forms.ToolStripDropDownButton tsdRecent;
+        private System.Windows.Forms.ToolStripMenuItem tsmDummy;
         private System.Windows.Forms.ToolStripDropDownButton tsdMarkdown;
         private System.Windows.Forms.ToolStripMenuItem tsmDiscount;
         private System.Windows.Forms.ToolStripMenuItem tsmCmark;

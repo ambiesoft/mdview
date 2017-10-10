@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheFile.cs" />
     <Compile Include="ControlDataMap.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
