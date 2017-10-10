@@ -14,13 +14,15 @@
     "remotedir": "http://ambiesoft.fam.cx/ffdav/uploads/mdview/",
     "remotesha1" : "http://ambiesoft.fam.cx/ffdav/uploads/getSha1.php?file=mdview/{}",
     
-    "TotalFileCount": 10,
+    "TotalFileCount": 99,
     
     "ShouldNotBeFiles": [
     	"mdview.ini"
     ],
     
     "ShouldBeFiles": [
+    	"cmark.exe",
+    	"markdown.exe"
     ],
     
     "ShouldBeOneOfThem": [],
