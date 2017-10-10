@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0F015683-1B0D-4B32-9ED7-F4EFA6F58B21}</ProjectGuid>
+    <ProjectGuid>{FD904A13-B00F-4399-A236-42D38FE37327}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>mdview</RootNamespace>
-    <AssemblyName>mdview</AssemblyName>
+    <RootNamespace>testBrowser</RootNamespace>
+    <AssemblyName>testBrowser</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
@@ -55,17 +52,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ambiesoft.AmbLib">
-      <HintPath>C:\Linkout\DNAssembly\Ambiesoft.AmbLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Ambiesoft.Profile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Linkout\DNAssembly\Ambiesoft.Profile.dll</HintPath>
-    </Reference>
-    <Reference Include="CenterWinDialog">
-      <HintPath>C:\Linkout\DNAssembly\CenterWinDialog.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Linkout\DNAssembly\Ambiesoft.AmbLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
@@ -75,28 +66,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlDataMap.cs" />
-    <Compile Include="FormMain.cs">
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
-      <DependentUpon>FormMain.cs</DependentUpon>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc.cs" />
-    <Compile Include="OptionDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OptionDialog.Designer.cs">
-      <DependentUpon>OptionDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionDialog.resx">
-      <DependentUpon>OptionDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -119,18 +98,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="History.txt" />
-    <Content Include="icon.ico" />
-    <Content Include="License.txt" />
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy "$(SolutionDir)discount-2.2.2\markdown.exe" "$(TargetDir)"
-copy "$(SolutionDir)cmark-0.28.0\cmark.exe" "$(TargetDir)"
-C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)highlight" /to:"$(TargetDir)"
-
-copy "$(SolutionDir)Readme.md" "$(TargetDir)"
-copy "$(ProjectDir)History.txt" "$(TargetDir)"
-copy "$(ProjectDir)License.txt" "$(TargetDir)"</PostBuildEvent>
-  </PropertyGroup>
 </Project>

@@ -25,15 +25,15 @@ namespace mdview
         static readonly string KEY_RECENTS = "Recents";
 
         static readonly string KEY_ADDITIONALARGUMENTS = "AdditionalArguments";
-        
+
         readonly string _filetoopen;
 
         List<string> recents_ = new List<string>();
         int maxrecents_ = 16;
 
         enum Markdown {
-            Discount,
             Cmark,
+            Discount,
         };
 
         Markdown _currentMarkDown;
@@ -42,23 +42,32 @@ namespace mdview
             get { return _currentMarkDown; }
             set { _currentMarkDown = value; }
         }
+
+
         // addtional commandline arguments for markdown
         string _additionalArguments;
         string AdditionalArguments
         {
             get
             {
-                if(_additionalArguments == null)
+                switch (CurrentMarkDown)
                 {
-                    Profile.GetString(SECTION_OPTION, 
-                        KEY_ADDITIONALARGUMENTS, string.Empty, out _additionalArguments, IniPath);
+                    case Markdown.Discount:
+                        if (_additionalArguments == null)
+                        {
+                            Profile.GetString(SECTION_OPTION,
+                                KEY_ADDITIONALARGUMENTS, string.Empty, out _additionalArguments, IniPath);
+                        }
+                        return _additionalArguments;
+                    case Markdown.Cmark:
+                        return string.Empty;
                 }
-                return _additionalArguments;
+                return string.Empty;
             }
             set
             {
                 _additionalArguments = value;
-                if(!Profile.WriteString(SECTION_OPTION,
+                if (!Profile.WriteString(SECTION_OPTION,
                     KEY_ADDITIONALARGUMENTS, _additionalArguments, IniPath))
                 {
                     AmbLib.Alert(Properties.Resources.INI_SAVE_FAILED);
@@ -83,10 +92,10 @@ namespace mdview
             Profile.GetInt(SECTION_OPTION, KEY_Y, -1, out y, ini);
             Profile.GetInt(SECTION_OPTION, KEY_WIDTH, -1, out width, ini);
             Profile.GetInt(SECTION_OPTION, KEY_HEIGHT, -1, out height, ini);
-            if(!(x==-1&&y==-1&&width==-1&&height==-1))
+            if (!(x == -1 && y == -1 && width == -1 && height == -1))
             {
                 Rectangle rect = new Rectangle(x, y, width, height);
-                if(AmbLib.IsRectInScreen(rect))
+                if (AmbLib.IsRectInScreen(rect))
                 {
                     this.StartPosition = FormStartPosition.Manual;
                     this.Location = new Point(x, y);
@@ -94,7 +103,7 @@ namespace mdview
                 }
             }
 
-       
+
         }
         bool isSchemeJump(string scheme)
         {
@@ -113,24 +122,24 @@ namespace mdview
                 // not care about frame
                 return;
             }
-            if(e.Url.Scheme=="file")
+            if (e.Url.Scheme == "file")
             {
-                e.Cancel = true;
-                OpenMD(e.Url.AbsolutePath);
-                return;
+                //e.Cancel = true;
+                //OpenMD(e.Url.AbsolutePath);
+                //return;
             }
-            else if(e.Url.Scheme=="about")
+            else if (e.Url.Scheme == "about")
             {
                 // nothing
             }
-            else if(isSchemeJump(e.Url.Scheme))
+            else if (isSchemeJump(e.Url.Scheme))
             {
                 e.Cancel = true;
                 try
                 {
                     Process.Start(e.Url.AbsoluteUri);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     AmbLib.Alert(ex);
                 }
@@ -149,17 +158,36 @@ namespace mdview
                 return Path.GetDirectoryName(Application.ExecutablePath);
             }
         }
-        string getMarkdownExe()
+        string MarkdownExecutable
         {
-            string ret = Path.Combine(AppDir, "markdown.exe");
-            if (File.Exists(ret))
-                return ret;
-            return "markdown.exe";
+            get
+            {
+                string ret = null;
+                switch (CurrentMarkDown)
+                {
+                    case Markdown.Discount:
+                        ret = Path.Combine(AppDir, "markdown.exe");
+                        if (File.Exists(ret))
+                            return ret;
+                        return "markdown.exe";
+
+
+                    case Markdown.Cmark:
+                        ret = Path.Combine(AppDir, "cmark.exe");
+                        if (File.Exists(ret))
+                            return ret;
+                        return "cmark.exe";
+
+                }
+
+                Debug.Assert(false);
+                return null;
+            }
         }
         void prepareBrowser()
         {
             wb.Navigate("about:blank");
-            while(wb.ReadyState != WebBrowserReadyState.Complete)
+            while (wb.ReadyState != WebBrowserReadyState.Complete)
             {
                 Application.DoEvents();
             }
@@ -167,7 +195,7 @@ namespace mdview
         void setTitle(string title)
         {
             StringBuilder sb = new StringBuilder();
-            if(!string.IsNullOrEmpty(title))
+            if (!string.IsNullOrEmpty(title))
             {
                 sb.Append(title);
                 sb.Append(" | ");
@@ -176,7 +204,7 @@ namespace mdview
 
             this.Text = sb.ToString();
         }
-       
+
         void AddRecent(string file)
         {
             RefreshRecent();
@@ -187,9 +215,23 @@ namespace mdview
             if (recents_.Count > maxrecents_)
                 recents_ = recents_.GetRange(0, maxrecents_);
 
-            if(!Profile.WriteStringArray(SECTION_OPTION, KEY_RECENTS, recents_.ToArray(), IniPath))
+            if (!Profile.WriteStringArray(SECTION_OPTION, KEY_RECENTS, recents_.ToArray(), IniPath))
             {
                 AmbLib.Alert(Properties.Resources.INI_SAVE_FAILED);
+            }
+        }
+        string HighLightStyle
+        {
+            get
+            {
+                return Path.Combine(AppDir, "highlight", "styles", "default.css");
+            }
+        }
+        string HighLightJS
+        {
+            get
+            {
+                return Path.Combine(AppDir, "highlight", "highlight.pack.js");
             }
         }
         string decorateHtml(string html, string baseurl, bool bHighLight)
@@ -204,18 +246,24 @@ namespace mdview
 
             if (bHighLight)
             {
-                sb.AppendLine("<link rel=\"stylesheet\" href=\"http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css\">");
-                sb.AppendLine("<script src=\"http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js\"></script>");
+                sb.AppendFormat("<link rel=\"stylesheet\" href=\"{0}\">",
+                    AmbLib.pathToFileProtocol(HighLightStyle));
+                sb.AppendLine();
+
+                sb.AppendFormat("<script src=\"{0}\"></script>",
+                    AmbLib.pathToFileProtocol(HighLightJS));
+                sb.AppendLine();
+
                 sb.AppendLine("<script>hljs.initHighlightingOnLoad();</script>");
             }
 
-            sb.AppendLine("<style type=\"text/css\">");
-            sb.AppendLine("code");
-            sb.AppendLine("{ ");
-            sb.AppendLine("  display: block;");
-            sb.AppendLine("  white-space: pre-wrap;");
-            sb.AppendLine("}");
-            sb.AppendLine("</style>");
+            //sb.AppendLine("<style type=\"text/css\">");
+            //sb.AppendLine("code");
+            //sb.AppendLine("{ ");
+            //sb.AppendLine("  display: block;");
+            //sb.AppendLine("  white-space: pre-wrap;");
+            //sb.AppendLine("}");
+            //sb.AppendLine("</style>");
             sb.AppendLine("</head>");
             sb.AppendLine("<body>");
 
@@ -235,7 +283,7 @@ namespace mdview
                 AmbLib.doubleQuoteIfSpace(mdfile)
                 );
             AmbLib.OpenCommandGetResult(
-                getMarkdownExe(),
+                MarkdownExecutable,
                 arg,
                 Encoding.Default,
                 out retval,
@@ -248,9 +296,14 @@ namespace mdview
                 return;
             }
 
-            prepareBrowser();
-            string html = decorateHtml(output, baseurl, false);
-            wb.Document.Write(html);
+            //prepareBrowser();
+            string html = decorateHtml(output, baseurl, true);
+            string tempfile = Path.GetTempFileName();
+            File.WriteAllBytes(tempfile, Encoding.UTF8.GetBytes(html));
+            FileInfo fiTemp = new FileInfo(tempfile);
+
+            //wb.Document.Write(html);
+            wb.Navigate(tempfile);
             setTitle(mdfile);
 
             _openingMD = mdfile;
@@ -426,7 +479,7 @@ namespace mdview
             try
             {
                 AmbLib.OpenCommandGetResult(
-                  getMarkdownExe(),
+                  MarkdownExecutable,
                   "-V",
                   Encoding.Default,
                   out retval,
