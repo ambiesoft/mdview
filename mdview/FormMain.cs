@@ -36,6 +36,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 
 using Ambiesoft;
+using System.Reflection;
 
 namespace mdview
 {
@@ -111,7 +112,8 @@ namespace mdview
 
             wb.StatusTextChanged += Wb_StatusTextChanged;
             wb.Navigating += Wb_Navigating;
-
+            wb.NewWindow += Wb_NewWindow;
+            wb.DocumentCompleted += Wb_DocumentCompleted;
             int x, y, width, height;
             HashIni ini = Profile.ReadAll(IniPath);
             Profile.GetInt(SECTION_OPTION, KEY_X, -1, out x, ini);
@@ -131,6 +133,23 @@ namespace mdview
 
 
         }
+
+        int _ZoomLevel;
+        private void Wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            int curZoomLevel = getBrowserZoomLevel();
+            if(curZoomLevel > 0)
+            {
+                if(_ZoomLevel != curZoomLevel)
+                {
+                    if(setBrowserZoomLevel(_ZoomLevel))
+                    {
+                        _ZoomLevel = curZoomLevel;
+                    }
+                }
+            }
+        }
+
         bool isSchemeJump(string scheme)
         {
             scheme = scheme.ToLower();
@@ -141,13 +160,23 @@ namespace mdview
 
             return false;
         }
-        bool IsMDAndNotInCache(string filename)
+        bool IsMD(string filename)
         {
+            if (string.IsNullOrEmpty(filename))
+                return false;
+
             if (Path.GetExtension(filename).ToLower() != ".md")
             {
                 // not md, open normally
                 return false;
             }
+
+            return true;
+        }
+        bool IsMDAndNotInCache(string filename)
+        {
+            if (!IsMD(filename))
+                return false;
 
             foreach (CacheFile cache in _cacheFiles)
             {
@@ -193,11 +222,33 @@ namespace mdview
             }
         }
 
+        string lastStatusText_;
         private void Wb_StatusTextChanged(object sender, EventArgs e)
         {
-            slMain.Text = wb.StatusText;
-        }
+            string wbText = wb.StatusText;
+            slMain.Text = wbText;
+            if (!string.IsNullOrEmpty(wbText))
+                lastStatusText_ = wbText;
 
+        }
+        private void Wb_NewWindow(object sender, CancelEventArgs e)
+        {
+            string path = AmbLib.getPathFromUrl(lastStatusText_);
+            if (IsMD(path))
+            {
+                try
+                {
+                    Process.Start(Application.ExecutablePath,
+                        AmbLib.doubleQuoteIfSpace(path));
+                }
+                catch (Exception ex)
+                {
+                    AmbLib.Alert(this, ex);
+                }
+                e.Cancel = true;
+                return;
+            }
+        }
         string AppDir
         {
             get
@@ -436,6 +487,80 @@ namespace mdview
         }
 
 
+        private int getBrowserZoomLevel()
+        {
+            //while(
+            //    (int)(((SHDocVw.WebBrowser)wb.ActiveXInstance).QueryStatusWB(SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM))
+            //        != ((int)SHDocVw.OLECMDF.OLECMDF_SUPPORTED + (int)SHDocVw.OLECMDF.OLECMDF_ENABLED) )
+            //{
+            //    Application.DoEvents();
+            //} 
+
+            //var web = wb.ActiveXInstance.GetType();
+            //object o = new object();// zoomPercentage; // Between 10 and 1000.
+
+            //web.InvokeMember(
+            //    @"ExecWB",
+            //    BindingFlags.InvokeMethod,
+            //    null,
+            //    wb.ActiveXInstance,
+            //    new[]
+            //        {
+            //            SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM,
+            //            SHDocVw.OLECMDEXECOPT.OLECMDEXECOPT_DODEFAULT,
+            //            o,
+            //            o
+            //        });
+            //return (int)o;
+
+
+            try
+            {
+                object pvarOut1 = 123;
+                object pvarOut2 = 124;
+                var browserInst = ((SHDocVw.IWebBrowser2)(wb.ActiveXInstance));
+                browserInst.ExecWB(SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM,
+                                   SHDocVw.OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER,
+                                   ref pvarOut1, ref pvarOut2);
+                return (int)pvarOut2;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+
+
+            //object ret = new object();
+            //((SHDocVw.WebBrowser)wb.ActiveXInstance).ExecWB(
+            //    SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM,
+            //    SHDocVw.OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER,
+            //    IntPtr.Zero,
+            //    ref ret);
+            //return (int)ret;
+        }
+        private bool setBrowserZoomLevel(int value)
+        {
+            try
+            {
+                object pvaIn = value; // A VT_I4 percentage ranging from 10% to 1000%
+                var browserInst = ((SHDocVw.IWebBrowser2)(wb.ActiveXInstance));
+                browserInst.ExecWB(SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM,
+                                   SHDocVw.OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER,
+                                   ref pvaIn, IntPtr.Zero);
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+            return true;
+
+           // while (
+           //(int)(((SHDocVw.WebBrowser)wb.ActiveXInstance).QueryStatusWB(SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM))
+           //    != ((int)SHDocVw.OLECMDF.OLECMDF_SUPPORTED + (int)SHDocVw.OLECMDF.OLECMDF_ENABLED))
+           // {
+           //     Application.DoEvents();
+           // }
+           // ((SHDocVw.WebBrowser)wb.ActiveXInstance).ExecWB(           //     SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM,           //     SHDocVw.OLECMDEXECOPT.OLECMDEXECOPT_DODEFAULT,           //     value,           //     IntPtr.Zero);        }
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             string inipath = IniPath;
@@ -445,7 +570,7 @@ namespace mdview
             Profile.WriteInt(SECTION_OPTION, KEY_WIDTH, this.Size.Width, ini);
             Profile.WriteInt(SECTION_OPTION, KEY_HEIGHT, this.Size.Height, ini);
 
-
+            // int zoom = getBrowserZoomLevel();
 
             if (!Profile.WriteAll(ini, inipath))
             {
@@ -595,6 +720,19 @@ namespace mdview
         private void tsmCmark_Click(object sender, EventArgs e)
         {
             CurrentMarkDown = Markdown.Cmark;
+        }
+
+        private void FormMain_Activated(object sender, EventArgs e)
+        {
+            if(wb != null && wb.Created && !wb.IsDisposed)
+            {
+                wb.Focus();
+                HtmlDocument doc = wb.Document;
+                if(doc != null)
+                {
+                    doc.Focus();
+                }
+            }
         }
     }
 }

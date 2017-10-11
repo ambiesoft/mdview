@@ -89,10 +89,10 @@
             this.tsdRecent.Text = "Recent files";
             this.tsdRecent.DropDownOpening += new System.EventHandler(this.tsdRecent_DropDownOpening);
             // 
-            // dummyToolStripMenuItem
+            // tsmDummy
             // 
-            this.tsmDummy.Name = "dummyToolStripMenuItem";
-            this.tsmDummy.Size = new System.Drawing.Size(152, 22);
+            this.tsmDummy.Name = "tsmDummy";
+            this.tsmDummy.Size = new System.Drawing.Size(116, 22);
             this.tsmDummy.Text = "dummy";
             // 
             // tsbOpen
@@ -114,9 +114,9 @@
             this.tsbPrint.Size = new System.Drawing.Size(23, 22);
             this.tsbPrint.Text = "&Print";
             // 
-            // toolStripSeparator
+            // tss0
             // 
-            this.tss0.Name = "toolStripSeparator";
+            this.tss0.Name = "tss0";
             this.tss0.Size = new System.Drawing.Size(6, 25);
             // 
             // tsbCopy
@@ -128,9 +128,9 @@
             this.tsbCopy.Size = new System.Drawing.Size(23, 22);
             this.tsbCopy.Text = "&Copy";
             // 
-            // toolStripSeparator1
+            // tss1
             // 
-            this.tss1.Name = "toolStripSeparator1";
+            this.tss1.Name = "tss1";
             this.tss1.Size = new System.Drawing.Size(6, 25);
             // 
             // tsdMarkdown
@@ -149,14 +149,14 @@
             // tsmCmark
             // 
             this.tsmCmark.Name = "tsmCmark";
-            this.tsmCmark.Size = new System.Drawing.Size(152, 22);
+            this.tsmCmark.Size = new System.Drawing.Size(120, 22);
             this.tsmCmark.Text = "cmark";
             this.tsmCmark.Click += new System.EventHandler(this.tsmCmark_Click);
             // 
             // tsmDiscount
             // 
             this.tsmDiscount.Name = "tsmDiscount";
-            this.tsmDiscount.Size = new System.Drawing.Size(152, 22);
+            this.tsmDiscount.Size = new System.Drawing.Size(120, 22);
             this.tsmDiscount.Text = "discount";
             this.tsmDiscount.Click += new System.EventHandler(this.tsmDiscount_Click);
             // 
@@ -208,6 +208,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Text = "Form1";
+            this.Activated += new System.EventHandler(this.FormMain_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FormMain_DragDrop);
