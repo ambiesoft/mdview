@@ -137,17 +137,17 @@ namespace mdview
         int _ZoomLevel;
         private void Wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            int curZoomLevel = getBrowserZoomLevel();
-            if(curZoomLevel > 0)
-            {
-                if(_ZoomLevel != curZoomLevel)
-                {
-                    if(setBrowserZoomLevel(_ZoomLevel))
-                    {
-                        _ZoomLevel = curZoomLevel;
-                    }
-                }
-            }
+            //int curZoomLevel = getBrowserZoomLevel();
+            //if(curZoomLevel > 0)
+            //{
+            //    if(_ZoomLevel != curZoomLevel)
+            //    {
+            //        if(setBrowserZoomLevel(_ZoomLevel))
+            //        {
+            //            _ZoomLevel = curZoomLevel;
+            //        }
+            //    }
+            //}
         }
 
         bool isSchemeJump(string scheme)
@@ -487,7 +487,7 @@ namespace mdview
         }
 
 
-        private int getBrowserZoomLevel()
+        private int TODO_getBrowserZoomLevel()
         {
             //while(
             //    (int)(((SHDocVw.WebBrowser)wb.ActiveXInstance).QueryStatusWB(SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM))
@@ -517,7 +517,8 @@ namespace mdview
             try
             {
                 object pvarOut1 = 123;
-                object pvarOut2 = 124;
+                object pvarOut2 = 124;
+
                 var browserInst = ((SHDocVw.IWebBrowser2)(wb.ActiveXInstance));
                 browserInst.ExecWB(SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM,
                                    SHDocVw.OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER,
@@ -538,7 +539,7 @@ namespace mdview
             //    ref ret);
             //return (int)ret;
         }
-        private bool setBrowserZoomLevel(int value)
+        private bool TODO_setBrowserZoomLevel(int value)
         {
             try
             {
@@ -560,7 +561,12 @@ namespace mdview
            // {
            //     Application.DoEvents();
            // }
-           // ((SHDocVw.WebBrowser)wb.ActiveXInstance).ExecWB(           //     SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM,           //     SHDocVw.OLECMDEXECOPT.OLECMDEXECOPT_DODEFAULT,           //     value,           //     IntPtr.Zero);        }
+           // ((SHDocVw.WebBrowser)wb.ActiveXInstance).ExecWB(
+           //     SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM,
+           //     SHDocVw.OLECMDEXECOPT.OLECMDEXECOPT_DODEFAULT,
+           //     value,
+           //     IntPtr.Zero);
+        }
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             string inipath = IniPath;
