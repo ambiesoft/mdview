@@ -97,7 +97,7 @@ namespace mdview
                 if (!Profile.WriteString(SECTION_OPTION,
                     KEY_ADDITIONALARGUMENTS, _additionalArguments, IniPath))
                 {
-                    AmbLib.Alert(Properties.Resources.INI_SAVE_FAILED);
+                    CppUtils.Alert(Properties.Resources.INI_SAVE_FAILED);
                 }
             }
         }
@@ -217,7 +217,7 @@ namespace mdview
                 }
                 catch (Exception ex)
                 {
-                    AmbLib.Alert(ex);
+                    CppUtils.Alert(ex);
                 }
             }
         }
@@ -243,7 +243,7 @@ namespace mdview
                 }
                 catch (Exception ex)
                 {
-                    AmbLib.Alert(this, ex);
+                    CppUtils.Alert(this, ex);
                 }
                 e.Cancel = true;
                 return;
@@ -315,7 +315,7 @@ namespace mdview
 
             if (!Profile.WriteStringArray(SECTION_OPTION, KEY_RECENTS, recents_.ToArray(), IniPath))
             {
-                AmbLib.Alert(Properties.Resources.INI_SAVE_FAILED);
+                CppUtils.Alert(Properties.Resources.INI_SAVE_FAILED);
             }
         }
         string HighLightStyle
@@ -394,7 +394,7 @@ namespace mdview
 
             if (retval != 0 || !string.IsNullOrEmpty(err))
             {
-                AmbLib.Alert(string.Format("Returned => {0}\n{1}", retval, err));
+                CppUtils.Alert(string.Format("Returned => {0}\n{1}", retval, err));
                 return;
             }
 
@@ -431,7 +431,7 @@ namespace mdview
             }
             catch (Exception ex)
             {
-                AmbLib.Alert(ex);
+                CppUtils.Alert(ex);
             }
         }
 
@@ -580,7 +580,7 @@ namespace mdview
 
             if (!Profile.WriteAll(ini, inipath))
             {
-                AmbLib.Alert(Properties.Resources.INI_SAVE_FAILED);
+                CppUtils.Alert(Properties.Resources.INI_SAVE_FAILED);
             }
 
 
@@ -692,7 +692,8 @@ namespace mdview
                 sb.AppendLine(ex.Message);
             }
 
-            CenteredMessageBox.Show(this,
+            CppUtils.CenteredMessageBox(
+                this,
                 sb.ToString(),
                 Application.ProductName,
                 MessageBoxButtons.OK,

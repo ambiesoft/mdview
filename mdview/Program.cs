@@ -81,7 +81,7 @@ namespace mdview
                 StringWriter sw = new StringWriter(sb);
                 p.WriteOptionDescriptions(sw);
 
-                AmbLib.Alert(sb.ToString());
+                CppUtils.Alert(sb.ToString());
                 return;
             }
           
