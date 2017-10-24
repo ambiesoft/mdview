@@ -39,8 +39,8 @@
             this.tsbCopy = new System.Windows.Forms.ToolStripButton();
             this.tss1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsdMarkdown = new System.Windows.Forms.ToolStripDropDownButton();
-            this.tsmCmark = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmDiscount = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiOrganizeMD = new System.Windows.Forms.ToolStripMenuItem();
+            this.tssOrganize = new System.Windows.Forms.ToolStripSeparator();
             this.tsbOption = new System.Windows.Forms.ToolStripButton();
             this.tsbHelp = new System.Windows.Forms.ToolStripButton();
             this.ss = new System.Windows.Forms.StatusStrip();
@@ -52,16 +52,17 @@
             // wb
             // 
             this.wb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wb.Location = new System.Drawing.Point(0, 25);
+            this.wb.Location = new System.Drawing.Point(0, 39);
             this.wb.MinimumSize = new System.Drawing.Size(20, 20);
             this.wb.Name = "wb";
             this.wb.ScriptErrorsSuppressed = true;
-            this.wb.Size = new System.Drawing.Size(619, 417);
+            this.wb.Size = new System.Drawing.Size(619, 403);
             this.wb.TabIndex = 0;
             // 
             // tsMain
             // 
             this.tsMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsMain.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsdRecent,
             this.tsbOpen,
@@ -74,7 +75,7 @@
             this.tsbHelp});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
-            this.tsMain.Size = new System.Drawing.Size(619, 25);
+            this.tsMain.Size = new System.Drawing.Size(619, 39);
             this.tsMain.TabIndex = 1;
             // 
             // tsdRecent
@@ -85,14 +86,14 @@
             this.tsdRecent.Image = ((System.Drawing.Image)(resources.GetObject("tsdRecent.Image")));
             this.tsdRecent.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsdRecent.Name = "tsdRecent";
-            this.tsdRecent.Size = new System.Drawing.Size(29, 22);
+            this.tsdRecent.Size = new System.Drawing.Size(45, 36);
             this.tsdRecent.Text = "Recent files";
             this.tsdRecent.DropDownOpening += new System.EventHandler(this.tsdRecent_DropDownOpening);
             // 
             // tsmDummy
             // 
             this.tsmDummy.Name = "tsmDummy";
-            this.tsmDummy.Size = new System.Drawing.Size(116, 22);
+            this.tsmDummy.Size = new System.Drawing.Size(119, 22);
             this.tsmDummy.Text = "dummy";
             // 
             // tsbOpen
@@ -101,7 +102,7 @@
             this.tsbOpen.Image = ((System.Drawing.Image)(resources.GetObject("tsbOpen.Image")));
             this.tsbOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbOpen.Name = "tsbOpen";
-            this.tsbOpen.Size = new System.Drawing.Size(23, 22);
+            this.tsbOpen.Size = new System.Drawing.Size(36, 36);
             this.tsbOpen.Text = "&Open";
             this.tsbOpen.Click += new System.EventHandler(this.tsbOpen_Click);
             // 
@@ -111,13 +112,13 @@
             this.tsbPrint.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrint.Image")));
             this.tsbPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrint.Name = "tsbPrint";
-            this.tsbPrint.Size = new System.Drawing.Size(23, 22);
+            this.tsbPrint.Size = new System.Drawing.Size(36, 36);
             this.tsbPrint.Text = "&Print";
             // 
             // tss0
             // 
             this.tss0.Name = "tss0";
-            this.tss0.Size = new System.Drawing.Size(6, 25);
+            this.tss0.Size = new System.Drawing.Size(6, 39);
             // 
             // tsbCopy
             // 
@@ -125,40 +126,38 @@
             this.tsbCopy.Image = ((System.Drawing.Image)(resources.GetObject("tsbCopy.Image")));
             this.tsbCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbCopy.Name = "tsbCopy";
-            this.tsbCopy.Size = new System.Drawing.Size(23, 22);
+            this.tsbCopy.Size = new System.Drawing.Size(36, 36);
             this.tsbCopy.Text = "&Copy";
             // 
             // tss1
             // 
             this.tss1.Name = "tss1";
-            this.tss1.Size = new System.Drawing.Size(6, 25);
+            this.tss1.Size = new System.Drawing.Size(6, 39);
             // 
             // tsdMarkdown
             // 
             this.tsdMarkdown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsdMarkdown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmCmark,
-            this.tsmDiscount});
+            this.tsiOrganizeMD,
+            this.tssOrganize});
             this.tsdMarkdown.Image = ((System.Drawing.Image)(resources.GetObject("tsdMarkdown.Image")));
             this.tsdMarkdown.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsdMarkdown.Name = "tsdMarkdown";
-            this.tsdMarkdown.Size = new System.Drawing.Size(29, 22);
+            this.tsdMarkdown.Size = new System.Drawing.Size(45, 36);
             this.tsdMarkdown.Text = "Markdown";
             this.tsdMarkdown.DropDownOpening += new System.EventHandler(this.tsdMarkdown_DropDownOpening);
             // 
-            // tsmCmark
+            // tsiOrganizeMD
             // 
-            this.tsmCmark.Name = "tsmCmark";
-            this.tsmCmark.Size = new System.Drawing.Size(120, 22);
-            this.tsmCmark.Text = "cmark";
-            this.tsmCmark.Click += new System.EventHandler(this.tsmCmark_Click);
+            this.tsiOrganizeMD.Name = "tsiOrganizeMD";
+            this.tsiOrganizeMD.Size = new System.Drawing.Size(152, 22);
+            this.tsiOrganizeMD.Text = "&Organize...";
+            this.tsiOrganizeMD.Click += new System.EventHandler(this.tsiOrganizeMD_Click);
             // 
-            // tsmDiscount
+            // tssOrganize
             // 
-            this.tsmDiscount.Name = "tsmDiscount";
-            this.tsmDiscount.Size = new System.Drawing.Size(120, 22);
-            this.tsmDiscount.Text = "discount";
-            this.tsmDiscount.Click += new System.EventHandler(this.tsmDiscount_Click);
+            this.tssOrganize.Name = "tssOrganize";
+            this.tssOrganize.Size = new System.Drawing.Size(149, 6);
             // 
             // tsbOption
             // 
@@ -166,7 +165,7 @@
             this.tsbOption.Image = ((System.Drawing.Image)(resources.GetObject("tsbOption.Image")));
             this.tsbOption.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbOption.Name = "tsbOption";
-            this.tsbOption.Size = new System.Drawing.Size(23, 22);
+            this.tsbOption.Size = new System.Drawing.Size(36, 36);
             this.tsbOption.Text = "Option";
             this.tsbOption.Click += new System.EventHandler(this.tsbOption_Click);
             // 
@@ -176,7 +175,7 @@
             this.tsbHelp.Image = ((System.Drawing.Image)(resources.GetObject("tsbHelp.Image")));
             this.tsbHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbHelp.Name = "tsbHelp";
-            this.tsbHelp.Size = new System.Drawing.Size(23, 22);
+            this.tsbHelp.Size = new System.Drawing.Size(36, 36);
             this.tsbHelp.Text = "He&lp";
             this.tsbHelp.Click += new System.EventHandler(this.tsbHelp_Click);
             // 
@@ -240,8 +239,8 @@
         private System.Windows.Forms.ToolStripDropDownButton tsdRecent;
         private System.Windows.Forms.ToolStripMenuItem tsmDummy;
         private System.Windows.Forms.ToolStripDropDownButton tsdMarkdown;
-        private System.Windows.Forms.ToolStripMenuItem tsmDiscount;
-        private System.Windows.Forms.ToolStripMenuItem tsmCmark;
+        private System.Windows.Forms.ToolStripMenuItem tsiOrganizeMD;
+        private System.Windows.Forms.ToolStripSeparator tssOrganize;
     }
 }
 

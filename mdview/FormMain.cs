@@ -51,20 +51,27 @@ namespace mdview
         static readonly string KEY_MAXRECENTS = "MaxRecents";
         static readonly string KEY_RECENTS = "Recents";
 
-        static readonly string KEY_ADDITIONALARGUMENTS = "AdditionalArguments";
-
+        static readonly string KEY_MARKDOWN_CURRENTINDEX = "CurrentMarkdown";
+        static readonly string KEY_MARKDOWN_COUNT = "MarkdownCount";
+        
+        static readonly string KEY_MARKDOWN_NAME = "MarkdownName";
+        static readonly string KEY_MARKDOWN_EXECUTABLE = "MarkdownExecutable";
+        static readonly string KEY_MARKDOWN_ADDITIONALARGUMENTS = "AdditionalArguments";
+        static readonly string KEY_MARKDOWN_VERSIONARGUMENT = "VersionArgument";
+        
         readonly string _filetoopen;
 
         List<string> recents_ = new List<string>();
         int maxrecents_ = 16;
 
-        enum Markdown {
-            Cmark,
-            Discount,
-        };
+        List<MarkdownInfo> _mdinfos = new List<MarkdownInfo>();
+        //enum Markdown {
+        //    Cmark,
+        //    Discount,
+        //};
 
-        Markdown _currentMarkDown;
-        Markdown CurrentMarkDown
+        MarkdownInfo _currentMarkDown;
+        MarkdownInfo CurrentMarkDown
         {
             get { return _currentMarkDown; }
             set { _currentMarkDown = value; }
@@ -72,35 +79,35 @@ namespace mdview
 
 
         // addtional commandline arguments for markdown
-        string _additionalArguments;
-        string AdditionalArguments
-        {
-            get
-            {
-                switch (CurrentMarkDown)
-                {
-                    case Markdown.Discount:
-                        if (_additionalArguments == null)
-                        {
-                            Profile.GetString(SECTION_OPTION,
-                                KEY_ADDITIONALARGUMENTS, string.Empty, out _additionalArguments, IniPath);
-                        }
-                        return _additionalArguments;
-                    case Markdown.Cmark:
-                        return string.Empty;
-                }
-                return string.Empty;
-            }
-            set
-            {
-                _additionalArguments = value;
-                if (!Profile.WriteString(SECTION_OPTION,
-                    KEY_ADDITIONALARGUMENTS, _additionalArguments, IniPath))
-                {
-                    CppUtils.Alert(Properties.Resources.INI_SAVE_FAILED);
-                }
-            }
-        }
+        //string _additionalArguments;
+        //string AdditionalArguments
+        //{
+        //    get
+        //    {
+        //        switch (CurrentMarkDown)
+        //        {
+        //            case Markdown.Discount:
+        //                if (_additionalArguments == null)
+        //                {
+        //                    Profile.GetString(SECTION_OPTION,
+        //                        KEY_ADDITIONALARGUMENTS, string.Empty, out _additionalArguments, IniPath);
+        //                }
+        //                return _additionalArguments;
+        //            case Markdown.Cmark:
+        //                return string.Empty;
+        //        }
+        //        return string.Empty;
+        //    }
+        //    set
+        //    {
+        //        _additionalArguments = value;
+        //        if (!Profile.WriteString(SECTION_OPTION,
+        //            KEY_ADDITIONALARGUMENTS, _additionalArguments, IniPath))
+        //        {
+        //            CppUtils.Alert(Properties.Resources.INI_SAVE_FAILED);
+        //        }
+        //    }
+        //}
 
         // MD currently opening
         string _openingMD;
@@ -114,6 +121,8 @@ namespace mdview
             wb.Navigating += Wb_Navigating;
             wb.NewWindow += Wb_NewWindow;
             wb.DocumentCompleted += Wb_DocumentCompleted;
+
+
             int x, y, width, height;
             HashIni ini = Profile.ReadAll(IniPath);
             Profile.GetInt(SECTION_OPTION, KEY_X, -1, out x, ini);
@@ -131,10 +140,74 @@ namespace mdview
                 }
             }
 
+            int mdCount = 0;
+            Profile.GetInt(SECTION_OPTION, 
+                KEY_MARKDOWN_COUNT, 
+                -1, 
+                out mdCount,
+                ini);
+            for(int i=0;i<mdCount;++i)
+            {
+                string keyName = KEY_MARKDOWN_NAME + i.ToString();
+                string keyExecutable = KEY_MARKDOWN_EXECUTABLE + i.ToString();
+                string keyArgs = KEY_MARKDOWN_ADDITIONALARGUMENTS + i.ToString();
+                string keyVArgs = KEY_MARKDOWN_VERSIONARGUMENT + i.ToString();
 
+                string valueName;
+                Profile.GetString(SECTION_OPTION,
+                    keyName,
+                    string.Empty,
+                    out valueName,
+                    ini);
+
+                string valueExecutable;
+                Profile.GetString(SECTION_OPTION,
+                    keyExecutable,
+                    string.Empty,
+                    out valueExecutable,
+                    ini);
+
+                string valueArgs;
+                Profile.GetString(SECTION_OPTION,
+                    keyArgs,
+                    string.Empty,
+                    out valueArgs,
+                    ini);
+
+                string valueVArgs;
+                Profile.GetString(SECTION_OPTION,
+                    keyVArgs,
+                    string.Empty,
+                    out valueVArgs,
+                    ini);
+
+                _mdinfos.Add(new MarkdownInfo(valueName, valueExecutable, valueArgs,valueVArgs));
+            }
+            if(mdCount == -1)
+            {
+                // first launch, create default
+                _mdinfos.Add(new MarkdownInfo("cmark", "cmark.exe", string.Empty, "--version"));
+                _mdinfos.Add(new MarkdownInfo("discount", "markdown.exe", string.Empty, "-V"));
+            }
+            int currentMDIndex;
+            Profile.GetInt(SECTION_OPTION,
+                KEY_MARKDOWN_CURRENTINDEX,
+                -1,
+                out currentMDIndex,
+                ini);
+            if(currentMDIndex<0 || currentMDIndex >= _mdinfos.Count)
+            {
+                // invalid index
+                currentMDIndex = 0;
+            }
+            if(_mdinfos.Count > currentMDIndex)
+            {
+                // valid index
+                CurrentMarkDown = _mdinfos[currentMDIndex];
+            }
         }
 
-        int _ZoomLevel;
+        // int _ZoomLevel;
         private void Wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             //int curZoomLevel = getBrowserZoomLevel();
@@ -256,32 +329,32 @@ namespace mdview
                 return Path.GetDirectoryName(Application.ExecutablePath);
             }
         }
-        string MarkdownExecutable
-        {
-            get
-            {
-                string ret = null;
-                switch (CurrentMarkDown)
-                {
-                    case Markdown.Discount:
-                        ret = Path.Combine(AppDir, "markdown.exe");
-                        if (File.Exists(ret))
-                            return ret;
-                        return "markdown.exe";
+        //string MarkdownExecutable
+        //{
+        //    get
+        //    {
+        //        string ret = null;
+        //        switch (CurrentMarkDown)
+        //        {
+        //            case Markdown.Discount:
+        //                ret = Path.Combine(AppDir, "markdown.exe");
+        //                if (File.Exists(ret))
+        //                    return ret;
+        //                return "markdown.exe";
 
 
-                    case Markdown.Cmark:
-                        ret = Path.Combine(AppDir, "cmark.exe");
-                        if (File.Exists(ret))
-                            return ret;
-                        return "cmark.exe";
+        //            case Markdown.Cmark:
+        //                ret = Path.Combine(AppDir, "cmark.exe");
+        //                if (File.Exists(ret))
+        //                    return ret;
+        //                return "cmark.exe";
 
-                }
+        //        }
 
-                Debug.Assert(false);
-                return null;
-            }
-        }
+        //        Debug.Assert(false);
+        //        return null;
+        //    }
+        //}
         void prepareBrowser()
         {
             wb.Navigate("about:blank");
@@ -376,16 +449,21 @@ namespace mdview
         List<CacheFile> _cacheFiles = new List<CacheFile>();
         void OpenMD(string mdfile)
         {
+            if(CurrentMarkDown==null)
+            {
+                CppUtils.Alert(Properties.Resources.NO_MARKDOWN);
+                return;
+            }
             int retval;
             string output, err;
             string baseurl = AmbLib.doubleQuoteIfSpace(AmbLib.pathToFileProtocol(Misc.PathAddBackslash(Path.GetDirectoryName(mdfile))));
             string arg = string.Format("{0} {1}",
                 // baseurl,
-                AdditionalArguments,
+                CurrentMarkDown.AdditionalArguments,
                 AmbLib.doubleQuoteIfSpace(mdfile)
                 );
             AmbLib.OpenCommandGetResult(
-                MarkdownExecutable,
+                CurrentMarkDown.ExecutableFullpath,
                 arg,
                 Encoding.UTF8,
                 out retval,
@@ -643,90 +721,104 @@ namespace mdview
         {
             using (OptionDialog dlg = new OptionDialog())
             {
-                dlg.txtAdditionalArgument.Text = AdditionalArguments;
+                // dlg.txtAdditionalArgument.Text = AdditionalArguments;
 
                 if (DialogResult.OK != dlg.ShowDialog())
                     return;
 
-                AdditionalArguments = dlg.txtAdditionalArgument.Text;
+                // AdditionalArguments = dlg.txtAdditionalArgument.Text;
             }
         }
 
         private void tsbHelp_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(ProductName);
-            sb.Append(" ");
-            sb.Append("version ");
-            sb.Append(Application.ProductVersion);
+            //sb.Append(ProductName);
+            //sb.Append(" ");
+            //sb.Append("version ");
+            //sb.Append(Application.ProductVersion);
 
-            sb.AppendLine();
-            sb.AppendLine();
+            //sb.AppendLine();
+            //sb.AppendLine();
 
-            int retval;
-            string output, err;
-            try
+            
+            
+            foreach (MarkdownInfo mi in _mdinfos)
             {
-                AmbLib.OpenCommandGetResult(
-                  MarkdownExecutable,
-                  "--version",
-                  Encoding.Default,
-                  out retval,
-                  out output,
-                  out err);
-
-                if(retval!=0||!string.IsNullOrEmpty(err))
+                int retval = 0;
+                string output = string.Empty;
+                string err = string.Empty;
+                try
                 {
-                    sb.AppendLine("Error");
+                    AmbLib.OpenCommandGetResult(
+                      mi.Executable,
+                      mi.VersionArgument,
+                      Encoding.Default,
+                      out retval,
+                      out output,
+                      out err);
+
+                    if (retval != 0 || !string.IsNullOrEmpty(err))
+                    {
+                        sb.AppendLine(String.Format("Error: returned {0}, error = \"{1}\"",
+                            retval,
+                            err));
+                    }
+                    else
+                    {
+                        sb.AppendLine(output);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    sb.AppendLine(output);
+                    sb.AppendLine(ex.Message);
                 }
-
-
-
             }
-            catch(Exception ex)
+
+            //CppUtils.CenteredMessageBox(
+            //    this,
+            //    sb.ToString(),
+            //    Application.ProductName,
+            //    MessageBoxButtons.OK,
+            //    MessageBoxIcon.Information);
+
+            using (AboutBox about = new AboutBox())
             {
-                sb.AppendLine(ex.Message);
-            }
+                //about.labelProductName.Text += Application.ProductName;
+                //about.labelVersion.Text += AmbLib.getAssemblyVersion(Assembly.GetExecutingAssembly());
+                //about.labelCopyright.Text += "Ambiesoft 2017";
+                //about.labelCompanyName.Text += "Ambiesoft";
+                about.textBoxDescription.Text = sb.ToString();
 
-            CppUtils.CenteredMessageBox(
-                this,
-                sb.ToString(),
-                Application.ProductName,
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+                about.ShowDialog(this);
+            }
         }
 
         private void tsdMarkdown_DropDownOpening(object sender, EventArgs e)
         {
-            foreach (ToolStripMenuItem item in tsdMarkdown.DropDownItems)
-                item.Checked = false;
+            int sepIndex = tsdMarkdown.DropDownItems.IndexOf(tssOrganize);
+            Debug.Assert(sepIndex >= 0);
 
-            switch (CurrentMarkDown)
+            // remove items below separator
+            while(tsdMarkdown.DropDownItems.Count > (sepIndex+1))
+                tsdMarkdown.DropDownItems.RemoveAt(sepIndex+1);
+
+            foreach(MarkdownInfo mi in _mdinfos)
             {
-                case Markdown.Discount:
-                    tsmDiscount.Checked = true;
-                    break;
-                case Markdown.Cmark:
-                    tsmCmark.Checked = true;
-                    break;
-                //default:
-                //    Debug.Assert(false);
+                ToolStripMenuItem tsi = new ToolStripMenuItem();
+                tsi.Text = mi.DisplayText;
+                tsi.Tag = mi;
+                tsi.Checked = mi == CurrentMarkDown;
+                tsi.Click += Tsi_Click;
+                tsdMarkdown.DropDownItems.Add(tsi);
             }
-            
         }
 
-        private void tsmDiscount_Click(object sender, EventArgs e)
+        private void Tsi_Click(object sender, EventArgs e)
         {
-            CurrentMarkDown = Markdown.Discount;
-        }
-
-        private void tsmCmark_Click(object sender, EventArgs e)
-        {
-            CurrentMarkDown = Markdown.Cmark;
+            ToolStripItem tsi = (ToolStripItem)sender;
+            MarkdownInfo mi = (MarkdownInfo)tsi.Tag;
+            CurrentMarkDown = mi;
         }
 
         private void FormMain_Activated(object sender, EventArgs e)
@@ -739,6 +831,15 @@ namespace mdview
                 {
                     doc.Focus();
                 }
+            }
+        }
+
+        private void tsiOrganizeMD_Click(object sender, EventArgs e)
+        {
+            using (OrganizeMDDialog dlg = new OrganizeMDDialog())
+            {
+                dlg._mdinfos = _mdinfos;
+                dlg.ShowDialog(this);
             }
         }
     }

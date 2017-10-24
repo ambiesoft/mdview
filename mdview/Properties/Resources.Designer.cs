@@ -70,6 +70,15 @@ namespace mdview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No markdown executables registered, organize them first or remove mdview.ini to register default markdowns..
+        /// </summary>
+        internal static string NO_MARKDOWN {
+            get {
+                return ResourceManager.GetString("NO_MARKDOWN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;No recent items&gt;.
         /// </summary>
         internal static string NO_RECENT_ITEM {
