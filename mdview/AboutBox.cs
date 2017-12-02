@@ -100,5 +100,17 @@ namespace mdview
             }
         }
         #endregion
+
+        private void llWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://ambiesoft.fam.cx/main/index.php?page=mdview");
+            }
+            catch(Exception ex)
+            {
+                Ambiesoft.CppUtils.Alert(this, ex);
+            }
+        }
     }
 }

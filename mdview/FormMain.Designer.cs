@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.wb = new System.Windows.Forms.WebBrowser();
             this.tsMain = new System.Windows.Forms.ToolStrip();
             this.tsdRecent = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmDummy = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
+            this.tsbRefresh = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbPrint = new System.Windows.Forms.ToolStripButton();
             this.tss0 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbCopy = new System.Windows.Forms.ToolStripButton();
@@ -45,19 +46,10 @@
             this.tsbHelp = new System.Windows.Forms.ToolStripButton();
             this.ss = new System.Windows.Forms.StatusStrip();
             this.slMain = new System.Windows.Forms.ToolStripStatusLabel();
+            this.wb = new System.Windows.Forms.WebBrowser();
             this.tsMain.SuspendLayout();
             this.ss.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // wb
-            // 
-            this.wb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wb.Location = new System.Drawing.Point(0, 39);
-            this.wb.MinimumSize = new System.Drawing.Size(20, 20);
-            this.wb.Name = "wb";
-            this.wb.ScriptErrorsSuppressed = true;
-            this.wb.Size = new System.Drawing.Size(619, 403);
-            this.wb.TabIndex = 0;
             // 
             // tsMain
             // 
@@ -66,6 +58,8 @@
             this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsdRecent,
             this.tsbOpen,
+            this.tsbRefresh,
+            this.toolStripSeparator1,
             this.tsbPrint,
             this.tss0,
             this.tsbCopy,
@@ -93,7 +87,7 @@
             // tsmDummy
             // 
             this.tsmDummy.Name = "tsmDummy";
-            this.tsmDummy.Size = new System.Drawing.Size(119, 22);
+            this.tsmDummy.Size = new System.Drawing.Size(116, 22);
             this.tsmDummy.Text = "dummy";
             // 
             // tsbOpen
@@ -106,14 +100,32 @@
             this.tsbOpen.Text = "&Open";
             this.tsbOpen.Click += new System.EventHandler(this.tsbOpen_Click);
             // 
+            // tsbRefresh
+            // 
+            this.tsbRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRefresh.Enabled = false;
+            this.tsbRefresh.Image = ((System.Drawing.Image)(resources.GetObject("tsbRefresh.Image")));
+            this.tsbRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRefresh.Name = "tsbRefresh";
+            this.tsbRefresh.Size = new System.Drawing.Size(36, 36);
+            this.tsbRefresh.Text = "Refresh";
+            this.tsbRefresh.Click += new System.EventHandler(this.tsbRefresh_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
             // tsbPrint
             // 
             this.tsbPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbPrint.Enabled = false;
             this.tsbPrint.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrint.Image")));
             this.tsbPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrint.Name = "tsbPrint";
             this.tsbPrint.Size = new System.Drawing.Size(36, 36);
             this.tsbPrint.Text = "&Print";
+            this.tsbPrint.Click += new System.EventHandler(this.tsbPrint_Click);
             // 
             // tss0
             // 
@@ -128,6 +140,7 @@
             this.tsbCopy.Name = "tsbCopy";
             this.tsbCopy.Size = new System.Drawing.Size(36, 36);
             this.tsbCopy.Text = "&Copy";
+            this.tsbCopy.Click += new System.EventHandler(this.tsbCopy_Click);
             // 
             // tss1
             // 
@@ -150,14 +163,14 @@
             // tsiOrganizeMD
             // 
             this.tsiOrganizeMD.Name = "tsiOrganizeMD";
-            this.tsiOrganizeMD.Size = new System.Drawing.Size(152, 22);
+            this.tsiOrganizeMD.Size = new System.Drawing.Size(130, 22);
             this.tsiOrganizeMD.Text = "&Organize...";
             this.tsiOrganizeMD.Click += new System.EventHandler(this.tsiOrganizeMD_Click);
             // 
             // tssOrganize
             // 
             this.tssOrganize.Name = "tssOrganize";
-            this.tssOrganize.Size = new System.Drawing.Size(149, 6);
+            this.tssOrganize.Size = new System.Drawing.Size(127, 6);
             // 
             // tsbOption
             // 
@@ -194,6 +207,16 @@
             this.slMain.Size = new System.Drawing.Size(604, 17);
             this.slMain.Spring = true;
             this.slMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // wb
+            // 
+            this.wb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wb.Location = new System.Drawing.Point(0, 39);
+            this.wb.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wb.Name = "wb";
+            this.wb.ScriptErrorsSuppressed = true;
+            this.wb.Size = new System.Drawing.Size(619, 403);
+            this.wb.TabIndex = 0;
             // 
             // FormMain
             // 
@@ -241,6 +264,8 @@
         private System.Windows.Forms.ToolStripDropDownButton tsdMarkdown;
         private System.Windows.Forms.ToolStripMenuItem tsiOrganizeMD;
         private System.Windows.Forms.ToolStripSeparator tssOrganize;
+        private System.Windows.Forms.ToolStripButton tsbRefresh;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

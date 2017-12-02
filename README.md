@@ -1,2 +1,4 @@
 # mdview
-Lightweight md viewer for windows
+MD viewer for windows
+
+

@@ -110,7 +110,20 @@ namespace mdview
         //}
 
         // MD currently opening
-        string _openingMD;
+        string _currentMDFile;
+        string CurrentMDFile
+        {
+            get
+            {
+                return _currentMDFile;
+            }
+            set
+            {
+                _currentMDFile = value;
+                tsbRefresh.Enabled = !string.IsNullOrEmpty(_currentMDFile);
+                tsbPrint.Enabled = !string.IsNullOrEmpty(_currentMDFile);
+            }
+        }
 
         public FormMain(string file)
         {
@@ -487,7 +500,7 @@ namespace mdview
             wb.Navigate(tempfile);
             setTitle(mdfile);
 
-            _openingMD = mdfile;
+            CurrentMDFile = mdfile;
             AddRecent(mdfile);
         }
         void OnOpenMd()
@@ -710,7 +723,7 @@ namespace mdview
                 item.Text = s;
                 item.Tag = s;
                 item.Click += Item_Click;
-                item.Checked = _openingMD == s;
+                item.Checked = CurrentMDFile == s;
                 toadd.Add(item);
             }
             tsdRecent.DropDownItems.AddRange(toadd.ToArray());
@@ -733,16 +746,6 @@ namespace mdview
         private void tsbHelp_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
-            //sb.Append(ProductName);
-            //sb.Append(" ");
-            //sb.Append("version ");
-            //sb.Append(Application.ProductVersion);
-
-            //sb.AppendLine();
-            //sb.AppendLine();
-
-            
-            
             foreach (MarkdownInfo mi in _mdinfos)
             {
                 int retval = 0;
@@ -762,34 +765,22 @@ namespace mdview
                     {
                         sb.AppendLine(String.Format("Error: returned {0}, error = \"{1}\"",
                             retval,
-                            err));
+                            err.TrimEnd()));
                     }
                     else
                     {
-                        sb.AppendLine(output);
+                        sb.AppendLine(output.TrimEnd());
                     }
                 }
                 catch (Exception ex)
                 {
                     sb.AppendLine(ex.Message);
                 }
+                sb.AppendLine("----------------------------------------------");
             }
-
-            //CppUtils.CenteredMessageBox(
-            //    this,
-            //    sb.ToString(),
-            //    Application.ProductName,
-            //    MessageBoxButtons.OK,
-            //    MessageBoxIcon.Information);
-
             using (AboutBox about = new AboutBox())
             {
-                //about.labelProductName.Text += Application.ProductName;
-                //about.labelVersion.Text += AmbLib.getAssemblyVersion(Assembly.GetExecutingAssembly());
-                //about.labelCopyright.Text += "Ambiesoft 2017";
-                //about.labelCompanyName.Text += "Ambiesoft";
                 about.textBoxDescription.Text = sb.ToString();
-
                 about.ShowDialog(this);
             }
         }
@@ -841,6 +832,27 @@ namespace mdview
                 dlg._mdinfos = _mdinfos;
                 dlg.ShowDialog(this);
             }
+        }
+
+        private void tsbPrint_Click(object sender, EventArgs e)
+        {
+            wb.ShowPrintPreviewDialog();
+        }
+
+        private void tsbCopy_Click(object sender, EventArgs e)
+        {
+            if (wb.Document == null)
+                return;
+
+            wb.Document.ExecCommand("Copy", false, null);
+        }
+
+        private void tsbRefresh_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(CurrentMDFile))
+                return;
+
+            OpenMD(CurrentMDFile);
         }
     }
 }
