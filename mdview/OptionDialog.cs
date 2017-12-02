@@ -32,14 +32,50 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using Ambiesoft;
 namespace mdview
 {
     public partial class OptionDialog : Form
     {
+        readonly string SECTION_OPTIONDIALOG = "OptionDialog";
+        readonly string KEY_OPENLASTFILE = "OpenLastFile";
+        readonly string KEY_MAXRECENTS = "MaxRecents";
         public OptionDialog()
         {
             InitializeComponent();
+        }
+        internal int MaxRecnetCount
+        {
+            get
+            {
+                try
+                {
+                    return Math.Abs(Decimal.ToInt32(nupRecents.Value));
+                }
+                catch (Exception)
+                {
+                    return 1;
+                }
+            }
+        }
+
+        internal void LoadSettings(HashIni ini)
+        {
+            bool boolval;
+            int intval;
+
+            Profile.GetBool(SECTION_OPTIONDIALOG, KEY_OPENLASTFILE, false, out boolval, ini);
+            chkOpenLastOpened.Checked = boolval;
+
+            Profile.GetInt(SECTION_OPTIONDIALOG, KEY_MAXRECENTS, 16, out intval, ini);
+            nupRecents.Value = intval;
+        }
+        internal bool SaveSettings(HashIni ini)
+        {
+            bool failed = false;
+            failed |= !Profile.WriteBool(SECTION_OPTIONDIALOG, KEY_OPENLASTFILE, chkOpenLastOpened.Checked, ini);
+            failed |= Profile.WriteInt(SECTION_OPTIONDIALOG, KEY_MAXRECENTS, Decimal.ToInt32(nupRecents.Value), ini);
+            return !failed;
         }
     }
 }

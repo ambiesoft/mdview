@@ -48,7 +48,6 @@ namespace mdview
         static readonly string KEY_WIDTH = "Width";
         static readonly string KEY_HEIGHT = "Height";
 
-        static readonly string KEY_MAXRECENTS = "MaxRecents";
         static readonly string KEY_RECENTS = "Recents";
 
         static readonly string KEY_MARKDOWN_CURRENTINDEX = "CurrentMarkdown";
@@ -62,19 +61,20 @@ namespace mdview
         readonly string _filetoopen;
 
         List<string> recents_ = new List<string>();
-        int maxrecents_ = 16;
+        // int maxrecents_ = 16;
+
+        OptionDialog _optionDlg = new OptionDialog();
 
         List<MarkdownInfo> _mdinfos = new List<MarkdownInfo>();
-        //enum Markdown {
-        //    Cmark,
-        //    Discount,
-        //};
-
         MarkdownInfo _currentMarkDown;
         MarkdownInfo CurrentMarkDown
         {
             get { return _currentMarkDown; }
-            set { _currentMarkDown = value; }
+            set
+            {
+                _currentMarkDown = value;
+                slCurrentMD.Text = string.Format("MD: {0}", _currentMarkDown.DisplayText);
+            }
         }
 
 
@@ -218,6 +218,9 @@ namespace mdview
                 // valid index
                 CurrentMarkDown = _mdinfos[currentMDIndex];
             }
+
+            _optionDlg.LoadSettings(ini);
+            RefreshRecent(ini);
         }
 
         // int _ZoomLevel;
@@ -396,8 +399,9 @@ namespace mdview
             recents_.Remove(file);
             recents_.Insert(0, file);
 
-            if (recents_.Count > maxrecents_)
-                recents_ = recents_.GetRange(0, maxrecents_);
+            int max = _optionDlg.MaxRecnetCount;
+            if (recents_.Count > max)
+                recents_ = recents_.GetRange(0, max);
 
             if (!Profile.WriteStringArray(SECTION_OPTION, KEY_RECENTS, recents_.ToArray(), IniPath))
             {
@@ -533,6 +537,10 @@ namespace mdview
             {
                 OpenMD(_filetoopen);
             }
+            else if (_optionDlg.chkOpenLastOpened.Checked && recents_.Count != 0)
+            {
+                OpenMD(recents_[0]);
+            }
             else
             {
                 wb.Navigate("about:blank");
@@ -667,6 +675,8 @@ namespace mdview
             Profile.WriteInt(SECTION_OPTION, KEY_WIDTH, this.Size.Width, ini);
             Profile.WriteInt(SECTION_OPTION, KEY_HEIGHT, this.Size.Height, ini);
 
+            _optionDlg.SaveSettings(ini);
+
             // int zoom = getBrowserZoomLevel();
 
             if (!Profile.WriteAll(ini, inipath))
@@ -688,22 +698,26 @@ namespace mdview
             OpenMD(item.Tag.ToString());
         }
 
-        void RefreshRecent()
+        void RefreshRecent(HashIni ini)
         {
-            HashIni ini = Profile.ReadAll(IniPath);
-
             string[] recents = null;
             Profile.GetStringArray(SECTION_OPTION, KEY_RECENTS, out recents, ini);
-            Profile.GetInt(SECTION_OPTION, KEY_MAXRECENTS, 16, out maxrecents_, ini);
-            maxrecents_ = Math.Abs(maxrecents_);
+
+
+
             foreach (string s in recents)
             {
                 recents_.Remove(s);
                 recents_.Add(s);
             }
 
-            if (recents_.Count > maxrecents_)
-                recents_ = recents_.GetRange(0, maxrecents_);
+            int max = _optionDlg.MaxRecnetCount;
+            if (recents_.Count > max)
+                recents_ = recents_.GetRange(0, max);
+        }
+        void RefreshRecent()
+        {
+            RefreshRecent(Profile.ReadAll(IniPath));
         }
         private void tsdRecent_DropDownOpening(object sender, EventArgs e)
         {
@@ -726,21 +740,77 @@ namespace mdview
                 item.Checked = CurrentMDFile == s;
                 toadd.Add(item);
             }
+
+            toadd.Add(new ToolStripSeparator());
+
+            
+            ToolStripMenuItem itemClearNonExistents = new ToolStripMenuItem();
+            itemClearNonExistents.Text = Properties.Resources.CLEAR_NONEXISTENT_RECENTS;
+            itemClearNonExistents.Click += ItemClearNonExistents_Click;
+            toadd.Add(itemClearNonExistents);
+
+            ToolStripMenuItem itemRemoveAllRecents = new ToolStripMenuItem();
+            itemRemoveAllRecents.Text = Properties.Resources.CLEAR_ALL_RECENTS;
+            itemRemoveAllRecents.Click += ItemRemoveAllRecents_Click;
+            toadd.Add(itemRemoveAllRecents);
+
             tsdRecent.DropDownItems.AddRange(toadd.ToArray());
         }
 
-        
+        private void ItemClearNonExistents_Click(object sender, EventArgs e)
+        {
+            string[] recentsR = null;
+            Profile.GetStringArray(SECTION_OPTION, KEY_RECENTS, out recentsR, IniPath);
+            if (recentsR == null || recentsR.Length == 0)
+                return;
+
+            List<string> recents = new List<string>();
+            try
+            {
+                foreach (string rece in recentsR)
+                {
+                    if (File.Exists(rece))
+                        recents.Add(rece);
+                }
+
+                if (!Profile.WriteStringArray(SECTION_OPTION, KEY_RECENTS, recents.ToArray(), IniPath))
+                    throw new Exception(Properties.Resources.INI_SAVE_FAILED);
+
+                recents_.Clear();
+                RefreshRecent();
+            }
+            catch(Exception ex)
+            {
+                CppUtils.Alert(this, ex);
+            }
+            
+        }
+
+        private void ItemRemoveAllRecents_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes != CppUtils.YesOrNo(Properties.Resources.AREYOUSURETO_CLEAR_RECENTS,MessageBoxDefaultButton.Button2))
+                return;
+
+            try
+            {
+                if (!Profile.WriteStringArray(SECTION_OPTION, KEY_RECENTS, new string[0], IniPath))
+                    throw new Exception(Properties.Resources.INI_SAVE_FAILED);
+
+                recents_.Clear();
+                if (File.Exists(CurrentMDFile))
+                    recents_.Add(CurrentMDFile);
+
+                RefreshRecent();
+            }
+            catch (Exception ex)
+            {
+                CppUtils.Alert(this, ex);
+            }
+        }
+
         private void tsbOption_Click(object sender, EventArgs e)
         {
-            using (OptionDialog dlg = new OptionDialog())
-            {
-                // dlg.txtAdditionalArgument.Text = AdditionalArguments;
-
-                if (DialogResult.OK != dlg.ShowDialog())
-                    return;
-
-                // AdditionalArguments = dlg.txtAdditionalArgument.Text;
-            }
+            _optionDlg.ShowDialog();
         }
 
         private void tsbHelp_Click(object sender, EventArgs e)
@@ -776,7 +846,7 @@ namespace mdview
                 {
                     sb.AppendLine(ex.Message);
                 }
-                sb.AppendLine("----------------------------------------------");
+                sb.AppendLine("---------------------------------------");
             }
             using (AboutBox about = new AboutBox())
             {

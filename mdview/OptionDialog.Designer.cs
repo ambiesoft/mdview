@@ -29,59 +29,83 @@
         private void InitializeComponent()
         {
             this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.chkOpenLastOpened = new System.Windows.Forms.CheckBox();
+            this.lblMaxRecents = new System.Windows.Forms.Label();
+            this.nupRecents = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.nupRecents)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(162, 179);
+            this.btnOK.Location = new System.Drawing.Point(286, 165);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(118, 23);
+            this.btnOK.Size = new System.Drawing.Size(118, 21);
             this.btnOK.TabIndex = 2;
             this.btnOK.Text = "&OK";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // btnCancel
+            // chkOpenLastOpened
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(286, 179);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(118, 23);
-            this.btnCancel.TabIndex = 3;
-            this.btnCancel.Text = "&Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.chkOpenLastOpened.AutoSize = true;
+            this.chkOpenLastOpened.Location = new System.Drawing.Point(12, 12);
+            this.chkOpenLastOpened.Name = "chkOpenLastOpened";
+            this.chkOpenLastOpened.Size = new System.Drawing.Size(187, 16);
+            this.chkOpenLastOpened.TabIndex = 5;
+            this.chkOpenLastOpened.Text = "&Open last opened file at startup";
+            this.chkOpenLastOpened.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lblMaxRecents
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(159, 85);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "<<Nothing yet>>";
+            this.lblMaxRecents.AutoSize = true;
+            this.lblMaxRecents.Location = new System.Drawing.Point(12, 31);
+            this.lblMaxRecents.Name = "lblMaxRecents";
+            this.lblMaxRecents.Size = new System.Drawing.Size(174, 12);
+            this.lblMaxRecents.TabIndex = 6;
+            this.lblMaxRecents.Text = "&Max count of recent opened files";
+            // 
+            // nupRecents
+            // 
+            this.nupRecents.Location = new System.Drawing.Point(14, 46);
+            this.nupRecents.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.nupRecents.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nupRecents.Name = "nupRecents";
+            this.nupRecents.Size = new System.Drawing.Size(120, 19);
+            this.nupRecents.TabIndex = 7;
+            this.nupRecents.Value = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
             // 
             // OptionDialog
             // 
             this.AcceptButton = this.btnOK;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(416, 214);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnCancel);
+            this.ClientSize = new System.Drawing.Size(416, 198);
+            this.Controls.Add(this.nupRecents);
+            this.Controls.Add(this.lblMaxRecents);
+            this.Controls.Add(this.chkOpenLastOpened);
             this.Controls.Add(this.btnOK);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(282, 134);
+            this.MinimumSize = new System.Drawing.Size(282, 127);
             this.Name = "OptionDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Option | mdview";
+            ((System.ComponentModel.ISupportInitialize)(this.nupRecents)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -89,7 +113,8 @@
 
         #endregion
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Label label1;
+        internal System.Windows.Forms.CheckBox chkOpenLastOpened;
+        private System.Windows.Forms.Label lblMaxRecents;
+        private System.Windows.Forms.NumericUpDown nupRecents;
     }
 }

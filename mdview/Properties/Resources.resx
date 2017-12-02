@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AREYOUSURETO_CLEAR_RECENTS" xml:space="preserve">
+    <value>Are you sure to clear recent items?</value>
+  </data>
+  <data name="CLEAR_ALL_RECENTS" xml:space="preserve">
+    <value>&amp;Clear all</value>
+  </data>
+  <data name="CLEAR_NONEXISTENT_RECENTS" xml:space="preserve">
+    <value>Clear &amp;non-existent</value>
+  </data>
   <data name="INI_SAVE_FAILED" xml:space="preserve">
     <value>Failed to save ini.</value>
   </data>
