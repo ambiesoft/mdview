@@ -1,5 +1,5 @@
-# clipdiff
-clipdiffはファイルを使わずに２つのテキストを比較するツールです。
+# mdview
+mdview md(markdown)ファイルを表示するアプリケーションです。
 
 # 動作環境
 Windows, .NET 4.0以上
@@ -15,34 +15,11 @@ Windows, .NET 4.0以上
 ファイルを削除してください。アンインストーラーはありません。
 
 # 使い方
-* clipdiff.exeを起動します。
-* 比較したい最初のテキストをコピーします。
-* clipdiffの **[貼り付け]** クリックします。テキストが左のペインに貼り付けられます。
-* 比較したい次のテキストをコピーします。
-* もう一度 **[貼り付け]** をクリックします。
-* これで２つのテキストが比較できます。
-* 語句やキャラクターで比較したい場合は、行を右クリックしてコンテキストメニューを表示し、 **[docdiff(...)]** を選択します。
-
-# 実例
-* コマンドプロンプトを２つ開きます。１つ目は３２ビットプロセスから起動し、２つ目は６４ビットプロセスから起動します。２つのプロセスは異なる環境変数を持ちます。
-* clipdiff.exeを開き、 **[ツール」->[クリップボードの監視]** をチェックします。
-* １つめのコマンドプロンプトで、 **set | clip** と入力します。
-* ２つめのコマンドプロンプトで、 **set | clip** と入力します。
-* clipdiffで差分を確認します。
-
-
-# 開発
-以下のコマンドでソースを取得します。
-```
-git clone https://github.com/erasoni/SessionGlobalMemory.git
-git clone https://github.com/erasoni/lsMisc.git
-git clone https://github.com/erasoni/clipdiff.git
-```
-clipdiff.slnを開きビルドします。
+mdview.exeを起動しファイルを開くボタンから希望のmdを選択します。
 
 # ダウンロード
 バイナリーはここから入手できます。
-https://github.com/erasoni/clipdiff/releases
+https://github.com/erasoni/mdview/releases
 
 # 作者への連絡先
 * 電子メール ambiesoft.trueff@gmail.com
