@@ -1,5 +1,5 @@
 # mdview
-mdview md(markdown)ファイルを表示するアプリケーションです。
+MD(markdown)ファイルを表示するアプリケーションです。
 
 # 動作環境
 Windows, .NET 4.0以上
