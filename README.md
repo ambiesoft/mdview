@@ -2,7 +2,7 @@
 A viwer of MD(markdown) for windows
 
 # Enviromment
-Windows 7 or above, .NET 4.0 or above, Visual Sudio 2017 runtime library.
+Windows 7 or above, .NET 4.0 or above, Visual Sudio 2015 runtime library.
 
 # License
 This software is freeware. See LICENSE.
