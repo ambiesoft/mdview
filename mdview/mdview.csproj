@@ -156,6 +156,7 @@ copy "$(SolutionDir)cmark-0.28.0\cmark.exe" "$(TargetDir)"
 C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)highlight" /to:"$(TargetDir)"
 
 copy "$(SolutionDir)Readme.md" "$(TargetDir)"
+copy "$(SolutionDir)Readme.jp.md" "$(TargetDir)"
 copy "$(ProjectDir)History.txt" "$(TargetDir)"
 copy "$(ProjectDir)License.txt" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
