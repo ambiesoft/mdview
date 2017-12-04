@@ -14,7 +14,7 @@ If you downloaded the binary file, open it to extract files. No setup programs a
 Delete the files.
 
 # How to use
-* Launch clipdiff.exe [URL]
+Launch mdview.exe and open MD by pushing Open button.
 
 # Download
 Download binary from https://github.com/erasoni/mdview/releases.
