@@ -57,6 +57,9 @@ namespace mdview
         static readonly string KEY_MARKDOWN_EXECUTABLE = "MarkdownExecutable";
         static readonly string KEY_MARKDOWN_ADDITIONALARGUMENTS = "AdditionalArguments";
         static readonly string KEY_MARKDOWN_VERSIONARGUMENT = "VersionArgument";
+
+        static readonly string KEY_ZOOMLEVEL = "ZoomLevel";
+
         
         readonly string _filetoopen;
 
@@ -125,16 +128,22 @@ namespace mdview
             }
         }
 
+        WebBrowser wb;
         public FormMain(string file)
         {
             _filetoopen = file;
             InitializeComponent();
+            wb = new WebBrowser();
+            wb.Dock = DockStyle.Fill;
+            panelBrowser.Controls.Add(wb);
 
+            wb.ScriptErrorsSuppressed = true;
             wb.StatusTextChanged += Wb_StatusTextChanged;
             wb.Navigating += Wb_Navigating;
             wb.NewWindow += Wb_NewWindow;
             wb.DocumentCompleted += Wb_DocumentCompleted;
 
+            int intval = 0;
 
             int x, y, width, height;
             HashIni ini = Profile.ReadAll(IniPath);
@@ -219,24 +228,17 @@ namespace mdview
                 CurrentMarkDown = _mdinfos[currentMDIndex];
             }
 
+            Profile.GetInt(SECTION_OPTION, KEY_ZOOMLEVEL, 100, out intval, ini);
+            ZoomLevel = intval;
+
             _optionDlg.LoadSettings(ini);
             RefreshRecent(ini);
         }
 
-        // int _ZoomLevel;
+        int ZoomLevel;
         private void Wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            //int curZoomLevel = getBrowserZoomLevel();
-            //if(curZoomLevel > 0)
-            //{
-            //    if(_ZoomLevel != curZoomLevel)
-            //    {
-            //        if(setBrowserZoomLevel(_ZoomLevel))
-            //        {
-            //            _ZoomLevel = curZoomLevel;
-            //        }
-            //    }
-            //}
+            SetZoom(ZoomLevel);
         }
 
         bool isSchemeJump(string scheme)
@@ -675,6 +677,8 @@ namespace mdview
             Profile.WriteInt(SECTION_OPTION, KEY_WIDTH, this.Size.Width, ini);
             Profile.WriteInt(SECTION_OPTION, KEY_HEIGHT, this.Size.Height, ini);
 
+            Profile.WriteInt(SECTION_OPTION, KEY_ZOOMLEVEL, ZoomLevel, ini);
+
             _optionDlg.SaveSettings(ini);
 
             // int zoom = getBrowserZoomLevel();
@@ -923,6 +927,77 @@ namespace mdview
                 return;
 
             OpenMD(CurrentMDFile);
+        }
+
+        //private void tsdZoom_DropDownOpening(object sender, EventArgs e)
+        //{
+        //    int currentZoomLevel = GetZoom();
+        //    switch(currentZoomLevel)
+        //    {
+        //        case 50:tsmZoom50.Checked = true;break;
+        //    }
+        //}
+        //private int GetZoom()
+        //{
+        //    try
+        //    {
+        //        int i = 0;
+        //        object pi = "a";
+        //        object po = (int)0;
+        //        ((SHDocVw.WebBrowser)wb.ActiveXInstance).ExecWB(
+        //            SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM,
+        //            SHDocVw.OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER,
+        //            ref pi,
+        //            ref po);
+        //        return 0;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        CppUtils.Alert(ex);
+        //    }
+        //    return 0;
+        //}
+
+        private void SetZoom(int zoomFactor)
+        {
+            try
+            {
+                ((SHDocVw.WebBrowser)wb.ActiveXInstance).ExecWB(
+                    SHDocVw.OLECMDID.OLECMDID_OPTICAL_ZOOM,
+                    SHDocVw.OLECMDEXECOPT.OLECMDEXECOPT_DONTPROMPTUSER,
+                    zoomFactor,
+                    IntPtr.Zero);
+            }
+            catch(Exception ex)
+            {
+                CppUtils.Alert(ex);
+            }
+        }
+        private void tsmZoom_Click_Common(object sender, EventArgs e)
+        {
+            int factor = -1;
+            if (sender == tsmZoom400)
+                factor = 400;
+            else if (sender == tsmZoom200)
+                factor = 200;
+            else if (sender == tsmZoom150)
+                factor = 150;
+            else if (sender == tsmZoom125)
+                factor = 125;
+            else if (sender == tsmZoom100)
+                factor = 100;
+            else if (sender == tsmZoom75)
+                factor = 75;
+            else if (sender == tsmZoom50)
+                factor = 50;
+            else
+                Debug.Assert(false);
+
+            if (factor == -1)
+                return;
+
+            ZoomLevel = factor;
+            SetZoom(factor);
         }
     }
 }
