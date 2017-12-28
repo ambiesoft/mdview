@@ -238,7 +238,7 @@ namespace mdview
         int ZoomLevel;
         private void Wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            SetZoom(ZoomLevel);
+            // SetZoom(ZoomLevel);
         }
 
         bool isSchemeJump(string scheme)
@@ -535,6 +535,13 @@ namespace mdview
         private void FormMain_Load(object sender, EventArgs e)
         {
             setTitle(string.Empty);
+
+            wb.Navigate("about:blank");
+            while (wb.ReadyState != WebBrowserReadyState.Complete)
+                Application.DoEvents();
+
+            SetZoom(ZoomLevel);
+
             if (!string.IsNullOrEmpty(_filetoopen))
             {
                 OpenMD(_filetoopen);
