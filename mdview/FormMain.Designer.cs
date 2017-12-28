@@ -42,8 +42,6 @@
             this.tsdMarkdown = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsiOrganizeMD = new System.Windows.Forms.ToolStripMenuItem();
             this.tssOrganize = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbOption = new System.Windows.Forms.ToolStripButton();
-            this.tsbHelp = new System.Windows.Forms.ToolStripButton();
             this.tsdZoom = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmZoom400 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZoom200 = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,10 +50,15 @@
             this.tsmZoom100 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZoom75 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZoom50 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbOption = new System.Windows.Forms.ToolStripButton();
+            this.tsbHelp = new System.Windows.Forms.ToolStripButton();
             this.ss = new System.Windows.Forms.StatusStrip();
             this.slMain = new System.Windows.Forms.ToolStripStatusLabel();
             this.slCurrentMD = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelBrowser = new System.Windows.Forms.Panel();
+            this.tsmZoom95 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmZoom90 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmZoom80 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMain.SuspendLayout();
             this.ss.SuspendLayout();
             this.SuspendLayout();
@@ -158,20 +161,6 @@
             this.tssOrganize.Name = "tssOrganize";
             resources.ApplyResources(this.tssOrganize, "tssOrganize");
             // 
-            // tsbOption
-            // 
-            this.tsbOption.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbOption, "tsbOption");
-            this.tsbOption.Name = "tsbOption";
-            this.tsbOption.Click += new System.EventHandler(this.tsbOption_Click);
-            // 
-            // tsbHelp
-            // 
-            this.tsbHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbHelp, "tsbHelp");
-            this.tsbHelp.Name = "tsbHelp";
-            this.tsbHelp.Click += new System.EventHandler(this.tsbHelp_Click);
-            // 
             // tsdZoom
             // 
             this.tsdZoom.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -181,6 +170,9 @@
             this.tsmZoom150,
             this.tsmZoom125,
             this.tsmZoom100,
+            this.tsmZoom95,
+            this.tsmZoom90,
+            this.tsmZoom80,
             this.tsmZoom75,
             this.tsmZoom50});
             resources.ApplyResources(this.tsdZoom, "tsdZoom");
@@ -228,6 +220,20 @@
             resources.ApplyResources(this.tsmZoom50, "tsmZoom50");
             this.tsmZoom50.Click += new System.EventHandler(this.tsmZoom_Click_Common);
             // 
+            // tsbOption
+            // 
+            this.tsbOption.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbOption, "tsbOption");
+            this.tsbOption.Name = "tsbOption";
+            this.tsbOption.Click += new System.EventHandler(this.tsbOption_Click);
+            // 
+            // tsbHelp
+            // 
+            this.tsbHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbHelp, "tsbHelp");
+            this.tsbHelp.Name = "tsbHelp";
+            this.tsbHelp.Click += new System.EventHandler(this.tsbHelp_Click);
+            // 
             // ss
             // 
             this.ss.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -251,6 +257,24 @@
             // 
             resources.ApplyResources(this.panelBrowser, "panelBrowser");
             this.panelBrowser.Name = "panelBrowser";
+            // 
+            // tsmZoom95
+            // 
+            this.tsmZoom95.Name = "tsmZoom95";
+            resources.ApplyResources(this.tsmZoom95, "tsmZoom95");
+            this.tsmZoom95.Click += new System.EventHandler(this.tsmZoom_Click_Common);
+            // 
+            // tsmZoom90
+            // 
+            this.tsmZoom90.Name = "tsmZoom90";
+            resources.ApplyResources(this.tsmZoom90, "tsmZoom90");
+            this.tsmZoom90.Click += new System.EventHandler(this.tsmZoom_Click_Common);
+            // 
+            // tsmZoom80
+            // 
+            this.tsmZoom80.Name = "tsmZoom80";
+            resources.ApplyResources(this.tsmZoom80, "tsmZoom80");
+            this.tsmZoom80.Click += new System.EventHandler(this.tsmZoom_Click_Common);
             // 
             // FormMain
             // 
@@ -305,6 +329,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmZoom100;
         private System.Windows.Forms.ToolStripMenuItem tsmZoom75;
         private System.Windows.Forms.ToolStripMenuItem tsmZoom50;
+        private System.Windows.Forms.ToolStripMenuItem tsmZoom95;
+        private System.Windows.Forms.ToolStripMenuItem tsmZoom90;
+        private System.Windows.Forms.ToolStripMenuItem tsmZoom80;
     }
 }
 

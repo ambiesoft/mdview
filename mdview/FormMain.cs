@@ -993,6 +993,12 @@ namespace mdview
                 factor = 125;
             else if (sender == tsmZoom100)
                 factor = 100;
+            else if (sender == tsmZoom95)
+                factor = 95;
+            else if (sender == tsmZoom90)
+                factor = 90;
+            else if (sender == tsmZoom80)
+                factor = 80;
             else if (sender == tsmZoom75)
                 factor = 75;
             else if (sender == tsmZoom50)
