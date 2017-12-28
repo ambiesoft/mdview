@@ -1,0 +1,6 @@
+[submodule "cmark"]
+	path = cmark
+	url = https://github.com/commonmark/cmark.git
+[submodule "discount"]
+	path = discount
+	url = https://github.com/Orc/discount.git

@@ -135,4 +135,13 @@
   <data name="NO_RECENT_ITEM" xml:space="preserve">
     <value>＜最近使ったファイルはありません＞</value>
   </data>
+  <data name="CLI_ENGLISH" xml:space="preserve">
+    <value>英語</value>
+  </data>
+  <data name="CLI_JAPANESE" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="CLI_SYSTEMDEFAULT" xml:space="preserve">
+    <value>システムデフォルト</value>
+  </data>
 </root>

@@ -394,7 +394,7 @@
     <value>45, 36</value>
   </data>
   <data name="tsdZoom.Text" xml:space="preserve">
-    <value>toolStripDropDownButton1</value>
+    <value></value>
   </data>
   <data name="tsbOption.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6343,7 +6343,7 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Form1</value>
+    <value></value>
   </data>
   <data name="&gt;&gt;tsdRecent.Name" xml:space="preserve">
     <value>tsdRecent</value>
