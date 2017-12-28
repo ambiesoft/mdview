@@ -6,11 +6,8 @@ obj/
 *.a
 *.user
 
-libmarkdown
+*~
 
-Makefile
-config.h
-config.log
-config.md
-config.sub
+discount/
+
 
