@@ -34,11 +34,21 @@ using NDesk.Options;
 using System.Text;
 using System.IO;
 using Ambiesoft;
+using System.Globalization;
 
 namespace mdview
 {
     static class Program
     {
+        public static string IniPath
+        {
+            get
+            {
+                return Path.Combine(Path.GetDirectoryName(Application.ExecutablePath),
+                    Path.GetFileNameWithoutExtension(Application.ExecutablePath) + ".ini");
+            }
+        }
+
         static string getHelp()
         {
             return "mdview.exe mdfile";
@@ -49,6 +59,18 @@ namespace mdview
         [STAThread]
         static void Main(string[] args)
         {
+            HashIni ini = Profile.ReadAll(IniPath);
+            string lang;
+            Profile.GetString(FormMain.SECTION_OPTION, FormMain.KEY_LANGUAGE, string.Empty, out lang, ini);
+            if(!string.IsNullOrEmpty(lang))
+            {
+                CultureInfo ci = new CultureInfo(lang);
+
+                System.Threading.Thread.CurrentThread.CurrentCulture = ci;
+                System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
+            }
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -85,7 +107,7 @@ namespace mdview
                 return;
             }
           
-            Application.Run(new FormMain(extra.Count==0?null:extra[0]));
+            Application.Run(new FormMain(extra.Count==0?null:extra[0],ini));
         }
     }
 }

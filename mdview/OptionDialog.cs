@@ -40,9 +40,14 @@ namespace mdview
         readonly string SECTION_OPTIONDIALOG = "OptionDialog";
         readonly string KEY_OPENLASTFILE = "OpenLastFile";
         readonly string KEY_MAXRECENTS = "MaxRecents";
+
         public OptionDialog()
         {
             InitializeComponent();
+
+            cmbLanguage.Items.Add(new ComboLangItem(Properties.Resources.CLI_SYSTEMDEFAULT, string.Empty));
+            cmbLanguage.Items.Add(new ComboLangItem(Properties.Resources.CLI_ENGLISH, "en"));
+            cmbLanguage.Items.Add(new ComboLangItem(Properties.Resources.CLI_JAPANESE, "ja-JP"));
         }
         internal int MaxRecnetCount
         {
@@ -69,13 +74,48 @@ namespace mdview
 
             Profile.GetInt(SECTION_OPTIONDIALOG, KEY_MAXRECENTS, 16, out intval, ini);
             nupRecents.Value = intval;
+
+            string lang;
+            Profile.GetString(FormMain.SECTION_OPTION, FormMain.KEY_LANGUAGE, string.Empty, out lang, ini);
+            object toSelect = null;
+            foreach(object ob in cmbLanguage.Items)
+            {
+                ComboLangItem item = (ComboLangItem)ob;
+                if (item.Language == lang)
+                {
+                    toSelect = item;
+                    break;
+                }
+            }
+            if (toSelect != null)
+                cmbLanguage.SelectedItem = toSelect;
+
+            lblRestartNotice.Visible = false;
         }
         internal bool SaveSettings(HashIni ini)
         {
             bool failed = false;
             failed |= !Profile.WriteBool(SECTION_OPTIONDIALOG, KEY_OPENLASTFILE, chkOpenLastOpened.Checked, ini);
             failed |= Profile.WriteInt(SECTION_OPTIONDIALOG, KEY_MAXRECENTS, Decimal.ToInt32(nupRecents.Value), ini);
+
+            if (cmbLanguage.SelectedItem != null)
+            {
+                ComboLangItem item = (ComboLangItem)cmbLanguage.SelectedItem;
+                failed |= !Profile.WriteString(FormMain.SECTION_OPTION,
+                    FormMain.KEY_LANGUAGE,
+                    item.Language,
+                    ini);
+            }
             return !failed;
+        }
+
+        private void OptionDialog_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblRestartNotice.Visible = true;
         }
     }
 }

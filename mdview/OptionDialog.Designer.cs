@@ -28,46 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionDialog));
             this.btnOK = new System.Windows.Forms.Button();
             this.chkOpenLastOpened = new System.Windows.Forms.CheckBox();
             this.lblMaxRecents = new System.Windows.Forms.Label();
             this.nupRecents = new System.Windows.Forms.NumericUpDown();
+            this.lblLanguage = new System.Windows.Forms.Label();
+            this.cmbLanguage = new System.Windows.Forms.ComboBox();
+            this.lblRestartNotice = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nupRecents)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOK
             // 
-            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.btnOK, "btnOK");
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(286, 165);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(118, 21);
-            this.btnOK.TabIndex = 2;
-            this.btnOK.Text = "&OK";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
             // chkOpenLastOpened
             // 
-            this.chkOpenLastOpened.AutoSize = true;
-            this.chkOpenLastOpened.Location = new System.Drawing.Point(12, 12);
+            resources.ApplyResources(this.chkOpenLastOpened, "chkOpenLastOpened");
             this.chkOpenLastOpened.Name = "chkOpenLastOpened";
-            this.chkOpenLastOpened.Size = new System.Drawing.Size(187, 16);
-            this.chkOpenLastOpened.TabIndex = 5;
-            this.chkOpenLastOpened.Text = "&Open last opened file at startup";
             this.chkOpenLastOpened.UseVisualStyleBackColor = true;
             // 
             // lblMaxRecents
             // 
-            this.lblMaxRecents.AutoSize = true;
-            this.lblMaxRecents.Location = new System.Drawing.Point(12, 31);
+            resources.ApplyResources(this.lblMaxRecents, "lblMaxRecents");
             this.lblMaxRecents.Name = "lblMaxRecents";
-            this.lblMaxRecents.Size = new System.Drawing.Size(174, 12);
-            this.lblMaxRecents.TabIndex = 6;
-            this.lblMaxRecents.Text = "&Max count of recent opened files";
             // 
             // nupRecents
             // 
-            this.nupRecents.Location = new System.Drawing.Point(14, 46);
+            resources.ApplyResources(this.nupRecents, "nupRecents");
             this.nupRecents.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -79,32 +71,48 @@
             0,
             0});
             this.nupRecents.Name = "nupRecents";
-            this.nupRecents.Size = new System.Drawing.Size(120, 19);
-            this.nupRecents.TabIndex = 7;
             this.nupRecents.Value = new decimal(new int[] {
             16,
             0,
             0,
             0});
             // 
+            // lblLanguage
+            // 
+            resources.ApplyResources(this.lblLanguage, "lblLanguage");
+            this.lblLanguage.Name = "lblLanguage";
+            // 
+            // cmbLanguage
+            // 
+            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLanguage.FormattingEnabled = true;
+            resources.ApplyResources(this.cmbLanguage, "cmbLanguage");
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbLanguage_SelectedIndexChanged);
+            // 
+            // lblRestartNotice
+            // 
+            resources.ApplyResources(this.lblRestartNotice, "lblRestartNotice");
+            this.lblRestartNotice.Name = "lblRestartNotice";
+            // 
             // OptionDialog
             // 
             this.AcceptButton = this.btnOK;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 198);
+            this.Controls.Add(this.lblRestartNotice);
+            this.Controls.Add(this.cmbLanguage);
+            this.Controls.Add(this.lblLanguage);
             this.Controls.Add(this.nupRecents);
             this.Controls.Add(this.lblMaxRecents);
             this.Controls.Add(this.chkOpenLastOpened);
             this.Controls.Add(this.btnOK);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(282, 127);
             this.Name = "OptionDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Option | mdview";
+            this.Load += new System.EventHandler(this.OptionDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nupRecents)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -116,5 +124,8 @@
         internal System.Windows.Forms.CheckBox chkOpenLastOpened;
         private System.Windows.Forms.Label lblMaxRecents;
         private System.Windows.Forms.NumericUpDown nupRecents;
+        private System.Windows.Forms.Label lblLanguage;
+        private System.Windows.Forms.ComboBox cmbLanguage;
+        private System.Windows.Forms.Label lblRestartNotice;
     }
 }

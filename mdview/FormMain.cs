@@ -42,7 +42,7 @@ namespace mdview
 {
     public partial class FormMain : Form
     {
-        static readonly string SECTION_OPTION = "Option";
+        internal static readonly string SECTION_OPTION = "Option";
         static readonly string KEY_X = "X";
         static readonly string KEY_Y = "Y";
         static readonly string KEY_WIDTH = "Width";
@@ -59,8 +59,10 @@ namespace mdview
         static readonly string KEY_MARKDOWN_VERSIONARGUMENT = "VersionArgument";
 
         static readonly string KEY_ZOOMLEVEL = "ZoomLevel";
+        internal static readonly string KEY_LANGUAGE = "Language";
 
         
+
         readonly string _filetoopen;
 
         List<string> recents_ = new List<string>();
@@ -129,7 +131,7 @@ namespace mdview
         }
 
         WebBrowser wb;
-        public FormMain(string file)
+        public FormMain(string file, HashIni initialIni)
         {
             _filetoopen = file;
             InitializeComponent();
@@ -146,11 +148,11 @@ namespace mdview
             int intval = 0;
 
             int x, y, width, height;
-            HashIni ini = Profile.ReadAll(IniPath);
-            Profile.GetInt(SECTION_OPTION, KEY_X, -1, out x, ini);
-            Profile.GetInt(SECTION_OPTION, KEY_Y, -1, out y, ini);
-            Profile.GetInt(SECTION_OPTION, KEY_WIDTH, -1, out width, ini);
-            Profile.GetInt(SECTION_OPTION, KEY_HEIGHT, -1, out height, ini);
+
+            Profile.GetInt(SECTION_OPTION, KEY_X, -1, out x, initialIni);
+            Profile.GetInt(SECTION_OPTION, KEY_Y, -1, out y, initialIni);
+            Profile.GetInt(SECTION_OPTION, KEY_WIDTH, -1, out width, initialIni);
+            Profile.GetInt(SECTION_OPTION, KEY_HEIGHT, -1, out height, initialIni);
             if (!(x == -1 && y == -1 && width == -1 && height == -1))
             {
                 Rectangle rect = new Rectangle(x, y, width, height);
@@ -167,7 +169,7 @@ namespace mdview
                 KEY_MARKDOWN_COUNT, 
                 -1, 
                 out mdCount,
-                ini);
+                initialIni);
             for(int i=0;i<mdCount;++i)
             {
                 string keyName = KEY_MARKDOWN_NAME + i.ToString();
@@ -180,28 +182,28 @@ namespace mdview
                     keyName,
                     string.Empty,
                     out valueName,
-                    ini);
+                    initialIni);
 
                 string valueExecutable;
                 Profile.GetString(SECTION_OPTION,
                     keyExecutable,
                     string.Empty,
                     out valueExecutable,
-                    ini);
+                    initialIni);
 
                 string valueArgs;
                 Profile.GetString(SECTION_OPTION,
                     keyArgs,
                     string.Empty,
                     out valueArgs,
-                    ini);
+                    initialIni);
 
                 string valueVArgs;
                 Profile.GetString(SECTION_OPTION,
                     keyVArgs,
                     string.Empty,
                     out valueVArgs,
-                    ini);
+                    initialIni);
 
                 _mdinfos.Add(new MarkdownInfo(valueName, valueExecutable, valueArgs,valueVArgs));
             }
@@ -216,7 +218,7 @@ namespace mdview
                 KEY_MARKDOWN_CURRENTINDEX,
                 -1,
                 out currentMDIndex,
-                ini);
+                initialIni);
             if(currentMDIndex<0 || currentMDIndex >= _mdinfos.Count)
             {
                 // invalid index
@@ -228,11 +230,11 @@ namespace mdview
                 CurrentMarkDown = _mdinfos[currentMDIndex];
             }
 
-            Profile.GetInt(SECTION_OPTION, KEY_ZOOMLEVEL, 100, out intval, ini);
+            Profile.GetInt(SECTION_OPTION, KEY_ZOOMLEVEL, 100, out intval, initialIni);
             ZoomLevel = intval;
 
-            _optionDlg.LoadSettings(ini);
-            RefreshRecent(ini);
+            _optionDlg.LoadSettings(initialIni);
+            RefreshRecent(initialIni);
         }
 
         int ZoomLevel;
@@ -405,7 +407,7 @@ namespace mdview
             if (recents_.Count > max)
                 recents_ = recents_.GetRange(0, max);
 
-            if (!Profile.WriteStringArray(SECTION_OPTION, KEY_RECENTS, recents_.ToArray(), IniPath))
+            if (!Profile.WriteStringArray(SECTION_OPTION, KEY_RECENTS, recents_.ToArray(), Program.IniPath))
             {
                 CppUtils.Alert(Properties.Resources.INI_SAVE_FAILED);
             }
@@ -585,14 +587,7 @@ namespace mdview
                 wb.Navigate(files[0]);
         }
 
-        string IniPath
-        {
-            get
-            {
-                return Path.Combine(Path.GetDirectoryName(Application.ExecutablePath),
-                    Path.GetFileNameWithoutExtension(Application.ExecutablePath) + ".ini");
-            }
-        }
+      
 
 
         private int TODO_getBrowserZoomLevel()
@@ -677,7 +672,7 @@ namespace mdview
         }
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            string inipath = IniPath;
+            string inipath = Program.IniPath;
             HashIni ini = Profile.ReadAll(inipath);
             Profile.WriteInt(SECTION_OPTION, KEY_X, Location.X, ini);
             Profile.WriteInt(SECTION_OPTION, KEY_Y, Location.Y, ini);
@@ -728,7 +723,7 @@ namespace mdview
         }
         void RefreshRecent()
         {
-            RefreshRecent(Profile.ReadAll(IniPath));
+            RefreshRecent(Profile.ReadAll(Program.IniPath));
         }
         private void tsdRecent_DropDownOpening(object sender, EventArgs e)
         {
@@ -771,7 +766,7 @@ namespace mdview
         private void ItemClearNonExistents_Click(object sender, EventArgs e)
         {
             string[] recentsR = null;
-            Profile.GetStringArray(SECTION_OPTION, KEY_RECENTS, out recentsR, IniPath);
+            Profile.GetStringArray(SECTION_OPTION, KEY_RECENTS, out recentsR, Program.IniPath);
             if (recentsR == null || recentsR.Length == 0)
                 return;
 
@@ -784,7 +779,7 @@ namespace mdview
                         recents.Add(rece);
                 }
 
-                if (!Profile.WriteStringArray(SECTION_OPTION, KEY_RECENTS, recents.ToArray(), IniPath))
+                if (!Profile.WriteStringArray(SECTION_OPTION, KEY_RECENTS, recents.ToArray(), Program.IniPath))
                     throw new Exception(Properties.Resources.INI_SAVE_FAILED);
 
                 recents_.Clear();
@@ -804,7 +799,7 @@ namespace mdview
 
             try
             {
-                if (!Profile.WriteStringArray(SECTION_OPTION, KEY_RECENTS, new string[0], IniPath))
+                if (!Profile.WriteStringArray(SECTION_OPTION, KEY_RECENTS, new string[0], Program.IniPath))
                     throw new Exception(Properties.Resources.INI_SAVE_FAILED);
 
                 recents_.Clear();

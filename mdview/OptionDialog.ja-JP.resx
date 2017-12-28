@@ -117,31 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AREYOUSURETO_CLEAR_RECENTS" xml:space="preserve">
-    <value>Are you sure to clear recent items?</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="chkOpenLastOpened.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 17</value>
   </data>
-  <data name="CLEAR_ALL_RECENTS" xml:space="preserve">
-    <value>&amp;Clear all</value>
+  <data name="chkOpenLastOpened.Text" xml:space="preserve">
+    <value>最後に開いたファイルを開く(&amp;O)</value>
   </data>
-  <data name="CLEAR_NONEXISTENT_RECENTS" xml:space="preserve">
-    <value>Clear &amp;non-existent</value>
+  <data name="lblMaxRecents.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 13</value>
   </data>
-  <data name="CLI_ENGLISH" xml:space="preserve">
-    <value>English</value>
+  <data name="lblMaxRecents.Text" xml:space="preserve">
+    <value>最近開いたファイルの最大値(&amp;M)</value>
   </data>
-  <data name="CLI_JAPANESE" xml:space="preserve">
-    <value>Japanese</value>
+  <data name="lblLanguage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
   </data>
-  <data name="CLI_SYSTEMDEFAULT" xml:space="preserve">
-    <value>System default</value>
+  <data name="lblLanguage.Text" xml:space="preserve">
+    <value>UI言語(&amp;L):</value>
   </data>
-  <data name="INI_SAVE_FAILED" xml:space="preserve">
-    <value>Failed to save ini.</value>
+  <data name="lblRestartNotice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 13</value>
   </data>
-  <data name="NO_MARKDOWN" xml:space="preserve">
-    <value>No markdown executables registered, organize them first or remove mdview.ini to register default markdowns.</value>
+  <data name="lblRestartNotice.Text" xml:space="preserve">
+    <value>次回起動時から有効です</value>
   </data>
-  <data name="NO_RECENT_ITEM" xml:space="preserve">
-    <value>&lt;No recent items&gt;</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>オプション | mdview</value>
   </data>
 </root>
