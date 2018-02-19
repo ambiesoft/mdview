@@ -17,8 +17,8 @@ Delete the files.
 Launch mdview.exe and open MD by pushing Open button.
 
 # Download
-Download binary from https://github.com/erasoni/mdview/releases.
+Download binary from <https://github.com/ambiesoft/mdview/releases>.
 
 # Contact
-ambiesoft.trueff@gmail.com
+Email: <ambiesoft.trueff@gmail.com>
 

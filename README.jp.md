@@ -19,8 +19,8 @@ mdview.exeを起動しファイルを開くボタンから希望のmdを選択�
 
 ## ダウンロード
 バイナリーはここから入手できます。
-https://github.com/erasoni/mdview/releases
+https://github.com/ambiesoft/mdview/releases
 
 ## 作者への連絡先
-* 電子メール ambiesoft.trueff@gmail.com
-* 掲示板 http://ambiesoft.fam.cx/minibbs/minibbs.php
+* 電子メール <ambiesoft.trueff@gmail.com>
+* 掲示板 <http://ambiesoft.fam.cx/minibbs/minibbs.php>
