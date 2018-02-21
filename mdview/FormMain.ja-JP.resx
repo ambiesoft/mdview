@@ -177,6 +177,23 @@
   <data name="tsbRefresh.Text" xml:space="preserve">
     <value>リフレッシュ</value>
   </data>
+  <data name="tsbWatch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVFhH7ZW/S1xBFEafCkIQQQuDZf4BUQMW1tGkEEKw
+        UQIhQfAXtrEQS1sJCSlC+pBCCxvFQpAUNhLBwiI2tnZWKkrA6Dnjm40ry759ljIfHHl39t6RmbnzTZaU
+        lJT0WPUUBuA59EEvPINmqKsuWIQN2IcDOIJjOIEzuIDL/HsXJuC+rLuugXN8hU6oUit8gnOoVVjEJrRD
+        lCt1BxZgHf7AX4j5e9ABFX2G+ONvmINXMARv4C28h0mYyfkIWxDrfkI9tYE1p2C+u/cEstf5gPyCFiij
+        D/APrB90oEAv4ArMH3NgJw88524HHqBv4BzLISrWGpi/ahDPfcmgAQ1DKLyjHnCOlRAVy6Mw30YOfwwc
+        bEQ/wPz+EP2XPTBy+1koF+scLj6sxsBtaURus/nfQ1Re9tghOIfHHxrBwMawQYpko5lv4005UEJN8AWs
+        Fy9AuApeCQe8Ih6FV6ae3O44yTbMwzRoSu9gHEbBI3FRL2EW4v8Rr35FmoLmEH/UNDQPTUQz0VTu2qim
+        o/nE/DJ47pqe5lcl7VGb1C5rFWqv9+WKXZWNrD1r0347h9daG7dOW9fetXntvq5cqQ+HD4gPiQ+KO+AD
+        k5SUlPTYlGU3UFeZlbAuBZoAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="tsbWatch.Text" xml:space="preserve">
+    <value>ファイル監視</value>
+  </data>
   <data name="tsbPrint.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -216,13 +233,13 @@
     <value>コピー</value>
   </data>
   <data name="tsiOrganizeMD.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 22</value>
+    <value>190, 22</value>
   </data>
   <data name="tsiOrganizeMD.Text" xml:space="preserve">
     <value>マークダウンの整理(&amp;O)...</value>
   </data>
   <data name="tssOrganize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 6</value>
+    <value>187, 6</value>
   </data>
   <data name="tsdMarkdown.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -244,6 +261,24 @@
   </data>
   <data name="tsdMarkdown.Text" xml:space="preserve">
     <value>マークダウン</value>
+  </data>
+  <data name="tsdZoom.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAK8SURBVFhH7Ze9z0xBFIffSETeBIkIQoNCQafXoaZTSXQa
+        EtHo/AE6Go1aTUJBo9D6SHQkiERBITrER3ieE7/kvps7193d+4rCL3k2O3fvzpxz5szMmRW0CpfgOtyE
+        u/AQ7sANOAGLaBd8hx/wDb7AO3gEt+AqOHZ9+TnAV9gJi+g8fIS+fkXHy5ruwydwBS7DRTgJy2gDHIJj
+        cAF0KGMZ9QqJjfzwGY7D1DoAryCDi1Ne82JD6/LCJzgKU2k3vAH71kGj7HfzrZLDhiHSyryoEUdgWW2B
+        p5A+ja5TbNtkrwy14Twprc0fPkCeL6KNcB8yeKJqfvnMlVbLxEw1WSKtzh/fwl6YV9shfehIN5omt89d
+        5rVWXS6z6lr/HHbAWB2G1xAHZqPoyjLpa49xw2hJL9LRY9gKf9IpMNFieCt6o/cWvUmHD2ATtHQanNIY
+        PE/UBqVX6fisD3p0BvKOho6J1lyKd8+qtVb7wFzyNw0citJS0ksH2lOttep7ti7S2//6Z/XXpqeVhCao
+        iboucmm5xFxqDtTnrb+5VF2yk8pNxc3FTcYBWl5qYN5x85pEbqduq+l4yDujFEPdvt3GR6l1MHiQeKCk
+        wzFeGa0Y7EHmgdbSNj88Ej0aZ4tPj1CP0nQ02htk1GK4R7pH+6ycLsetosAXLRIiiweLiHQw5EVLRi8O
+        3IPNEFn82L9TWmWRL1kmKcsmy6ch68fKKMYRpyW1x0HwmeVgFYY2LBQtGDO4daGl2bIymunzJewHnbRt
+        QVylsQ1L5RQeVsYWp1OpG9UXcO739/dQlwMbwbuB5fnUMrpxMFcBp6WuRxncrPSC4h3B+etWyovIlWVy
+        m19OcS4k4TbUBbH7sIvlel/FPEbuLbnutbgGdUX2huwl1XuiVzVDZIa6TNz3hyrnIbnHuMxdaSa7+eaU
+        G3UcX1n9BYXu9wv4KE6RAAAAAElFTkSuQmCC
+</value>
   </data>
   <data name="tsbOption.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

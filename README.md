@@ -16,6 +16,9 @@ Delete the files.
 # How to use
 Launch mdview.exe and open MD by pushing Open button.
 
+# Watch the file change
+By clicking *watch* button, watching file is enabled. Any changes to the opening file will case refresh the page in the browser.
+
 # Download
 Download binary from <https://github.com/ambiesoft/mdview/releases>.
 

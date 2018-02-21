@@ -126,6 +126,7 @@ namespace mdview
             {
                 _currentMDFile = value;
                 tsbRefresh.Enabled = !string.IsNullOrEmpty(_currentMDFile);
+                tsbWatch.Enabled = !string.IsNullOrEmpty(_currentMDFile);
                 tsbPrint.Enabled = !string.IsNullOrEmpty(_currentMDFile);
             }
         }
@@ -273,7 +274,7 @@ namespace mdview
 
             foreach (CacheFile cache in _cacheFiles)
             {
-                if (string.Compare(cache.FileName, filename) == 0)
+                if (string.Compare(cache.CacheFileName, filename) == 0)
                 {
                     // cache file, open normally
                     return false;
@@ -468,7 +469,7 @@ namespace mdview
         }
 
         List<CacheFile> _cacheFiles = new List<CacheFile>();
-        void OpenMD(string mdfile)
+        void OpenMD(string mdfile, bool bNavigate)
         {
             if(CurrentMarkDown==null)
             {
@@ -497,19 +498,36 @@ namespace mdview
                 return;
             }
 
-            //prepareBrowser();
             string html = decorateHtml(output, baseurl, true);
 
-            string tempfile = Path.GetTempFileName();
-            File.WriteAllBytes(tempfile, Encoding.UTF8.GetBytes(html));
-            _cacheFiles.Add(new CacheFile(tempfile));
+            // Write to cache file,
+            // if already exists, overwrite.
+            CacheFile cache = null;
+            foreach (CacheFile cf in _cacheFiles)
+            {
+                if (AmbLib.IsSameFile(cf.MDFileName, mdfile))
+                    cache = cf;
+            }
+            if (cache == null)
+            {
+                cache = new CacheFile(mdfile, Path.GetTempFileName());
+                _cacheFiles.Add(cache);
+            }
 
-            //wb.Document.Write(html);
-            wb.Navigate(tempfile);
+            File.WriteAllBytes(cache.CacheFileName, Encoding.UTF8.GetBytes(html));
+            cache.UpdateCacheTime();
+
+            if(bNavigate)
+                wb.Navigate(cache.CacheFileName);
+
             setTitle(mdfile);
 
             CurrentMDFile = mdfile;
             AddRecent(mdfile);
+        }
+        void OpenMD(string mdfile)
+        {
+            OpenMD(mdfile, true);
         }
         void OnOpenMd()
         {
@@ -892,6 +910,9 @@ namespace mdview
         {
             if(wb != null && wb.Created && !wb.IsDisposed)
             {
+                // disabled by watch
+                wb.Parent.Enabled = true;
+
                 wb.Focus();
                 HtmlDocument doc = wb.Document;
                 if(doc != null)
@@ -923,12 +944,17 @@ namespace mdview
             wb.Document.ExecCommand("Copy", false, null);
         }
 
-        private void tsbRefresh_Click(object sender, EventArgs e)
+        void RefreshBrowser()
         {
             if (string.IsNullOrEmpty(CurrentMDFile))
                 return;
 
-            OpenMD(CurrentMDFile);
+            OpenMD(CurrentMDFile, false);
+            wb.Refresh();
+        }
+        private void tsbRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshBrowser();
         }
 
         //private void tsdZoom_DropDownOpening(object sender, EventArgs e)
@@ -1006,6 +1032,58 @@ namespace mdview
 
             ZoomLevel = factor;
             SetZoom(factor);
+        }
+
+
+        private void OnWatchChnaged(object source, FileSystemEventArgs e)
+        {
+            if(InvokeRequired)
+            {
+                Invoke(new FileSystemEventHandler(OnWatchChnaged), source, e);
+                return;
+            }
+            if (!_watcher.EnableRaisingEvents)
+                return;
+
+            if (AmbLib.IsSameFile(e.FullPath, CurrentMDFile))
+            {
+                // make webbrowser not to steal focus
+                // enabled back in various place.
+                wb.Parent.Enabled = false;
+                RefreshBrowser();
+
+                // Ready state never changes.
+                //while(wb.ReadyState != WebBrowserReadyState.Complete)
+                //{
+                //    Application.DoEvents();
+                //}
+            }
+        }
+        FileSystemWatcher _watcher;
+        private void tsbWatch_CheckedChanged(object sender, EventArgs e)
+        {
+            if(_watcher==null)
+            {
+                _watcher = new FileSystemWatcher();
+                _watcher.NotifyFilter = NotifyFilters.LastWrite;
+                _watcher.Changed += new FileSystemEventHandler(OnWatchChnaged);
+            }
+
+            if (tsbWatch.Checked)
+            {
+                _watcher.Path = Path.GetDirectoryName(CurrentMDFile);
+                _watcher.Filter = Path.GetFileName(CurrentMDFile);
+                _watcher.EnableRaisingEvents = true;
+            }
+            else
+            {
+                _watcher.EnableRaisingEvents = false;
+            }
+        }
+
+        private void FormMain_MouseEnter(object sender, EventArgs e)
+        {
+            wb.Parent.Enabled = true;
         }
     }
 }

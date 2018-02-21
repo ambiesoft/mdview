@@ -34,6 +34,7 @@
             this.tsmDummy = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
             this.tsbRefresh = new System.Windows.Forms.ToolStripButton();
+            this.tsbWatch = new System.Windows.Forms.ToolStripButton();
             this.tssBrowser = new System.Windows.Forms.ToolStripSeparator();
             this.tsbPrint = new System.Windows.Forms.ToolStripButton();
             this.tssPrint = new System.Windows.Forms.ToolStripSeparator();
@@ -48,6 +49,9 @@
             this.tsmZoom150 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZoom125 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZoom100 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmZoom95 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmZoom90 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmZoom80 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZoom75 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZoom50 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbOption = new System.Windows.Forms.ToolStripButton();
@@ -56,21 +60,20 @@
             this.slMain = new System.Windows.Forms.ToolStripStatusLabel();
             this.slCurrentMD = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelBrowser = new System.Windows.Forms.Panel();
-            this.tsmZoom95 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmZoom90 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmZoom80 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMain.SuspendLayout();
             this.ss.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsMain
             // 
+            resources.ApplyResources(this.tsMain, "tsMain");
             this.tsMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsMain.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsdRecent,
             this.tsbOpen,
             this.tsbRefresh,
+            this.tsbWatch,
             this.tssBrowser,
             this.tsbPrint,
             this.tssPrint,
@@ -80,89 +83,97 @@
             this.tsdZoom,
             this.tsbOption,
             this.tsbHelp});
-            resources.ApplyResources(this.tsMain, "tsMain");
             this.tsMain.Name = "tsMain";
             // 
             // tsdRecent
             // 
+            resources.ApplyResources(this.tsdRecent, "tsdRecent");
             this.tsdRecent.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsdRecent.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmDummy});
-            resources.ApplyResources(this.tsdRecent, "tsdRecent");
             this.tsdRecent.Name = "tsdRecent";
             this.tsdRecent.DropDownOpening += new System.EventHandler(this.tsdRecent_DropDownOpening);
             // 
             // tsmDummy
             // 
-            this.tsmDummy.Name = "tsmDummy";
             resources.ApplyResources(this.tsmDummy, "tsmDummy");
+            this.tsmDummy.Name = "tsmDummy";
             // 
             // tsbOpen
             // 
-            this.tsbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tsbOpen, "tsbOpen");
+            this.tsbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbOpen.Name = "tsbOpen";
             this.tsbOpen.Click += new System.EventHandler(this.tsbOpen_Click);
             // 
             // tsbRefresh
             // 
-            this.tsbRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tsbRefresh, "tsbRefresh");
+            this.tsbRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbRefresh.Name = "tsbRefresh";
             this.tsbRefresh.Click += new System.EventHandler(this.tsbRefresh_Click);
             // 
+            // tsbWatch
+            // 
+            resources.ApplyResources(this.tsbWatch, "tsbWatch");
+            this.tsbWatch.CheckOnClick = true;
+            this.tsbWatch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbWatch.Name = "tsbWatch";
+            this.tsbWatch.CheckedChanged += new System.EventHandler(this.tsbWatch_CheckedChanged);
+            // 
             // tssBrowser
             // 
-            this.tssBrowser.Name = "tssBrowser";
             resources.ApplyResources(this.tssBrowser, "tssBrowser");
+            this.tssBrowser.Name = "tssBrowser";
             // 
             // tsbPrint
             // 
-            this.tsbPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tsbPrint, "tsbPrint");
+            this.tsbPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbPrint.Name = "tsbPrint";
             this.tsbPrint.Click += new System.EventHandler(this.tsbPrint_Click);
             // 
             // tssPrint
             // 
-            this.tssPrint.Name = "tssPrint";
             resources.ApplyResources(this.tssPrint, "tssPrint");
+            this.tssPrint.Name = "tssPrint";
             // 
             // tsbCopy
             // 
-            this.tsbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tsbCopy, "tsbCopy");
+            this.tsbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbCopy.Name = "tsbCopy";
             this.tsbCopy.Click += new System.EventHandler(this.tsbCopy_Click);
             // 
             // tssCopy
             // 
-            this.tssCopy.Name = "tssCopy";
             resources.ApplyResources(this.tssCopy, "tssCopy");
+            this.tssCopy.Name = "tssCopy";
             // 
             // tsdMarkdown
             // 
+            resources.ApplyResources(this.tsdMarkdown, "tsdMarkdown");
             this.tsdMarkdown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsdMarkdown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsiOrganizeMD,
             this.tssOrganize});
-            resources.ApplyResources(this.tsdMarkdown, "tsdMarkdown");
             this.tsdMarkdown.Name = "tsdMarkdown";
             this.tsdMarkdown.DropDownOpening += new System.EventHandler(this.tsdMarkdown_DropDownOpening);
             // 
             // tsiOrganizeMD
             // 
-            this.tsiOrganizeMD.Name = "tsiOrganizeMD";
             resources.ApplyResources(this.tsiOrganizeMD, "tsiOrganizeMD");
+            this.tsiOrganizeMD.Name = "tsiOrganizeMD";
             this.tsiOrganizeMD.Click += new System.EventHandler(this.tsiOrganizeMD_Click);
             // 
             // tssOrganize
             // 
-            this.tssOrganize.Name = "tssOrganize";
             resources.ApplyResources(this.tssOrganize, "tssOrganize");
+            this.tssOrganize.Name = "tssOrganize";
             // 
             // tsdZoom
             // 
+            resources.ApplyResources(this.tsdZoom, "tsdZoom");
             this.tsdZoom.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsdZoom.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmZoom400,
@@ -175,111 +186,110 @@
             this.tsmZoom80,
             this.tsmZoom75,
             this.tsmZoom50});
-            resources.ApplyResources(this.tsdZoom, "tsdZoom");
             this.tsdZoom.Name = "tsdZoom";
             // 
             // tsmZoom400
             // 
-            this.tsmZoom400.Name = "tsmZoom400";
             resources.ApplyResources(this.tsmZoom400, "tsmZoom400");
+            this.tsmZoom400.Name = "tsmZoom400";
             this.tsmZoom400.Click += new System.EventHandler(this.tsmZoom_Click_Common);
             // 
             // tsmZoom200
             // 
-            this.tsmZoom200.Name = "tsmZoom200";
             resources.ApplyResources(this.tsmZoom200, "tsmZoom200");
+            this.tsmZoom200.Name = "tsmZoom200";
             this.tsmZoom200.Click += new System.EventHandler(this.tsmZoom_Click_Common);
             // 
             // tsmZoom150
             // 
-            this.tsmZoom150.Name = "tsmZoom150";
             resources.ApplyResources(this.tsmZoom150, "tsmZoom150");
+            this.tsmZoom150.Name = "tsmZoom150";
             this.tsmZoom150.Click += new System.EventHandler(this.tsmZoom_Click_Common);
             // 
             // tsmZoom125
             // 
-            this.tsmZoom125.Name = "tsmZoom125";
             resources.ApplyResources(this.tsmZoom125, "tsmZoom125");
+            this.tsmZoom125.Name = "tsmZoom125";
             this.tsmZoom125.Click += new System.EventHandler(this.tsmZoom_Click_Common);
             // 
             // tsmZoom100
             // 
-            this.tsmZoom100.Name = "tsmZoom100";
             resources.ApplyResources(this.tsmZoom100, "tsmZoom100");
+            this.tsmZoom100.Name = "tsmZoom100";
             this.tsmZoom100.Click += new System.EventHandler(this.tsmZoom_Click_Common);
+            // 
+            // tsmZoom95
+            // 
+            resources.ApplyResources(this.tsmZoom95, "tsmZoom95");
+            this.tsmZoom95.Name = "tsmZoom95";
+            this.tsmZoom95.Click += new System.EventHandler(this.tsmZoom_Click_Common);
+            // 
+            // tsmZoom90
+            // 
+            resources.ApplyResources(this.tsmZoom90, "tsmZoom90");
+            this.tsmZoom90.Name = "tsmZoom90";
+            this.tsmZoom90.Click += new System.EventHandler(this.tsmZoom_Click_Common);
+            // 
+            // tsmZoom80
+            // 
+            resources.ApplyResources(this.tsmZoom80, "tsmZoom80");
+            this.tsmZoom80.Name = "tsmZoom80";
+            this.tsmZoom80.Click += new System.EventHandler(this.tsmZoom_Click_Common);
             // 
             // tsmZoom75
             // 
-            this.tsmZoom75.Name = "tsmZoom75";
             resources.ApplyResources(this.tsmZoom75, "tsmZoom75");
+            this.tsmZoom75.Name = "tsmZoom75";
             this.tsmZoom75.Click += new System.EventHandler(this.tsmZoom_Click_Common);
             // 
             // tsmZoom50
             // 
-            this.tsmZoom50.Name = "tsmZoom50";
             resources.ApplyResources(this.tsmZoom50, "tsmZoom50");
+            this.tsmZoom50.Name = "tsmZoom50";
             this.tsmZoom50.Click += new System.EventHandler(this.tsmZoom_Click_Common);
             // 
             // tsbOption
             // 
-            this.tsbOption.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tsbOption, "tsbOption");
+            this.tsbOption.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbOption.Name = "tsbOption";
             this.tsbOption.Click += new System.EventHandler(this.tsbOption_Click);
             // 
             // tsbHelp
             // 
-            this.tsbHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tsbHelp, "tsbHelp");
+            this.tsbHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbHelp.Name = "tsbHelp";
             this.tsbHelp.Click += new System.EventHandler(this.tsbHelp_Click);
             // 
             // ss
             // 
+            resources.ApplyResources(this.ss, "ss");
             this.ss.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.slMain,
             this.slCurrentMD});
-            resources.ApplyResources(this.ss, "ss");
             this.ss.Name = "ss";
             // 
             // slMain
             // 
-            this.slMain.Name = "slMain";
             resources.ApplyResources(this.slMain, "slMain");
+            this.slMain.Name = "slMain";
             this.slMain.Spring = true;
             // 
             // slCurrentMD
             // 
-            this.slCurrentMD.Name = "slCurrentMD";
             resources.ApplyResources(this.slCurrentMD, "slCurrentMD");
+            this.slCurrentMD.Name = "slCurrentMD";
             // 
             // panelBrowser
             // 
             resources.ApplyResources(this.panelBrowser, "panelBrowser");
             this.panelBrowser.Name = "panelBrowser";
             // 
-            // tsmZoom95
-            // 
-            this.tsmZoom95.Name = "tsmZoom95";
-            resources.ApplyResources(this.tsmZoom95, "tsmZoom95");
-            this.tsmZoom95.Click += new System.EventHandler(this.tsmZoom_Click_Common);
-            // 
-            // tsmZoom90
-            // 
-            this.tsmZoom90.Name = "tsmZoom90";
-            resources.ApplyResources(this.tsmZoom90, "tsmZoom90");
-            this.tsmZoom90.Click += new System.EventHandler(this.tsmZoom_Click_Common);
-            // 
-            // tsmZoom80
-            // 
-            this.tsmZoom80.Name = "tsmZoom80";
-            resources.ApplyResources(this.tsmZoom80, "tsmZoom80");
-            this.tsmZoom80.Click += new System.EventHandler(this.tsmZoom_Click_Common);
-            // 
             // FormMain
             // 
-            this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
+            this.AllowDrop = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelBrowser);
             this.Controls.Add(this.ss);
@@ -292,6 +302,7 @@
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FormMain_DragEnter);
             this.DragOver += new System.Windows.Forms.DragEventHandler(this.FormMain_DragOver);
             this.DragLeave += new System.EventHandler(this.FormMain_DragLeave);
+            this.MouseEnter += new System.EventHandler(this.FormMain_MouseEnter);
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
             this.ss.ResumeLayout(false);
@@ -332,6 +343,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmZoom95;
         private System.Windows.Forms.ToolStripMenuItem tsmZoom90;
         private System.Windows.Forms.ToolStripMenuItem tsmZoom80;
+        private System.Windows.Forms.ToolStripButton tsbWatch;
     }
 }
 
