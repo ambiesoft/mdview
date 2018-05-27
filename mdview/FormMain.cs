@@ -141,6 +141,7 @@ namespace mdview
             panelBrowser.Controls.Add(wb);
 
             wb.ScriptErrorsSuppressed = true;
+            wb.WebBrowserShortcutsEnabled = false;
             wb.StatusTextChanged += Wb_StatusTextChanged;
             wb.Navigating += Wb_Navigating;
             wb.NewWindow += Wb_NewWindow;
@@ -157,7 +158,7 @@ namespace mdview
             if (!(x == -1 && y == -1 && width == -1 && height == -1))
             {
                 Rectangle rect = new Rectangle(x, y, width, height);
-                if (AmbLib.IsRectInScreen(rect))
+                if (AmbLib.IsRectAppearInScreen(rect))
                 {
                     this.StartPosition = FormStartPosition.Manual;
                     this.Location = new Point(x, y);
