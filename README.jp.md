@@ -24,6 +24,10 @@ mdview.exeを起動しファイルを開くボタンから希望のmdを選択�
 バイナリーはここから入手できます。
 <https://github.com/ambiesoft/mdview/releases>
 
+## 寄付
+開発の寄付を募集しています。
+<http://ambiesoft.fam.cx/donate/>
+
 ## 作者への連絡先
 * 電子メール <ambiesoft.trueff@gmail.com>
 * 掲示板 <http://ambiesoft.fam.cx/minibbs/minibbs.php>
