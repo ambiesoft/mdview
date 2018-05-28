@@ -181,6 +181,9 @@
   <data name="tsbOpen.Text" xml:space="preserve">
     <value>&amp;Open</value>
   </data>
+  <data name="tsbOpen.ToolTipText" xml:space="preserve">
+    <value>Open (Ctrl+Alt+O)</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tsbRefresh.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -236,6 +239,9 @@
   </data>
   <data name="tsbWatch.Text" xml:space="preserve">
     <value>Watch</value>
+  </data>
+  <data name="tsbWatch.ToolTipText" xml:space="preserve">
+    <value>Watch (Ctrl+Alt+M)</value>
   </data>
   <data name="tssBrowser.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 39</value>

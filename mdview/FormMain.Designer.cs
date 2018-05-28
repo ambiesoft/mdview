@@ -120,6 +120,7 @@
             resources.ApplyResources(this.tsbWatch, "tsbWatch");
             this.tsbWatch.Name = "tsbWatch";
             this.tsbWatch.CheckedChanged += new System.EventHandler(this.tsbWatch_CheckedChanged);
+            this.tsbWatch.EnabledChanged += new System.EventHandler(this.tsbWatch_EnabledChanged);
             // 
             // tssBrowser
             // 

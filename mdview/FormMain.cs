@@ -60,6 +60,7 @@ namespace mdview
         static readonly string KEY_MARKDOWN_VERSIONARGUMENT = "VersionArgument";
 
         static readonly string KEY_ZOOMLEVEL = "ZoomLevel";
+        static readonly string KEY_WATCH = "Watch";
         internal static readonly string KEY_LANGUAGE = "Language";
 
         
@@ -235,6 +236,9 @@ namespace mdview
 
             Profile.GetInt(SECTION_OPTION, KEY_ZOOMLEVEL, 100, out intval, initialIni);
             ZoomLevel = intval;
+
+            Profile.GetBool(SECTION_OPTION, KEY_WATCH, false, out bool bWatch, initialIni);
+            tsbWatch.Checked = bWatch;
 
             _optionDlg.LoadSettings(initialIni);
             RefreshRecent(initialIni);
@@ -701,6 +705,8 @@ namespace mdview
 
             Profile.WriteInt(SECTION_OPTION, KEY_ZOOMLEVEL, ZoomLevel, ini);
 
+            Profile.WriteBool(SECTION_OPTION, KEY_WATCH, tsbWatch.Checked, ini);
+
             _optionDlg.SaveSettings(ini);
 
             // int zoom = getBrowserZoomLevel();
@@ -1064,6 +1070,9 @@ namespace mdview
         FileSystemWatcher _watcher;
         private void tsbWatch_CheckedChanged(object sender, EventArgs e)
         {
+            if (!tsbWatch.Enabled)
+                return;
+
             if(_watcher==null)
             {
                 _watcher = new FileSystemWatcher();
@@ -1087,31 +1096,28 @@ namespace mdview
         {
             wb.Parent.Enabled = true;
         }
-        //[DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
-        //public static extern short GetKeyState(int keyCode);
-        //protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        //{
-        //    Debug.WriteLine(keyData);
-        //    Debug.WriteLine(Control.ModifierKeys);
-        //    if (GetKeyState(0x11) < 0)
-        //    {
-        //        if (keyData == Keys.O)
-        //        {
-        //            // Handle key at form level.
-        //            // Do not send event to focused control by returning true.
-        //            tsbOpen_Click(this, new EventArgs());
-        //            return true;
-        //        }
-        //    }
-        //    return base.ProcessCmdKey(ref msg, keyData);
-        //}
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            Debug.WriteLine(keyData);
+            // if (GetKeyState(0x11) < 0)
+            if(keyData.HasFlag(Keys.Control) && keyData.HasFlag(Keys.Alt))
+            {
+                switch (keyData & Keys.KeyCode)
+                {
+                    case Keys.O:
+                        tsbOpen_Click(this, new EventArgs());
+                        return true;
+                    case Keys.M:
+                        tsbWatch.Checked = !tsbWatch.Checked;
+                        return true;
+                }
 
-        //private void tsMain_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if(e.Control && (e.KeyData==Keys.O))
-        //    {
-        //        Debug.WriteLine("aaa");
-        //    }
-        //}
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        private void tsbWatch_EnabledChanged(object sender, EventArgs e)
+        {
+            tsbWatch_CheckedChanged(sender, e);
+        }
     }
 }
