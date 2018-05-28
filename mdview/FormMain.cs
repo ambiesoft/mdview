@@ -37,6 +37,7 @@ using System.Diagnostics;
 
 using Ambiesoft;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace mdview
 {
@@ -142,6 +143,7 @@ namespace mdview
 
             wb.ScriptErrorsSuppressed = true;
             wb.StatusTextChanged += Wb_StatusTextChanged;
+            wb.WebBrowserShortcutsEnabled = false;
             wb.Navigating += Wb_Navigating;
             wb.NewWindow += Wb_NewWindow;
             wb.DocumentCompleted += Wb_DocumentCompleted;
@@ -157,7 +159,7 @@ namespace mdview
             if (!(x == -1 && y == -1 && width == -1 && height == -1))
             {
                 Rectangle rect = new Rectangle(x, y, width, height);
-                if (AmbLib.IsRectInScreen(rect))
+                if (AmbLib.IsRectAppearInScreen(rect))
                 {
                     this.StartPosition = FormStartPosition.Manual;
                     this.Location = new Point(x, y);
@@ -1085,5 +1087,31 @@ namespace mdview
         {
             wb.Parent.Enabled = true;
         }
+        //[DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        //public static extern short GetKeyState(int keyCode);
+        //protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        //{
+        //    Debug.WriteLine(keyData);
+        //    Debug.WriteLine(Control.ModifierKeys);
+        //    if (GetKeyState(0x11) < 0)
+        //    {
+        //        if (keyData == Keys.O)
+        //        {
+        //            // Handle key at form level.
+        //            // Do not send event to focused control by returning true.
+        //            tsbOpen_Click(this, new EventArgs());
+        //            return true;
+        //        }
+        //    }
+        //    return base.ProcessCmdKey(ref msg, keyData);
+        //}
+
+        //private void tsMain_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if(e.Control && (e.KeyData==Keys.O))
+        //    {
+        //        Debug.WriteLine("aaa");
+        //    }
+        //}
     }
 }
