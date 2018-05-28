@@ -558,6 +558,7 @@ namespace mdview
             }
         }
 
+        bool loaded_ = false;
         private void FormMain_Load(object sender, EventArgs e)
         {
             setTitle(string.Empty);
@@ -580,6 +581,7 @@ namespace mdview
             {
                 wb.Navigate("about:blank");
             }
+            loaded_ = true;
         }
 
         private void FormMain_DragEnter(object sender, DragEventArgs e)
@@ -1089,6 +1091,14 @@ namespace mdview
             else
             {
                 _watcher.EnableRaisingEvents = false;
+            }
+
+            if (loaded_)
+            {
+                if (!Profile.WriteBool(SECTION_OPTION, KEY_WATCH, tsbWatch.Checked, Program.IniPath))
+                {
+                    CppUtils.Alert(Properties.Resources.INI_SAVE_FAILED);
+                }
             }
         }
 
