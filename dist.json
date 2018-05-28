@@ -14,7 +14,7 @@
     "remotedir": "http://ambiesoft.fam.cx/ffdav/uploads/mdview/",
     "remotesha1" : "http://ambiesoft.fam.cx/ffdav/uploads/getSha1.php?file=mdview/{}",
     
-    "TotalFileCount": 102,
+    "TotalFileCount": "exact",
     
     "ShouldNotBeFiles": [
     	"mdview.ini"

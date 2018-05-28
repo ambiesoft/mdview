@@ -101,16 +101,25 @@ namespace mdview
         }
         #endregion
 
-        private void llWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        void NavigateWeb(string url)
         {
             try
             {
-                System.Diagnostics.Process.Start("http://ambiesoft.fam.cx/main/index.php?page=mdview");
+                System.Diagnostics.Process.Start(url);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Ambiesoft.CppUtils.Alert(this, ex);
             }
+        }
+        private void llWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            NavigateWeb("http://ambiesoft.fam.cx/main/index.php?page=mdview");
+        }
+
+        private void llDonate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            NavigateWeb("http://ambiesoft.fam.cx/donate/");
         }
     }
 }

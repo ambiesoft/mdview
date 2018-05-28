@@ -37,6 +37,7 @@
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.llWeb = new System.Windows.Forms.LinkLabel();
+            this.llDonate = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -49,16 +50,17 @@
             this.tableLayoutPanel.Controls.Add(this.labelVersion, 1, 1);
             this.tableLayoutPanel.Controls.Add(this.labelCopyright, 1, 2);
             this.tableLayoutPanel.Controls.Add(this.labelCompanyName, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 1, 5);
-            this.tableLayoutPanel.Controls.Add(this.okButton, 1, 6);
             this.tableLayoutPanel.Controls.Add(this.llWeb, 1, 4);
+            this.tableLayoutPanel.Controls.Add(this.okButton, 1, 7);
+            this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 1, 6);
+            this.tableLayoutPanel.Controls.Add(this.llDonate, 1, 5);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             // 
             // logoPictureBox
             // 
             resources.ApplyResources(this.logoPictureBox, "logoPictureBox");
             this.logoPictureBox.Name = "logoPictureBox";
-            this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 7);
+            this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 8);
             this.logoPictureBox.TabStop = false;
             // 
             // labelProductName
@@ -90,8 +92,8 @@
             // 
             // okButton
             // 
-            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
             // 
             // llWeb
@@ -100,6 +102,13 @@
             this.llWeb.Name = "llWeb";
             this.llWeb.TabStop = true;
             this.llWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llWeb_LinkClicked);
+            // 
+            // llDonate
+            // 
+            resources.ApplyResources(this.llDonate, "llDonate");
+            this.llDonate.Name = "llDonate";
+            this.llDonate.TabStop = true;
+            this.llDonate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llDonate_LinkClicked);
             // 
             // AboutBox
             // 
@@ -131,5 +140,6 @@
         internal System.Windows.Forms.Label labelCompanyName;
         internal System.Windows.Forms.TextBox textBoxDescription;
         internal System.Windows.Forms.LinkLabel llWeb;
+        private System.Windows.Forms.LinkLabel llDonate;
     }
 }

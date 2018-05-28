@@ -612,7 +612,7 @@
     <value>3, 3</value>
   </data>
   <data name="logoPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 259</value>
+    <value>131, 285</value>
   </data>
   <data name="logoPictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
@@ -672,7 +672,7 @@
     <value>Fill</value>
   </data>
   <data name="labelVersion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 24</value>
+    <value>143, 23</value>
   </data>
   <data name="labelVersion.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 3, 0</value>
@@ -708,7 +708,7 @@
     <value>Fill</value>
   </data>
   <data name="labelCopyright.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 48</value>
+    <value>143, 46</value>
   </data>
   <data name="labelCopyright.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 3, 0</value>
@@ -744,7 +744,7 @@
     <value>Fill</value>
   </data>
   <data name="labelCompanyName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 72</value>
+    <value>143, 69</value>
   </data>
   <data name="labelCompanyName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 3, 0</value>
@@ -776,47 +776,44 @@
   <data name="&gt;&gt;labelCompanyName.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="textBoxDescription.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="llWeb.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="textBoxDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 123</value>
+  <data name="llWeb.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
-  <data name="textBoxDescription.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 3, 3, 3</value>
+  <data name="llWeb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>140, 92</value>
   </data>
-  <data name="textBoxDescription.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="llWeb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 23</value>
   </data>
-  <data name="textBoxDescription.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Both</value>
+  <data name="llWeb.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
   </data>
-  <data name="textBoxDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 114</value>
+  <data name="llWeb.Text" xml:space="preserve">
+    <value>Goto Webpage</value>
   </data>
-  <data name="textBoxDescription.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+  <data name="llWeb.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
-  <data name="textBoxDescription.Text" xml:space="preserve">
-    <value>Description</value>
+  <data name="&gt;&gt;llWeb.Name" xml:space="preserve">
+    <value>llWeb</value>
   </data>
-  <data name="&gt;&gt;textBoxDescription.Name" xml:space="preserve">
-    <value>textBoxDescription</value>
+  <data name="&gt;&gt;llWeb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;textBoxDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxDescription.Parent" xml:space="preserve">
+  <data name="&gt;&gt;llWeb.Parent" xml:space="preserve">
     <value>tableLayoutPanel</value>
   </data>
-  <data name="&gt;&gt;textBoxDescription.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;llWeb.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="okButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="okButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>339, 243</value>
+    <value>339, 269</value>
   </data>
   <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 19</value>
@@ -839,38 +836,71 @@
   <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="llWeb.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="textBoxDescription.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="llWeb.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="textBoxDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 141</value>
   </data>
-  <data name="llWeb.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 96</value>
+  <data name="textBoxDescription.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>6, 3, 3, 3</value>
   </data>
-  <data name="llWeb.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 24</value>
+  <data name="textBoxDescription.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="llWeb.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+  <data name="textBoxDescription.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Both</value>
   </data>
-  <data name="llWeb.Text" xml:space="preserve">
-    <value>Goto Webpage</value>
+  <data name="textBoxDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 122</value>
   </data>
-  <data name="llWeb.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="textBoxDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
   </data>
-  <data name="&gt;&gt;llWeb.Name" xml:space="preserve">
-    <value>llWeb</value>
+  <data name="textBoxDescription.Text" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="&gt;&gt;llWeb.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;textBoxDescription.Name" xml:space="preserve">
+    <value>textBoxDescription</value>
   </data>
-  <data name="&gt;&gt;llWeb.Parent" xml:space="preserve">
+  <data name="&gt;&gt;textBoxDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxDescription.Parent" xml:space="preserve">
     <value>tableLayoutPanel</value>
   </data>
-  <data name="&gt;&gt;llWeb.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;textBoxDescription.ZOrder" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="llDonate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="llDonate.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="llDonate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>140, 115</value>
+  </data>
+  <data name="llDonate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 23</value>
+  </data>
+  <data name="llDonate.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="llDonate.Text" xml:space="preserve">
+    <value>Donate</value>
+  </data>
+  <data name="&gt;&gt;llDonate.Name" xml:space="preserve">
+    <value>llDonate</value>
+  </data>
+  <data name="&gt;&gt;llDonate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;llDonate.Parent" xml:space="preserve">
+    <value>tableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;llDonate.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="tableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -879,10 +909,10 @@
     <value>9, 9</value>
   </data>
   <data name="tableLayoutPanel.RowCount" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="tableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>417, 265</value>
+    <value>417, 291</value>
   </data>
   <data name="tableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -900,7 +930,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="logoPictureBox" Row="0" RowSpan="7" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelProductName" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelVersion" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCopyright" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCompanyName" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxDescription" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="okButton" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="llWeb" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33,Percent,67" /&gt;&lt;Rows Styles="Percent,9.090909,Percent,9.090909,Percent,9.090909,Percent,9.090909,Percent,9.090909,Percent,45.45454,Percent,9.090909" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="logoPictureBox" Row="0" RowSpan="8" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelProductName" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelVersion" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCopyright" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCompanyName" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="llWeb" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="okButton" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxDescription" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="llDonate" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33,Percent,67" /&gt;&lt;Rows Styles="Percent,8.784362,Percent,8.784362,Percent,8.784362,Percent,8.784362,Percent,8.784362,Percent,8.783484,Percent,47.29471,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -909,7 +939,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>435, 283</value>
+    <value>435, 309</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>9, 9, 9, 9</value>
