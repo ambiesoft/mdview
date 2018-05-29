@@ -1110,14 +1110,14 @@ namespace mdview
         {
             Debug.WriteLine(keyData);
             // if (GetKeyState(0x11) < 0)
-            if(keyData.HasFlag(Keys.Control) && keyData.HasFlag(Keys.Alt))
+            if(keyData.HasFlag(Keys.Control) && keyData.HasFlag(Keys.Shift))
             {
                 switch (keyData & Keys.KeyCode)
                 {
-                    case Keys.O:
+                    case Keys.OemQuestion:
                         tsbOpen_Click(this, new EventArgs());
                         return true;
-                    case Keys.M:
+                    case Keys.OemPeriod:
                         tsbWatch.Checked = !tsbWatch.Checked;
                         return true;
                 }
