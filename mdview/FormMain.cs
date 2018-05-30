@@ -144,7 +144,7 @@ namespace mdview
 
             wb.ScriptErrorsSuppressed = true;
             wb.StatusTextChanged += Wb_StatusTextChanged;
-            wb.WebBrowserShortcutsEnabled = false;
+            wb.WebBrowserShortcutsEnabled = true;
             wb.Navigating += Wb_Navigating;
             wb.NewWindow += Wb_NewWindow;
             wb.DocumentCompleted += Wb_DocumentCompleted;
