@@ -250,7 +250,7 @@ namespace mdview
             // SetZoom(ZoomLevel);
         }
 
-        bool isSchemeJump(string scheme)
+        bool isRemoteScheme(string scheme)
         {
             scheme = scheme.ToLower();
             if (scheme.StartsWith("http"))
@@ -308,7 +308,7 @@ namespace mdview
             {
                 // nothing
             }
-            else if (isSchemeJump(e.Url.Scheme))
+            else if (isRemoteScheme(e.Url.Scheme))
             {
                 e.Cancel = true;
                 try
@@ -331,22 +331,49 @@ namespace mdview
                 lastStatusText_ = wbText;
 
         }
+        bool isRemoteUrl(string url)
+        {
+            try
+            {
+                Uri uri = new Uri(url);
+                return isRemoteScheme(uri.Scheme);
+            }
+            catch { }
+            return false;
+        }
         private void Wb_NewWindow(object sender, CancelEventArgs e)
         {
-            string path = AmbLib.getPathFromUrl(lastStatusText_);
-            if (IsMD(path))
+            string newUrl = lastStatusText_;
+
+            if (!isRemoteUrl(newUrl))
             {
-                try
+                string path = AmbLib.getPathFromUrl(newUrl);
+                if (IsMD(path))
                 {
-                    Process.Start(Application.ExecutablePath,
-                        AmbLib.doubleQuoteIfSpace(path));
+                    // Launch another mdview
+                    try
+                    {
+                        Process.Start(Application.ExecutablePath,
+                            AmbLib.doubleQuoteIfSpace(path));
+                    }
+                    catch (Exception ex)
+                    {
+                        CppUtils.Alert(this, ex);
+                    }
+                    e.Cancel = true;
+                    return;
                 }
-                catch (Exception ex)
-                {
-                    CppUtils.Alert(this, ex);
-                }
+            }
+
+            try
+            {
+                Process.Start(newUrl);
                 e.Cancel = true;
                 return;
+            }
+            catch (Exception ex)
+            {
+                CppUtils.Alert(ex);
             }
         }
         string AppDir
