@@ -59,6 +59,8 @@ namespace mdview
         [STAThread]
         static void Main(string[] args)
         {
+            Ambiesoft.CppUtils.AmbSetProcessDPIAware();
+
             HashIni ini = Profile.ReadAll(IniPath);
             string lang;
             Profile.GetString(FormMain.SECTION_OPTION, FormMain.KEY_LANGUAGE, string.Empty, out lang, ini);
