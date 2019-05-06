@@ -1,25 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mdview", "mdview\mdview.csproj", "{0F015683-1B0D-4B32-9ED7-F4EFA6F58B21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testBrowser", "testBrowser\testBrowser.csproj", "{FD904A13-B00F-4399-A236-42D38FE37327}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zzzDist", "zzzDist\zzzDist.vcxproj", "{A6948ADD-FB3E-4245-9B6C-845368CF4DA6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0F015683-1B0D-4B32-9ED7-F4EFA6F58B21} = {0F015683-1B0D-4B32-9ED7-F4EFA6F58B21}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0F015683-1B0D-4B32-9ED7-F4EFA6F58B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F015683-1B0D-4B32-9ED7-F4EFA6F58B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F015683-1B0D-4B32-9ED7-F4EFA6F58B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F015683-1B0D-4B32-9ED7-F4EFA6F58B21}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD904A13-B00F-4399-A236-42D38FE37327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD904A13-B00F-4399-A236-42D38FE37327}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD904A13-B00F-4399-A236-42D38FE37327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F015683-1B0D-4B32-9ED7-F4EFA6F58B21}.Debug|x86.ActiveCfg = Debug|x86
+		{0F015683-1B0D-4B32-9ED7-F4EFA6F58B21}.Debug|x86.Build.0 = Debug|x86
+		{0F015683-1B0D-4B32-9ED7-F4EFA6F58B21}.Release|x86.ActiveCfg = Release|x86
+		{0F015683-1B0D-4B32-9ED7-F4EFA6F58B21}.Release|x86.Build.0 = Release|x86
+		{FD904A13-B00F-4399-A236-42D38FE37327}.Debug|x86.ActiveCfg = Debug|x86
+		{FD904A13-B00F-4399-A236-42D38FE37327}.Debug|x86.Build.0 = Debug|x86
+		{FD904A13-B00F-4399-A236-42D38FE37327}.Release|x86.ActiveCfg = Release|x86
+		{FD904A13-B00F-4399-A236-42D38FE37327}.Release|x86.Build.0 = Release|x86
+		{A6948ADD-FB3E-4245-9B6C-845368CF4DA6}.Debug|x86.ActiveCfg = Debug|Win32
+		{A6948ADD-FB3E-4245-9B6C-845368CF4DA6}.Release|x86.ActiveCfg = Release|Win32
+		{A6948ADD-FB3E-4245-9B6C-845368CF4DA6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

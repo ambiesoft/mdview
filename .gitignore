@@ -1,7 +1,12 @@
 .vs/
 bin/
 obj/
+Debug/
+Release/
+build/
 
+*.sdf
+*.suo
 *.o
 *.a
 *.user

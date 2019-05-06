@@ -1,13 +1,13 @@
 {
 	"name": "mdview",
 	"solution": "mdview.sln",
-	"targetproject": "mdview",
+	"targetproject": "zzzDist",
 	"configuration": "Release",
     "targets": [
             {
             	"setoutdirforbuild": true,
-                "outdir" : "C:/Linkout/mdview/",
-                "platform":"Any CPU"
+                "outdir" : "build/mdview/",
+                "platform":"x86"
             }
     ],
     "archivedir": "C:/Linkout/",
@@ -122,7 +122,11 @@
 		"highlight\\styles\\xcode.css",
 		"highlight\\styles\\xt256.css",
 		"highlight\\styles\\zenburn.css",
-		"ja-JP\\mdview.resources.dll"
+		"ja-JP\\mdview.resources.dll",
+		"msvcp120.dll",
+		"msvcr120.dll",
+		"vccorlib120.dll"
+
 	],
     
     "ShouldBeOneOfThem": [],

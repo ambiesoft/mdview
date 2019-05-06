@@ -237,7 +237,8 @@ namespace mdview
             Profile.GetInt(SECTION_OPTION, KEY_ZOOMLEVEL, 100, out intval, initialIni);
             ZoomLevel = intval;
 
-            Profile.GetBool(SECTION_OPTION, KEY_WATCH, false, out bool bWatch, initialIni);
+            bool bWatch;
+            Profile.GetBool(SECTION_OPTION, KEY_WATCH, false, out bWatch, initialIni);
             tsbWatch.Checked = bWatch;
 
             _optionDlg.LoadSettings(initialIni);
