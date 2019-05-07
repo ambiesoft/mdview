@@ -173,13 +173,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(SolutionDir)discount-2.2.2\markdown.exe" "$(TargetDir)"
-copy "$(SolutionDir)cmark-0.28.0\cmark.exe" "$(TargetDir)"
+    <PostBuildEvent>copy "$(SolutionDir)distbin\markdown.exe" "$(TargetDir)"
+copy "$(SolutionDir)distbin\cmark.exe" "$(TargetDir)"
 C:\LegacyPrograms\FFC\FFC.exe /t12 "$(SolutionDir)highlight" /to:"$(TargetDir)"
 
 copy "$(SolutionDir)Readme.md" "$(TargetDir)"
 copy "$(SolutionDir)Readme.jp.md" "$(TargetDir)"
 copy "$(ProjectDir)History.txt" "$(TargetDir)"
-copy "$(ProjectDir)License.txt" "$(TargetDir)"</PostBuildEvent>
+copy "$(ProjectDir)License.txt" "$(TargetDir)"
+copy "$(SolutionDir)CREDITS" "$(TargetDir)"
+</PostBuildEvent>
   </PropertyGroup>
 </Project>
