@@ -60,6 +60,7 @@
             this.slMain = new System.Windows.Forms.ToolStripStatusLabel();
             this.slCurrentMD = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelBrowser = new System.Windows.Forms.Panel();
+            this.tsbDebugTest = new System.Windows.Forms.ToolStripButton();
             this.tsMain.SuspendLayout();
             this.ss.SuspendLayout();
             this.SuspendLayout();
@@ -81,7 +82,8 @@
             this.tsdMarkdown,
             this.tsdZoom,
             this.tsbOption,
-            this.tsbHelp});
+            this.tsbHelp,
+            this.tsbDebugTest});
             resources.ApplyResources(this.tsMain, "tsMain");
             this.tsMain.Name = "tsMain";
             // 
@@ -287,6 +289,13 @@
             resources.ApplyResources(this.panelBrowser, "panelBrowser");
             this.panelBrowser.Name = "panelBrowser";
             // 
+            // tsbDebugTest
+            // 
+            this.tsbDebugTest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbDebugTest, "tsbDebugTest");
+            this.tsbDebugTest.Name = "tsbDebugTest";
+            this.tsbDebugTest.Click += new System.EventHandler(this.tsbDebugTest_ClickAsync);
+            // 
             // FormMain
             // 
             this.AllowDrop = true;
@@ -345,6 +354,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmZoom90;
         private System.Windows.Forms.ToolStripMenuItem tsmZoom80;
         private System.Windows.Forms.ToolStripButton tsbWatch;
+        private System.Windows.Forms.ToolStripButton tsbDebugTest;
     }
 }
 

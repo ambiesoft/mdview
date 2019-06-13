@@ -4,6 +4,7 @@ obj/
 Debug/
 Release/
 build/
+packages/
 
 *.sdf
 *.suo

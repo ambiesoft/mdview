@@ -38,6 +38,8 @@ using System.Diagnostics;
 using Ambiesoft;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Net;
+using Octokit;
 
 namespace mdview
 {
@@ -138,6 +140,9 @@ namespace mdview
         {
             _filetoopen = file;
             InitializeComponent();
+//#if !DEBUG
+//            tsMain.Items.Remove(tsbDebugTest);
+//#endif
             wb = new WebBrowser();
             wb.Dock = DockStyle.Fill;
             panelBrowser.Controls.Add(wb);
@@ -215,6 +220,7 @@ namespace mdview
             {
                 // first launch, create default
                 _mdinfos.Add(new MarkdownInfo("cmark", "cmark.exe", string.Empty, "--version"));
+                _mdinfos.Add(new MarkdownInfo("cmark-gfm", "cmark-gfm.exe", string.Empty, "--version"));
                 _mdinfos.Add(new MarkdownInfo("discount", "markdown.exe", string.Empty, "-V"));
             }
             int currentMDIndex;
@@ -354,7 +360,7 @@ namespace mdview
                     // Launch another mdview
                     try
                     {
-                        Process.Start(Application.ExecutablePath,
+                        Process.Start(System.Windows.Forms.Application.ExecutablePath,
                             AmbLib.doubleQuoteIfSpace(path));
                     }
                     catch (Exception ex)
@@ -381,7 +387,7 @@ namespace mdview
         {
             get
             {
-                return Path.GetDirectoryName(Application.ExecutablePath);
+                return Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath);
             }
         }
         //string MarkdownExecutable
@@ -415,7 +421,7 @@ namespace mdview
             wb.Navigate("about:blank");
             while (wb.ReadyState != WebBrowserReadyState.Complete)
             {
-                Application.DoEvents();
+                System.Windows.Forms.Application.DoEvents();
             }
         }
         void setTitle(string title)
@@ -502,38 +508,8 @@ namespace mdview
             return sb.ToString();
         }
 
-        List<CacheFile> _cacheFiles = new List<CacheFile>();
-        void OpenMD(string mdfile, bool bNavigate)
+        void OpenHTML(string html, string mdfile, bool bNavigate)
         {
-            if(CurrentMarkDown==null)
-            {
-                CppUtils.Alert(Properties.Resources.NO_MARKDOWN);
-                return;
-            }
-            int retval;
-            string output, err;
-            string baseurl = AmbLib.doubleQuoteIfSpace(AmbLib.pathToFileProtocol(Misc.PathAddBackslash(Path.GetDirectoryName(mdfile))));
-            string arg = string.Format("{0} {1}",
-                // baseurl,
-                CurrentMarkDown.AdditionalArguments,
-                AmbLib.doubleQuoteIfSpace(mdfile)
-                );
-            AmbLib.OpenCommandGetResult(
-                CurrentMarkDown.ExecutableFullpath,
-                arg,
-                Encoding.UTF8,
-                out retval,
-                out output,
-                out err);
-
-            if (retval != 0 || !string.IsNullOrEmpty(err))
-            {
-                CppUtils.Alert(string.Format("Returned => {0}\n{1}", retval, err));
-                return;
-            }
-
-            string html = decorateHtml(output, baseurl, true);
-
             // Write to cache file,
             // if already exists, overwrite.
             CacheFile cache = null;
@@ -551,8 +527,51 @@ namespace mdview
             File.WriteAllBytes(cache.CacheFileName, Encoding.UTF8.GetBytes(html));
             cache.UpdateCacheTime();
 
-            if(bNavigate)
+            if (bNavigate)
                 wb.Navigate(cache.CacheFileName);
+        }
+        List<CacheFile> _cacheFiles = new List<CacheFile>();
+        void OpenMD(string mdfile, bool bNavigate)
+        {
+            if(CurrentMarkDown==null)
+            {
+                CppUtils.Alert(Properties.Resources.NO_MARKDOWN);
+                return;
+            }
+            int retval;
+            string output, err;
+            string baseurl = AmbLib.doubleQuoteIfSpace(AmbLib.pathToFileProtocol(Misc.PathAddBackslash(Path.GetDirectoryName(mdfile))));
+            string arg = string.Format("{0} {1}",
+                // baseurl,
+                CurrentMarkDown.AdditionalArguments,
+                AmbLib.doubleQuoteIfSpace(mdfile)
+                );
+
+            try
+            {
+                AmbLib.OpenCommandGetResult(
+                    CurrentMarkDown.ExecutableFullpath,
+                    arg,
+                    Encoding.UTF8,
+                    out retval,
+                    out output,
+                    out err);
+            }
+            catch(Exception ex)
+            {
+                CppUtils.Alert(ex.Message);
+                return;
+            }
+
+            if (retval != 0 || !string.IsNullOrEmpty(err))
+            {
+                CppUtils.Alert(string.Format("Returned => {0}\n{1}", retval, err));
+                return;
+            }
+
+            string html = decorateHtml(output, baseurl, true);
+
+            OpenHTML(html, mdfile, bNavigate);
 
             setTitle(mdfile);
 
@@ -593,7 +612,7 @@ namespace mdview
 
             wb.Navigate("about:blank");
             while (wb.ReadyState != WebBrowserReadyState.Complete)
-                Application.DoEvents();
+                System.Windows.Forms.Application.DoEvents();
 
             SetZoom(ZoomLevel);
 
@@ -1156,6 +1175,85 @@ namespace mdview
         private void tsbWatch_EnabledChanged(object sender, EventArgs e)
         {
             tsbWatch_CheckedChanged(sender, e);
+        }
+
+        private void tsbDebugTest_Click_old(object sender, EventArgs e)
+        {
+            // curl https://api.github.com/markdown/raw -X "POST" -H "Content-Type: text/plain" -d "Hello world github/linguist#1 **cool**, and #1!"
+
+            // this is what we are sending
+            string post_data = "Hello world github/linguist#1 **cool**, and #1!";
+
+            // this is where we will send it
+            string uri = "http://api.github.com/markdown/raw";
+
+            // create a request
+            HttpWebRequest request = (HttpWebRequest)
+            WebRequest.Create(uri); request.KeepAlive = false;
+            request.ProtocolVersion = HttpVersion.Version10;
+            request.Method = "POST";
+
+            // turn our request string into a byte stream
+            byte[] postBytes = Encoding.ASCII.GetBytes(post_data);
+
+            // this is important - make sure you specify type this way
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = postBytes.Length;
+            Stream requestStream = request.GetRequestStream();
+
+            // now send it
+            requestStream.Write(postBytes, 0, postBytes.Length);
+            requestStream.Close();
+
+            // grab te response and print it out to the console along with the status code
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            string html = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+
+
+            // Console.WriteLine(response.StatusCode);
+        }
+
+        GitHubClient githubClient_;
+        static int sGithubMDCounter_;
+        private void tsbDebugTest_ClickAsync(object sender, EventArgs e)
+        {
+            ++sGithubMDCounter_;
+            try
+            {
+                if (string.IsNullOrEmpty(CurrentMDFile))
+                    return;
+                if(githubClient_==null)
+                    githubClient_ = new GitHubClient(new ProductHeaderValue("AmbiesoftMDView"));
+
+                var md = File.ReadAllText(CurrentMDFile);
+                
+                var forTest = new NewArbitraryMarkdown(md, "gfm", "testContext");
+                githubClient_.Miscellaneous.RenderArbitraryMarkdown(forTest)
+                .ContinueWith(s => afterGithubMarkdown(s.Result, sGithubMDCounter_));
+                
+                //var user = await github.User.Get("half-ogre");
+                //Console.WriteLine(user.Followers + " folks love the half ogre!");
+
+            }
+            catch (Exception ex)
+            {
+                CppUtils.Alert(ex.Message);
+            }
+        }
+        void afterGithubMarkdown(string html, int counter)
+        {
+            if (counter != sGithubMDCounter_)
+                return;
+
+            if(InvokeRequired)
+            {
+                this.BeginInvoke(new Action(() => this.afterGithubMarkdown(html,counter)));
+                return;
+            }
+            HtmlDocument doc = wb.Document;
+            doc.Body.InnerHtml = html;
         }
     }
 }
