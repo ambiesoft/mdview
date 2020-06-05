@@ -1291,7 +1291,14 @@ namespace mdview
 
             try
             {
-                Process.Start(_optionDlg.Editor, CurrentMDFile);
+                // if (_optionDlg.Editor.IndexOf("%s") < 0)
+                {
+                    Process.Start(_optionDlg.Editor, AmbLib.doubleQuoteIfSpace(CurrentMDFile));
+                }
+                //else
+                //{
+                //    CppUtils.OpenCommon(this, null, _optionDlg.Editor.Replace("%s", CurrentMDFile));
+                //}
             }
             catch (Exception ex)
             {
