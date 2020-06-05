@@ -34,9 +34,9 @@
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelCopyright = new System.Windows.Forms.Label();
             this.labelCompanyName = new System.Windows.Forms.Label();
-            this.textBoxDescription = new System.Windows.Forms.TextBox();
-            this.okButton = new System.Windows.Forms.Button();
             this.llWeb = new System.Windows.Forms.LinkLabel();
+            this.okButton = new System.Windows.Forms.Button();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.llDonate = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -83,12 +83,12 @@
             resources.ApplyResources(this.labelCompanyName, "labelCompanyName");
             this.labelCompanyName.Name = "labelCompanyName";
             // 
-            // textBoxDescription
+            // llWeb
             // 
-            resources.ApplyResources(this.textBoxDescription, "textBoxDescription");
-            this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.ReadOnly = true;
-            this.textBoxDescription.TabStop = false;
+            resources.ApplyResources(this.llWeb, "llWeb");
+            this.llWeb.Name = "llWeb";
+            this.llWeb.TabStop = true;
+            this.llWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llWeb_LinkClicked);
             // 
             // okButton
             // 
@@ -96,12 +96,12 @@
             resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
             // 
-            // llWeb
+            // textBoxDescription
             // 
-            resources.ApplyResources(this.llWeb, "llWeb");
-            this.llWeb.Name = "llWeb";
-            this.llWeb.TabStop = true;
-            this.llWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llWeb_LinkClicked);
+            resources.ApplyResources(this.textBoxDescription, "textBoxDescription");
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.ReadOnly = true;
+            this.textBoxDescription.TabStop = false;
             // 
             // llDonate
             // 

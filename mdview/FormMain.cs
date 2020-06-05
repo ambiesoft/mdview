@@ -64,8 +64,9 @@ namespace mdview
         static readonly string KEY_ZOOMLEVEL = "ZoomLevel";
         static readonly string KEY_WATCH = "Watch";
         internal static readonly string KEY_LANGUAGE = "Language";
+        internal static readonly string KEY_EDITOR = "Editor";
 
-        
+
 
         readonly string _filetoopen;
 
@@ -130,6 +131,7 @@ namespace mdview
             {
                 _currentMDFile = value;
                 tsbRefresh.Enabled = !string.IsNullOrEmpty(_currentMDFile);
+                tsbEdit.Enabled = !string.IsNullOrEmpty(_currentMDFile);
                 tsbWatch.Enabled = !string.IsNullOrEmpty(_currentMDFile);
                 tsbPrint.Enabled = !string.IsNullOrEmpty(_currentMDFile);
             }
@@ -307,7 +309,7 @@ namespace mdview
                 if (IsMDAndNotInCache(e.Url.AbsolutePath))
                 {
                     e.Cancel = true;
-                    OpenMD(e.Url.AbsolutePath);
+                    OpenMD(e.Url.LocalPath);
                     return;
                 }
             }
@@ -531,6 +533,29 @@ namespace mdview
                 wb.Navigate(cache.CacheFileName);
         }
         List<CacheFile> _cacheFiles = new List<CacheFile>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        const int MAX_PATH = 255;
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
+        public static extern int GetShortPathName(
+            [MarshalAs(UnmanagedType.LPTStr)]
+         string path,
+            [MarshalAs(UnmanagedType.LPTStr)]
+         StringBuilder shortPath,
+            int shortPathLength
+            );
+
+        private static string GetShortPath(string path)
+        {
+            var shortPath = new StringBuilder(MAX_PATH);
+            GetShortPathName(path, shortPath, MAX_PATH);
+            return shortPath.ToString();
+        }
+        //-/////////////////
+
         void OpenMD(string mdfile, bool bNavigate)
         {
             if(CurrentMarkDown==null)
@@ -540,11 +565,11 @@ namespace mdview
             }
             int retval;
             string output, err;
-            string baseurl = AmbLib.doubleQuoteIfSpace(AmbLib.pathToFileProtocol(Misc.PathAddBackslash(Path.GetDirectoryName(mdfile))));
+            string baseurl = AmbLib.doubleQuoteIfSpace(
+                AmbLib.pathToFileProtocol(Misc.PathAddBackslash(Path.GetDirectoryName(mdfile))));
             string arg = string.Format("{0} {1}",
-                // baseurl,
                 CurrentMarkDown.AdditionalArguments,
-                AmbLib.doubleQuoteIfSpace(mdfile)
+                GetShortPath(mdfile) // AmbLib.doubleQuoteIfSpace(mdfile)
                 );
 
             try
@@ -1254,6 +1279,24 @@ namespace mdview
             }
             HtmlDocument doc = wb.Document;
             doc.Body.InnerHtml = html;
+        }
+
+        private void tsbEdit_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(_optionDlg.Editor))
+            {
+                CppUtils.Alert(Properties.Resources.NO_EDITOR);
+                return;
+            }
+
+            try
+            {
+                Process.Start(_optionDlg.Editor, CurrentMDFile);
+            }
+            catch (Exception ex)
+            {
+                CppUtils.Alert(ex);
+            }
         }
     }
 }

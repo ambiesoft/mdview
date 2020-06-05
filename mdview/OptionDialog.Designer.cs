@@ -36,6 +36,8 @@
             this.lblLanguage = new System.Windows.Forms.Label();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.lblRestartNotice = new System.Windows.Forms.Label();
+            this.lblEditor = new System.Windows.Forms.Label();
+            this.txtEditor = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nupRecents)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,11 +97,23 @@
             resources.ApplyResources(this.lblRestartNotice, "lblRestartNotice");
             this.lblRestartNotice.Name = "lblRestartNotice";
             // 
+            // lblEditor
+            // 
+            resources.ApplyResources(this.lblEditor, "lblEditor");
+            this.lblEditor.Name = "lblEditor";
+            // 
+            // txtEditor
+            // 
+            resources.ApplyResources(this.txtEditor, "txtEditor");
+            this.txtEditor.Name = "txtEditor";
+            // 
             // OptionDialog
             // 
             this.AcceptButton = this.btnOK;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtEditor);
+            this.Controls.Add(this.lblEditor);
             this.Controls.Add(this.lblRestartNotice);
             this.Controls.Add(this.cmbLanguage);
             this.Controls.Add(this.lblLanguage);
@@ -127,5 +141,7 @@
         private System.Windows.Forms.Label lblLanguage;
         private System.Windows.Forms.ComboBox cmbLanguage;
         private System.Windows.Forms.Label lblRestartNotice;
+        private System.Windows.Forms.Label lblEditor;
+        private System.Windows.Forms.TextBox txtEditor;
     }
 }

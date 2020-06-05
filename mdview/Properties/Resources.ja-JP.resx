@@ -144,4 +144,7 @@
   <data name="CLI_SYSTEMDEFAULT" xml:space="preserve">
     <value>システムデフォルト</value>
   </data>
+  <data name="NO_EDITOR" xml:space="preserve">
+    <value>エディタが設定されていません。オプションで設定してください。</value>
+  </data>
 </root>

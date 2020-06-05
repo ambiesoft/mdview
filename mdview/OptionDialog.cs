@@ -64,6 +64,13 @@ namespace mdview
             }
         }
 
+        internal string Editor
+        {
+            get
+            {
+                return txtEditor.Text;
+            }
+        }
         internal void LoadSettings(HashIni ini)
         {
             bool boolval;
@@ -90,13 +97,17 @@ namespace mdview
             if (toSelect != null)
                 cmbLanguage.SelectedItem = toSelect;
 
+            string editor;
+            Profile.GetString(FormMain.SECTION_OPTION, FormMain.KEY_EDITOR, string.Empty, out editor, ini);
+            txtEditor.Text = editor;
+
             lblRestartNotice.Visible = false;
         }
         internal bool SaveSettings(HashIni ini)
         {
             bool failed = false;
             failed |= !Profile.WriteBool(SECTION_OPTIONDIALOG, KEY_OPENLASTFILE, chkOpenLastOpened.Checked, ini);
-            failed |= Profile.WriteInt(SECTION_OPTIONDIALOG, KEY_MAXRECENTS, Decimal.ToInt32(nupRecents.Value), ini);
+            failed |= !Profile.WriteInt(SECTION_OPTIONDIALOG, KEY_MAXRECENTS, Decimal.ToInt32(nupRecents.Value), ini);
 
             if (cmbLanguage.SelectedItem != null)
             {
@@ -106,6 +117,12 @@ namespace mdview
                     item.Language,
                     ini);
             }
+
+            failed |= !Profile.WriteString(FormMain.SECTION_OPTION,
+                FormMain.KEY_EDITOR,
+                txtEditor.Text,
+                ini);
+
             return !failed;
         }
 

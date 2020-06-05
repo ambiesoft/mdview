@@ -124,10 +124,8 @@
 		"highlight\\styles\\xt256.css",
 		"highlight\\styles\\zenburn.css",
 		"ja-JP\\mdview.resources.dll",
-		"msvcp120.dll",
-		"msvcr120.dll",
-		"vccorlib120.dll"
-
+		"Octokit.dll",
+		"Octokit.xml"
 	],
     
     "ShouldBeOneOfThem": [],

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ambiesoft;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -15,7 +16,8 @@ namespace mdview
             InitializeComponent();
             // this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+            this.labelVersion.Text = String.Format("Version {0}",
+                AmbLib.getAssemblyVersion(Assembly.GetExecutingAssembly(), 3));
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;

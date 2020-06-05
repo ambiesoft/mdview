@@ -138,6 +138,9 @@
   <data name="INI_SAVE_FAILED" xml:space="preserve">
     <value>Failed to save ini.</value>
   </data>
+  <data name="NO_EDITOR" xml:space="preserve">
+    <value>Editor not set. Open Option dialog to set an editor.</value>
+  </data>
   <data name="NO_MARKDOWN" xml:space="preserve">
     <value>No markdown executables registered, organize them first or remove mdview.ini to register default markdowns.</value>
   </data>

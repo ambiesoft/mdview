@@ -124,6 +124,15 @@ namespace mdview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Editor not set. Open Option dialog to set an editor..
+        /// </summary>
+        internal static string NO_EDITOR {
+            get {
+                return ResourceManager.GetString("NO_EDITOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No markdown executables registered, organize them first or remove mdview.ini to register default markdowns..
         /// </summary>
         internal static string NO_MARKDOWN {

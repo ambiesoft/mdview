@@ -56,11 +56,12 @@
             this.tsmZoom50 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbOption = new System.Windows.Forms.ToolStripButton();
             this.tsbHelp = new System.Windows.Forms.ToolStripButton();
+            this.tsbDebugTest = new System.Windows.Forms.ToolStripButton();
             this.ss = new System.Windows.Forms.StatusStrip();
             this.slMain = new System.Windows.Forms.ToolStripStatusLabel();
             this.slCurrentMD = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelBrowser = new System.Windows.Forms.Panel();
-            this.tsbDebugTest = new System.Windows.Forms.ToolStripButton();
+            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tsMain.SuspendLayout();
             this.ss.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +74,7 @@
             this.tsdRecent,
             this.tsbOpen,
             this.tsbRefresh,
+            this.tsbEdit,
             this.tsbWatch,
             this.tssBrowser,
             this.tsbPrint,
@@ -265,6 +267,13 @@
             this.tsbHelp.Name = "tsbHelp";
             this.tsbHelp.Click += new System.EventHandler(this.tsbHelp_Click);
             // 
+            // tsbDebugTest
+            // 
+            this.tsbDebugTest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbDebugTest, "tsbDebugTest");
+            this.tsbDebugTest.Name = "tsbDebugTest";
+            this.tsbDebugTest.Click += new System.EventHandler(this.tsbDebugTest_ClickAsync);
+            // 
             // ss
             // 
             this.ss.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -289,12 +298,12 @@
             resources.ApplyResources(this.panelBrowser, "panelBrowser");
             this.panelBrowser.Name = "panelBrowser";
             // 
-            // tsbDebugTest
+            // tsbEdit
             // 
-            this.tsbDebugTest.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbDebugTest, "tsbDebugTest");
-            this.tsbDebugTest.Name = "tsbDebugTest";
-            this.tsbDebugTest.Click += new System.EventHandler(this.tsbDebugTest_ClickAsync);
+            this.tsbEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbEdit, "tsbEdit");
+            this.tsbEdit.Name = "tsbEdit";
+            this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
             // 
             // FormMain
             // 
@@ -355,6 +364,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmZoom80;
         private System.Windows.Forms.ToolStripButton tsbWatch;
         private System.Windows.Forms.ToolStripButton tsbDebugTest;
+        private System.Windows.Forms.ToolStripButton tsbEdit;
     }
 }
 
