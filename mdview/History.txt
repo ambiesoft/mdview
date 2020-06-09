@@ -1,4 +1,7 @@
-﻿2020/06/05 v1.2.5
+﻿2020/06/09 v1.2.6
+In Windows7 sp0, Misc.PathAddBackslash(String path) not found
+
+2020/06/05 v1.2.5
 エディタのファイル名をダブルクオート
 
 2020/06/05 v1.2.4

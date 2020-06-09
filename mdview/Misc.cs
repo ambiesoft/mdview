@@ -7,7 +7,7 @@ using System.Text;
 
 namespace mdview
 {
-    class Misc 
+    static class Misc 
     {
         // https://stackoverflow.com/a/20406065
         internal static string PathAddBackslash(string path)
