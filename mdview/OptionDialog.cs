@@ -39,6 +39,7 @@ namespace mdview
     {
         readonly string SECTION_OPTIONDIALOG = "OptionDialog";
         readonly string KEY_OPENLASTFILE = "OpenLastFile";
+        readonly string KEY_BRINGWINNDOWTOTOPAFTERAUTOREFRESHED = "BringWindowToTopAfterAutoRefreshed";
         readonly string KEY_MAXRECENTS = "MaxRecents";
 
         public OptionDialog()
@@ -79,6 +80,9 @@ namespace mdview
             Profile.GetBool(SECTION_OPTIONDIALOG, KEY_OPENLASTFILE, false, out boolval, ini);
             chkOpenLastOpened.Checked = boolval;
 
+            Profile.GetBool(SECTION_OPTIONDIALOG, KEY_BRINGWINNDOWTOTOPAFTERAUTOREFRESHED, false, out boolval, ini);
+            chkBringWindowToTopAfterAutoRefreshed.Checked = boolval;
+
             Profile.GetInt(SECTION_OPTIONDIALOG, KEY_MAXRECENTS, 16, out intval, ini);
             nupRecents.Value = intval;
 
@@ -107,6 +111,7 @@ namespace mdview
         {
             bool failed = false;
             failed |= !Profile.WriteBool(SECTION_OPTIONDIALOG, KEY_OPENLASTFILE, chkOpenLastOpened.Checked, ini);
+            failed |= !Profile.WriteBool(SECTION_OPTIONDIALOG, KEY_BRINGWINNDOWTOTOPAFTERAUTOREFRESHED, chkBringWindowToTopAfterAutoRefreshed.Checked, ini);
             failed |= !Profile.WriteInt(SECTION_OPTIONDIALOG, KEY_MAXRECENTS, Decimal.ToInt32(nupRecents.Value), ini);
 
             if (cmbLanguage.SelectedItem != null)
@@ -133,6 +138,14 @@ namespace mdview
         private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblRestartNotice.Visible = true;
+        }
+
+        private void btnBrowseEditor_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.OK != ofdEditor.ShowDialog())
+                return;
+
+            txtEditor.Text = ofdEditor.FileName;
         }
     }
 }

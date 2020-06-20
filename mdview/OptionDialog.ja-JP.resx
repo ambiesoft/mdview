@@ -119,28 +119,46 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="chkOpenLastOpened.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 17</value>
+    <value>165, 16</value>
   </data>
   <data name="chkOpenLastOpened.Text" xml:space="preserve">
     <value>最後に開いたファイルを開く(&amp;O)</value>
   </data>
   <data name="lblMaxRecents.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 13</value>
+    <value>157, 12</value>
   </data>
   <data name="lblMaxRecents.Text" xml:space="preserve">
     <value>最近開いたファイルの最大値(&amp;M)</value>
   </data>
   <data name="lblLanguage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 13</value>
+    <value>56, 12</value>
   </data>
   <data name="lblLanguage.Text" xml:space="preserve">
     <value>UI言語(&amp;L):</value>
   </data>
   <data name="lblRestartNotice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 13</value>
+    <value>127, 12</value>
   </data>
   <data name="lblRestartNotice.Text" xml:space="preserve">
     <value>次回起動時から有効です</value>
+  </data>
+  <data name="lblEditor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 12</value>
+  </data>
+  <data name="lblEditor.Text" xml:space="preserve">
+    <value>エディタ(&amp;E):</value>
+  </data>
+  <data name="ofdEditor.Filter" xml:space="preserve">
+    <value>実行ファイル|*.exe|すべてのファイル|*.*</value>
+  </data>
+  <data name="ofdEditor.Title" xml:space="preserve">
+    <value>エディタを選択</value>
+  </data>
+  <data name="chkBringWindowToTopAfterAutoRefreshed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 16</value>
+  </data>
+  <data name="chkBringWindowToTopAfterAutoRefreshed.Text" xml:space="preserve">
+    <value>自動更新後アクティブ(&amp;B)</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>オプション | mdview</value>

@@ -38,6 +38,9 @@
             this.lblRestartNotice = new System.Windows.Forms.Label();
             this.lblEditor = new System.Windows.Forms.Label();
             this.txtEditor = new System.Windows.Forms.TextBox();
+            this.btnBrowseEditor = new System.Windows.Forms.Button();
+            this.ofdEditor = new System.Windows.Forms.OpenFileDialog();
+            this.chkBringWindowToTopAfterAutoRefreshed = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nupRecents)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,9 +89,9 @@
             // 
             // cmbLanguage
             // 
+            resources.ApplyResources(this.cmbLanguage, "cmbLanguage");
             this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLanguage.FormattingEnabled = true;
-            resources.ApplyResources(this.cmbLanguage, "cmbLanguage");
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbLanguage_SelectedIndexChanged);
             // 
@@ -107,11 +110,30 @@
             resources.ApplyResources(this.txtEditor, "txtEditor");
             this.txtEditor.Name = "txtEditor";
             // 
+            // btnBrowseEditor
+            // 
+            resources.ApplyResources(this.btnBrowseEditor, "btnBrowseEditor");
+            this.btnBrowseEditor.Name = "btnBrowseEditor";
+            this.btnBrowseEditor.UseVisualStyleBackColor = true;
+            this.btnBrowseEditor.Click += new System.EventHandler(this.btnBrowseEditor_Click);
+            // 
+            // ofdEditor
+            // 
+            resources.ApplyResources(this.ofdEditor, "ofdEditor");
+            // 
+            // chkBringWindowToTopAfterAutoRefreshed
+            // 
+            resources.ApplyResources(this.chkBringWindowToTopAfterAutoRefreshed, "chkBringWindowToTopAfterAutoRefreshed");
+            this.chkBringWindowToTopAfterAutoRefreshed.Name = "chkBringWindowToTopAfterAutoRefreshed";
+            this.chkBringWindowToTopAfterAutoRefreshed.UseVisualStyleBackColor = true;
+            // 
             // OptionDialog
             // 
             this.AcceptButton = this.btnOK;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkBringWindowToTopAfterAutoRefreshed);
+            this.Controls.Add(this.btnBrowseEditor);
             this.Controls.Add(this.txtEditor);
             this.Controls.Add(this.lblEditor);
             this.Controls.Add(this.lblRestartNotice);
@@ -143,5 +165,8 @@
         private System.Windows.Forms.Label lblRestartNotice;
         private System.Windows.Forms.Label lblEditor;
         private System.Windows.Forms.TextBox txtEditor;
+        private System.Windows.Forms.Button btnBrowseEditor;
+        private System.Windows.Forms.OpenFileDialog ofdEditor;
+        internal System.Windows.Forms.CheckBox chkBringWindowToTopAfterAutoRefreshed;
     }
 }

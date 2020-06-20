@@ -1134,6 +1134,9 @@ namespace mdview
                 wb.Parent.Enabled = false;
                 RefreshBrowser();
 
+                if (_optionDlg.chkBringWindowToTopAfterAutoRefreshed.Checked)
+                    this.Activate();
+
                 // Ready state never changes.
                 //while(wb.ReadyState != WebBrowserReadyState.Complete)
                 //{

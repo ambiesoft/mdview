@@ -117,265 +117,328 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnOK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>318, 221</value>
-  </data>
-  <data name="btnOK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 23</value>
-  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnOK.TabIndex" type="System.Int32, mscorlib">
-    <value>70</value>
-  </data>
-  <data name="btnOK.Text" xml:space="preserve">
-    <value>&amp;OK</value>
-  </data>
-  <data name="&gt;&gt;btnOK.Name" xml:space="preserve">
-    <value>btnOK</value>
-  </data>
-  <data name="&gt;&gt;btnOK.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnOK.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnOK.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="chkOpenLastOpened.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="chkOpenLastOpened.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 13</value>
-  </data>
-  <data name="chkOpenLastOpened.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 17</value>
-  </data>
-  <data name="chkOpenLastOpened.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="chkOpenLastOpened.Text" xml:space="preserve">
-    <value>&amp;Open last opened file at startup</value>
-  </data>
-  <data name="&gt;&gt;chkOpenLastOpened.Name" xml:space="preserve">
-    <value>chkOpenLastOpened</value>
-  </data>
-  <data name="&gt;&gt;chkOpenLastOpened.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkOpenLastOpened.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;chkOpenLastOpened.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="lblMaxRecents.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblMaxRecents.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 46</value>
-  </data>
-  <data name="lblMaxRecents.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 13</value>
   </data>
   <data name="lblMaxRecents.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
-  <data name="lblMaxRecents.Text" xml:space="preserve">
-    <value>&amp;Max count of recent opened files</value>
-  </data>
-  <data name="&gt;&gt;lblMaxRecents.Name" xml:space="preserve">
-    <value>lblMaxRecents</value>
-  </data>
-  <data name="&gt;&gt;lblMaxRecents.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMaxRecents.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblMaxRecents.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="nupRecents.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 62</value>
-  </data>
-  <data name="nupRecents.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="nupRecents.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="&gt;&gt;nupRecents.Name" xml:space="preserve">
-    <value>nupRecents</value>
-  </data>
   <data name="&gt;&gt;nupRecents.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;nupRecents.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;nupRecents.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="lblLanguage.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblLanguage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 95</value>
-  </data>
-  <data name="lblLanguage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 13</value>
-  </data>
-  <data name="lblLanguage.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="lblLanguage.Text" xml:space="preserve">
-    <value>&amp;Language:</value>
-  </data>
-  <data name="&gt;&gt;lblLanguage.Name" xml:space="preserve">
-    <value>lblLanguage</value>
-  </data>
-  <data name="&gt;&gt;lblLanguage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblLanguage.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblLanguage.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="cmbLanguage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 111</value>
-  </data>
-  <data name="cmbLanguage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 21</value>
-  </data>
-  <data name="cmbLanguage.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="&gt;&gt;cmbLanguage.Name" xml:space="preserve">
-    <value>cmbLanguage</value>
-  </data>
-  <data name="&gt;&gt;cmbLanguage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbLanguage.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cmbLanguage.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lblRestartNotice.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="lblRestartNotice.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblRestartNotice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 226</value>
-  </data>
-  <data name="lblRestartNotice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 13</value>
-  </data>
-  <data name="lblRestartNotice.TabIndex" type="System.Int32, mscorlib">
-    <value>60</value>
-  </data>
-  <data name="lblRestartNotice.Text" xml:space="preserve">
-    <value>It requires restart for the chage takes effect.</value>
-  </data>
-  <data name="lblRestartNotice.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;lblRestartNotice.Name" xml:space="preserve">
-    <value>lblRestartNotice</value>
-  </data>
-  <data name="&gt;&gt;lblRestartNotice.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblRestartNotice.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblRestartNotice.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lblEditor.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblEditor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 147</value>
-  </data>
-  <data name="lblEditor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 13</value>
-  </data>
-  <data name="lblEditor.TabIndex" type="System.Int32, mscorlib">
-    <value>71</value>
-  </data>
-  <data name="lblEditor.Text" xml:space="preserve">
-    <value>&amp;Editor:</value>
-  </data>
-  <data name="&gt;&gt;lblEditor.Name" xml:space="preserve">
-    <value>lblEditor</value>
-  </data>
-  <data name="&gt;&gt;lblEditor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblEditor.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblEditor.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtEditor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 163</value>
-  </data>
-  <data name="txtEditor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>396, 20</value>
-  </data>
-  <data name="txtEditor.TabIndex" type="System.Int32, mscorlib">
-    <value>72</value>
-  </data>
-  <data name="&gt;&gt;txtEditor.Name" xml:space="preserve">
-    <value>txtEditor</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>448, 260</value>
   </data>
   <data name="&gt;&gt;txtEditor.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtEditor.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblMaxRecents.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;txtEditor.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="lblRestartNotice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>235, 12</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="&gt;&gt;btnBrowseEditor.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnBrowseEditor.Text" xml:space="preserve">
+    <value>&amp;...</value>
+  </data>
+  <data name="lblMaxRecents.Text" xml:space="preserve">
+    <value>&amp;Max count of recent opened files</value>
+  </data>
+  <data name="&gt;&gt;chkBringWindowToTopAfterAutoRefreshed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOK.Name" xml:space="preserve">
+    <value>btnOK</value>
+  </data>
+  <data name="ofdEditor.Title" xml:space="preserve">
+    <value>Choose Editor</value>
+  </data>
+  <data name="&gt;&gt;ofdEditor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblEditor.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>448, 257</value>
+  <data name="lblRestartNotice.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;cmbLanguage.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lblMaxRecents.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;chkOpenLastOpened.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;chkBringWindowToTopAfterAutoRefreshed.Name" xml:space="preserve">
+    <value>chkBringWindowToTopAfterAutoRefreshed</value>
+  </data>
+  <data name="ofdEditor.Filter" xml:space="preserve">
+    <value>Executable|*.exe|All Files|*.*</value>
+  </data>
+  <data name="lblLanguage.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="lblMaxRecents.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 61</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>282, 134</value>
+    <value>282, 127</value>
   </data>
+  <data name="nupRecents.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;cmbLanguage.Name" xml:space="preserve">
+    <value>cmbLanguage</value>
+  </data>
+  <data name="&gt;&gt;btnOK.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblEditor.TabIndex" type="System.Int32, mscorlib">
+    <value>71</value>
+  </data>
+  <data name="lblLanguage.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Option | mdview</value>
+  <data name="btnOK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>318, 227</value>
+  </data>
+  <data name="&gt;&gt;chkOpenLastOpened.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtEditor.TabIndex" type="System.Int32, mscorlib">
+    <value>72</value>
+  </data>
+  <data name="lblEditor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 159</value>
+  </data>
+  <data name="&gt;&gt;nupRecents.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;btnBrowseEditor.Name" xml:space="preserve">
+    <value>btnBrowseEditor</value>
+  </data>
+  <data name="&gt;&gt;lblLanguage.Name" xml:space="preserve">
+    <value>lblLanguage</value>
+  </data>
+  <data name="&gt;&gt;txtEditor.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnBrowseEditor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblRestartNotice.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="lblMaxRecents.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkOpenLastOpened.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="lblEditor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 12</value>
+  </data>
+  <data name="lblEditor.Text" xml:space="preserve">
+    <value>&amp;Editor:</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="nupRecents.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 76</value>
+  </data>
+  <data name="&gt;&gt;lblLanguage.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnBrowseEditor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ofdEditor.Name" xml:space="preserve">
+    <value>ofdEditor</value>
+  </data>
+  <data name="btnOK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;chkOpenLastOpened.Name" xml:space="preserve">
+    <value>chkOpenLastOpened</value>
+  </data>
+  <data name="&gt;&gt;lblRestartNotice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkBringWindowToTopAfterAutoRefreshed.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblRestartNotice.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lblRestartNotice.Name" xml:space="preserve">
+    <value>lblRestartNotice</value>
+  </data>
+  <data name="lblLanguage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 12</value>
+  </data>
+  <data name="chkOpenLastOpened.Text" xml:space="preserve">
+    <value>&amp;Open last opened file at startup</value>
+  </data>
+  <data name="chkOpenLastOpened.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="chkBringWindowToTopAfterAutoRefreshed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 32</value>
+  </data>
+  <data name="chkBringWindowToTopAfterAutoRefreshed.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtEditor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>385, 19</value>
+  </data>
+  <data name="&gt;&gt;chkOpenLastOpened.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnBrowseEditor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 23</value>
+  </data>
+  <data name="&gt;&gt;lblMaxRecents.Name" xml:space="preserve">
+    <value>lblMaxRecents</value>
+  </data>
+  <data name="lblRestartNotice.TabIndex" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="txtEditor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 174</value>
+  </data>
+  <data name="chkOpenLastOpened.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 16</value>
+  </data>
+  <data name="cmbLanguage.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="lblRestartNotice.Text" xml:space="preserve">
+    <value>It requires restart for the chage takes effect.</value>
+  </data>
+  <data name="cmbLanguage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 125</value>
+  </data>
+  <data name="&gt;&gt;lblEditor.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblLanguage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtEditor.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="cmbLanguage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 20</value>
+  </data>
+  <data name="&gt;&gt;chkBringWindowToTopAfterAutoRefreshed.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnOK.Text" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="&gt;&gt;lblLanguage.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>OptionDialog</value>
   </data>
+  <data name="lblRestartNotice.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Option | mdview</value>
+  </data>
+  <data name="btnBrowseEditor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>403, 172</value>
+  </data>
+  <data name="&gt;&gt;lblEditor.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="chkBringWindowToTopAfterAutoRefreshed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 16</value>
+  </data>
+  <data name="chkBringWindowToTopAfterAutoRefreshed.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;lblRestartNotice.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblMaxRecents.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 12</value>
+  </data>
+  <data name="chkBringWindowToTopAfterAutoRefreshed.Text" xml:space="preserve">
+    <value>&amp;Bring window to top after auto-refreshed</value>
+  </data>
+  <data name="nupRecents.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
+  <data name="&gt;&gt;lblEditor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnOK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 21</value>
+  </data>
+  <data name="&gt;&gt;nupRecents.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cmbLanguage.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnOK.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="btnOK.TabIndex" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="lblLanguage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 110</value>
+  </data>
+  <data name="&gt;&gt;lblMaxRecents.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnBrowseEditor.TabIndex" type="System.Int32, mscorlib">
+    <value>73</value>
+  </data>
+  <data name="&gt;&gt;nupRecents.Name" xml:space="preserve">
+    <value>nupRecents</value>
+  </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;txtEditor.Name" xml:space="preserve">
+    <value>txtEditor</value>
+  </data>
+  <data name="&gt;&gt;cmbLanguage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblEditor.Name" xml:space="preserve">
+    <value>lblEditor</value>
+  </data>
+  <data name="lblRestartNotice.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 232</value>
+  </data>
+  <data name="lblLanguage.Text" xml:space="preserve">
+    <value>&amp;Language:</value>
+  </data>
+  <metadata name="ofdEditor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>
