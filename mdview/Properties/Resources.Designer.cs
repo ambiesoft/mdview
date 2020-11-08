@@ -115,6 +115,15 @@ namespace mdview.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This application requires .NET 4.5 or above installed..
+        /// </summary>
+        internal static string DOTNET_45_REQUIRED {
+            get {
+                return ResourceManager.GetString("DOTNET_45_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to save ini..
         /// </summary>
         internal static string INI_SAVE_FAILED {

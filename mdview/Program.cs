@@ -60,6 +60,14 @@ namespace mdview
         static void Main(string[] args)
         {
             Ambiesoft.CppUtils.AmbSetProcessDPIAware();
+            if (!AmbLib.IsNet45OrNewer())
+            {
+                MessageBox.Show(Properties.Resources.DOTNET_45_REQUIRED,
+                    Application.ProductName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
 
             HashIni ini = Profile.ReadAll(IniPath);
             string lang;
