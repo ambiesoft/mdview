@@ -115,11 +115,11 @@ namespace mdview.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This application requires .NET 4.5 or above installed..
+        ///   Looks up a localized string similar to This application requires .NET 4.6 or above installed..
         /// </summary>
-        internal static string DOTNET_45_REQUIRED {
+        internal static string DOTNET_46_REQUIRED {
             get {
-                return ResourceManager.GetString("DOTNET_45_REQUIRED", resourceCulture);
+                return ResourceManager.GetString("DOTNET_46_REQUIRED", resourceCulture);
             }
         }
         
