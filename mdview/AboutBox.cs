@@ -116,12 +116,12 @@ namespace mdview
         }
         private void llWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            NavigateWeb("http://ambiesoft.fam.cx/main/index.php?page=mdview");
+            NavigateWeb("http://ambiesoft.mooo.com/main/index.php?page=mdview");
         }
 
         private void llDonate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            NavigateWeb("http://ambiesoft.fam.cx/donate/");
+            NavigateWeb("http://ambiesoft.mooo.com/donate/");
         }
     }
 }

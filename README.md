@@ -23,7 +23,7 @@ By clicking *watch* button, watching file is enabled. Any changes to the opening
 Download binary from <https://github.com/ambiesoft/mdview/releases>.
 
 # Donate
-Support Ambiesoft <http://ambiesoft.fam.cx/donate/>
+Support Ambiesoft <http://ambiesoft.mooo.com/donate/>
 
 # Contact
 Email: <ambiesoft.trueff@gmail.com>
