@@ -147,7 +147,7 @@
   <data name="NO_EDITOR" xml:space="preserve">
     <value>エディタが設定されていません。オプションで設定してください。</value>
   </data>
-  <data name="DOTNET_46_REQUIRED" xml:space="preserve">
-    <value>このアプリケーションは.NET 4.6以上がインストールされている必要があります。</value>
+  <data name="DOTNET_48_REQUIRED" xml:space="preserve">
+    <value>このアプリケーションは.NET 4.8以上がインストールされている必要があります。</value>
   </data>
 </root>

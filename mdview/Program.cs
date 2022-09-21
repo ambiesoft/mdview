@@ -60,9 +60,9 @@ namespace mdview
         static void Main(string[] args)
         {
             Ambiesoft.CppUtils.AmbSetProcessDPIAware();
-            if (!AmbLib.IsNet46OrNewer())
+            if (!AmbLib.IsNet48OrNewer())
             {
-                MessageBox.Show(Properties.Resources.DOTNET_46_REQUIRED,
+                MessageBox.Show(Properties.Resources.DOTNET_48_REQUIRED,
                     Application.ProductName,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
