@@ -548,11 +548,12 @@ namespace mdview
             int shortPathLength
             );
 
-        private static string GetShortPath(string path)
+        private static string GetShortPathIfPossible(string path)
         {
             var shortPath = new StringBuilder(MAX_PATH);
             GetShortPathName(path, shortPath, MAX_PATH);
-            return shortPath.ToString();
+            return string.IsNullOrWhiteSpace(shortPath.ToString()) ?
+                AmbLib.doubleQuoteIfSpace(path) : shortPath.ToString();
         }
         //-/////////////////
 
@@ -569,7 +570,7 @@ namespace mdview
                 AmbLib.pathToFileProtocol(Misc.PathAddBackslash(Path.GetDirectoryName(mdfile))));
             string arg = string.Format("{0} {1}",
                 CurrentMarkDown.AdditionalArguments,
-                GetShortPath(mdfile) // AmbLib.doubleQuoteIfSpace(mdfile)
+                GetShortPathIfPossible(mdfile)
                 );
 
             try
