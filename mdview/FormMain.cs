@@ -142,9 +142,9 @@ namespace mdview
         {
             _filetoopen = file;
             InitializeComponent();
-//#if !DEBUG
-//            tsMain.Items.Remove(tsbDebugTest);
-//#endif
+#if !DEBUG
+            tsMain.Items.Remove(tsbDebugTest);
+#endif
             wb = new WebBrowser();
             wb.Dock = DockStyle.Fill;
             panelBrowser.Controls.Add(wb);
