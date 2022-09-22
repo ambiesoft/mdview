@@ -26,9 +26,9 @@ mdview.exeを起動しファイルを開くボタンから希望のmdを選択�
 
 ## 寄付
 開発の寄付を募集しています。
-<http://ambiesoft.mooo.com/donate/>
+<https://ambiesoft.github.io/webjumper/?target=donate>
 
 ## 作者への連絡先
 * 電子メール <ambiesoft.trueff@gmail.com>
-* 掲示板 <http://ambiesoft.mooo.com/minibbs/minibbs.php>
+* 掲示板 <https://ambiesoft.github.io/webjumper/?target=bbs>
 * 開発 <https://github.com/ambiesoft/mdview>
